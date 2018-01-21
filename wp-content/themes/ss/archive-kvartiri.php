@@ -2,7 +2,7 @@
 /**
  * The template for displaying archive pages
  * @link https://codex.wordpress.org/Template_Hierarchy
- * // max query template link //http://novostroy/kvartiri/?rom=2&bld=Кадорр&block=Киевский&mnp=10000&mxp=20000&mns=20&mxs=40
+ * // max query template link ////http://novostroy/kvartiri/?rom=2&bld=Кадорр&block=Киевский&mnp=10000&mxp=20000&mns=20&mxs=40
  * @package WordPress
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
@@ -30,6 +30,11 @@ div#srch_stat {
     font-size: 17.5px;
     z-index: 999999;
     left: 0;
+}
+  #src_val input[type="checkbox"] {
+    transform: scale(1.4);
+    margin: 5px 12px;
+    outline: 1px solid #cadbe1;
 }
 div.special_counter {
     text-align: right;
@@ -85,21 +90,21 @@ function default_kvartiri_behaviour()
   function make_search_values_checkboxes($search_tag){
     $search_tago = $search_tag; $field = get_field_object($search_tago);
     if( $field ) {
-      echo '<div class="'. $search_tag .'_values"><aside><p class="srch_labl">'. $field['label']  .'</p>';
+      echo '<div id="'. $search_tag .'" class="'. $search_tag .'_values"><aside><p class="srch_labl">'. $field['label']  .'</p>';
       foreach( $field['choices'] as $k => $v )
-      {
-         echo '<div class="choice" data-filter="'. $search_tag .'"><label title="'. $v . '" class="srch_labl_val">'. $k . '</label><input type="checkbox" placeholder="' . $k . '" value="' . $v . '"><br></div>';
+      {      
+         echo '<div class="choice" data-filter="'. $search_tag .'"><label title="'. $v . '" req="'. $req . '" class="srch_labl_val">'. $k . '</label><input type="checkbox" '. $checked .' srch-type="'. $search_tag .'" class="'. $search_tag .'" placeholder="' . $k . '" value="' . $v . '"><br></div>';
       };
        echo '</aside></div>';
      };
   };
 print_r('<a href="http://novostroy/kvartiri/?rom=2&bld=Кадорр&block=Киевский&mnp=10000&mxp=20000&mns=20.2&mxs=40"></a>');
-print_r('<div class="search_values">');
+print_r('<div id="src_val" class="search_values">');
 make_search_values_checkboxes("rom");
 make_search_values_checkboxes("bld");
 make_search_values_checkboxes("block");
-print_r('<div class="sqrt_inp"><p>Площадь</p><label><input type="text" placeholder="От" /> </label><label><input type="text" placeholder="До" /></label></div>');
-print_r('<div class="prc_inp"><p>Цена</p><label><input type="text" placeholder="От" /> </label><label><input type="text" placeholder="До" /></label></div><a id="searchstarter"><button>Поиск</button></a></div>'); // end search_values block
+print_r('<div id="sqrt_inp" class="sqrt_inp"><p>Площадь</p><label><input type="text" placeholder="От" /> </label><label><input type="text" placeholder="До" /></label></div>');
+print_r('<div id="prc_inp" class="prc_inp"><p>Цена</p><label><input type="text" placeholder="От" /> </label><label><input type="text" placeholder="До" /></label></div><a id="searchstarter"><button>Поиск</button></a></div>'); // end search_values block
  function push_all_possible_meta_values($meta_key_slug)
  { $arr =  array(); $search_tago = $meta_key_slug; $field = get_field_object($search_tago); if( $field ) { foreach( $field['choices'] as $k => $v ) { array_push($arr, $k); } } return $arr; }
  $rom_value = push_all_possible_meta_values("rom"); //default show all rooms possible
@@ -144,98 +149,67 @@ while(have_posts()): the_post();
 default_kvartiri_behaviour();
       get_footer();
    ?>
-   <script>
- let app_res = jQuery('.appartment_res '); let special_counter = jQuery('div.special_counter'); special_counter.prependTo(app_res); special_counter.wrap('<div id="srch_stat"></div>');
+<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/kvarts.js">
 </script>
-<script type="text/javascript">
-  function magicBox(a, b) {
-    function detectGetParameters() {
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-    var possible_received_args = ['rom', 'bld', 'block', 'mnp', 'mxp', 'mns', 'mxs'];
-    var pral = possible_received_args.length;
-    var search_object = {};
-    for (k = 0; k < pral; k++) {
-      if ((getParameterByName(possible_received_args[k])) != null) {
-        var received_arg_name = (possible_received_args[k]);
-        var received_args_value = (getParameterByName(possible_received_args[k]));
-        search_object[received_arg_name] = received_args_value;
-      };
-    };
-      return search_object;
-    }
-    //returns search object from get parameters
-    function set_checked_inputs() {
-jQuery.each(detectGetParameters(), function(name, value) { 
-    var arra = value.split(',');
-for (var i = 0; i < arra.length; i++) {
-  var active_div = jQuery('div.' + name + '');
-     jQuery(active_div).each( function() { 
-           var active_input = jQuery(this).find('input');
-      if (active_input.attr('value') == arra[i])
-{
-active_input.attr('checked',true);
-active_input.attr('marked',true);
-}
-   })
-}
- }); 
-    };
-    new set_checked_inputs();
-    //inputs are now marked due to user's choice, now we re ready to pick new searches 
-    (function($) {
-      ayhu.each(function(i) {
-        var df = jQuery(this).data('filter');
-        jQuery(this).attr('data-count', df + (i + 1));
-        jQuery(this).addClass(df);
-      });//adds class and numbered class to filters
-      var fdf = a.data('filter');      
-      b.each(function() {
-        $(this).on('change', 'input[type="checkbox"]', function() { 
-          var url = '<?php echo home_url('kvartiri'); ?>';
-          args = {};
-          a.each(function() {
-            var filter = $(this).data('count'),
-              vals = [];
-            jQuery(this).find('input:checked').each(function() {
-              vals.push($(this).val());
-            });
-            args[filter] = vals.join(',');
-          });                                 
-          url += '/?';  
-          url += fdf;
-          url += '=';
-          jQuery.each(args, function(name, value) { 
-            if (value != '') {
-              url += value + ',';
-            }
-          }),
-          url = url.slice(0, -1);
-          console.log(url);
-          jQuery('#searchstarter').attr('href', url);
-          jQuery('.fixie').text(url);
-          window.location.replace( url );
-        });
-      });
-    })(jQuery);
-  };
-  var z = jQuery('.rom_values .choice');
-  var f = jQuery('.rom_values');
-  var d = jQuery('.bld_values .choice');
-  var j = jQuery('.bld_values');
-  var n = jQuery('.block_values .choice');
-  var p = jQuery('.block_values');
-  new magicBox(z, f), 
-  new magicBox(d, j),
-  new magicBox(n, p);
-  jQuery('body').append('<div class="fixie"></div>');
-  if(window.location.href.indexOf('?') != -1 && window.location.href.indexOf('=') != -1)
-  jQuery('.fixie').text(window.location.href)
+   <script>
+jQuery('body').append('<div class="fixie"></div>'); 
+let app_res = jQuery('.appartment_res ');
+let special_counter = jQuery('div.special_counter'); 
+special_counter.prependTo(app_res); 
+special_counter.wrap('<div id="srch_stat"></div>');    
+jQuery('#searchstarter').attr('href', window.location.href);
+var url = jQuery('#searchstarter').attr('href');
+jQuery('.fixie').text(url);  
+const input_tables = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#sqrt_inp'), jQuery('#prc_inp')];
+const slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block')]; 
+const possible_received_args = ['rom', 'bld', 'block', 'mnp', 'mxp', 'mns', 'mxs'];
+var link_prefix = '/?'; 
+var link_addon = ''; 
+var default_url = '<?php echo home_url('kvartiri'); ?>'+ link_prefix +'';   
+var get_req_object =  new search_any_req(possible_received_args);
+jQuery.each(get_req_object, function(name, value) { 
+  value = value.split(',');
+  var value_len = value.length;
+  if (value_len == 1)
+    {jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value){ jQuery(this).attr('checked',true);  }}); } else  {  for (k = 0 ; k < value_len; k++){  jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value[k]){ jQuery(this).attr('checked',true);  }});}} 
+}); 
+//   На данный момент выделяются те поля, которые были в гет запросе  И точка.
+//     Теперь рассматриваем остальную часть как отдельную задачу - мы должны на каждой смене инпута делать полный обход и собирать все данные полей, поэтому не надо идентифицировать что юзер там кликнул, пожалуйста
+jQuery('div#src_val').on('change', 'input[type="checkbox"]', function() { 
+
+       var c = {};   
+jQuery('div#src_val input[type="checkbox"]').each(function(){
+if (jQuery(this).prop( "checked" ) == true){
+        var a = jQuery(this).attr('srch-type');
+        var b = jQuery(this).val();
+var empa = [];
+   if (!c[a]){ c[a] = b; }
+  else {
+var g = c[a];
+ c[a] = ''+ b + ',' + g + '';   
+  }
+};  
+})  ;
+
+var o = c;
+  var generated_url = '';
+for (var key in o) {
+  generated_url += key + '=' + o[key] +'&';
+};
+  var cut_url = generated_url.slice(0, -1);
+  var default_url = '<?php echo home_url('kvartiri'); ?>'+ link_prefix +''; 
+  
+  var done_url = default_url += cut_url;
+  console.clear();  
+  console.log("%c" + done_url + "", "color: #18acb9; font-size:16px;"); 
+  jQuery('#searchstarter').attr('href', done_url);
+//  console.log("%c" + link_addon + "", "color: #18acb9; font-size:25px;"); 
+//  var generated_url = default_url += link_addon;
+
+//console.log("%c" + generated_url + "", "color: #18acb9; font-size:25px;"); 
+//  jQuery('.fixie').text(generated_url);
+//
+//  jQuery('#searchstarter').attr('href', generated_url);
+});
+
 </script>
