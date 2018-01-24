@@ -30,31 +30,19 @@ print_r('<div id="src_val" class="search_values">');
 make_search_values_checkboxes("rom");
 make_search_values_checkboxes("bld");
 make_search_values_checkboxes("block");
-if (isset($_GET[mns])){
-  $received_value_mns = $_GET[mns];
-} else { $received_value_mns = '';}
-if (isset($_GET[mxs])){
-  $received_value_mxs = $_GET[mxs];
-} else { $received_value_mxs = '';}
-if (isset($_GET[mnp])){
-  $received_value_mnp = $_GET[mnp];
-} else { $received_value_mnp = '';}
-if (isset($_GET[mxp])){
-  $received_value_mxp = $_GET[mxp];
-} else { $received_value_mxp = '';}
+if (isset($_GET[mns])){ $received_value_mns = $_GET[mns]; } else { $received_value_mns = '';} if (isset($_GET[mxs])){ $received_value_mxs = $_GET[mxs]; } else { $received_value_mxs = '';} if (isset($_GET[mnp])){ $received_value_mnp = $_GET[mnp]; } else { $received_value_mnp = '';} if (isset($_GET[mxp])){ $received_value_mxp = $_GET[mxp]; } else { $received_value_mxp = '';}
 print_r('<div id="sqrt_inp" class="sqrt_inp"><p>Площадь</p><label><input type="text" data-srch-type="mns" value="'. $received_value_mns .'" placeholder="От" /> </label><label><input value="'. $received_value_mxs .'"  type="text" data-srch-type="mxs" placeholder="До" /></label></div>');
 print_r('<div id="prc_inp" class="prc_inp"><p>Цена</p><label><input type="text" value="'. $received_value_mnp .'" data-srch-type="mnp" placeholder="От" /> </label><label><input type="text" value="'. $received_value_mxp .'" data-srch-type="mxp" placeholder="До" /></label></div><a id="searchstarter"><button>Поиск</button></a></div>'); // end search_values block
  function push_all_possible_meta_values($meta_key_slug)
  { $arr =  array(); $search_tago = $meta_key_slug; $field = get_field_object($search_tago); if( $field ) { foreach( $field['choices'] as $k => $v ) { array_push($arr, $k); } } return $arr; }
- $rom_value = push_all_possible_meta_values("rom"); //default show all rooms possible
- $bld_value = push_all_possible_meta_values("bld"); //default all bld companies
- $block_value = push_all_possible_meta_values("block"); //default all rayoni
- $min_possible_price_value = '0';  //default min price
- $max_possible_price_value = '10000000'; //default max price
- $min_possible_sqrt_value = '0'; //default min ploshad'
- $max_possible_sqrt_value = '10000000'; //default max ploshad'
+ $rom_value = push_all_possible_meta_values("rom");
+ $bld_value = push_all_possible_meta_values("bld");
+ $block_value = push_all_possible_meta_values("block");
+ $min_possible_price_value = '0';
+ $max_possible_price_value = '10000000';
+ $min_possible_sqrt_value = '0';
+ $max_possible_sqrt_value = '10000000';
 if (isset( $_GET['rom'] )) {$rom_value = $_GET['rom'];} if (isset( $_GET['bld'] )) {$bld_value = $_GET['bld'];} if (isset( $_GET['block'] )) {$block_value = $_GET['block'];} if (isset( $_GET['mnp'] )) {$min_possible_price_value = $_GET['mnp'];} if (isset( $_GET['mxp'] )) {$max_possible_price_value = $_GET['mxp'];} if (isset( $_GET['mns'] )) {$min_possible_sqrt_value = $_GET['mns'];} if (isset( $_GET['mxs'] )) {$max_possible_sqrt_value = $_GET['mxs'];}
-//if get was set- previous block sets it as a meta query parameter
 $params = array(
   'post_type' =>  'kvartiri',
   'posts_per_page' => 500,
@@ -112,38 +100,35 @@ jQuery.each(get_req_object, function(name, value) {
   if (value_len == 1)
     {jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value){ jQuery(this).attr('checked',true);  }}); } else  {  for (k = 0 ; k < value_len; k++){  jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value[k]){ jQuery(this).attr('checked',true);  }});}}
 });
-//   На данный момент выделяются те поля, которые были в гет запросе  И точка.
-//     Теперь рассматриваем остальную часть как отдельную задачу - мы должны на каждой смене инпута делать полный обход и собирать все данные полей, поэтому не надо идентифицировать что юзер там кликнул, пожалуйста
+function src_val(){
+         var c = {};
+  jQuery('div#src_val input[type="checkbox"]').each(function(){
+  if (jQuery(this).prop( "checked" ) == true){
+          var a = jQuery(this).attr('srch-type');
+          var b = jQuery(this).val();
+     if (!c[a]){ c[a] = b; }
+    else {
+  var g = c[a];
+   c[a] = ''+ b + ',' + g + '';
+    }
+  };
+  })  ;
+  var o = c;
+    var generated_url = '';
+  for (var key in o) {
+    generated_url += key + '=' + o[key] +'&';
+  };
+    var cut_url = generated_url;
+    var default_url = '<?php echo home_url('kvartiri'); ?>'+ link_prefix +'';
+    var done_url = default_url += cut_url;
+    console.clear();
+    jQuery('#searchstarter').attr('search-direct', done_url);
+}
 jQuery('div#src_val').on('change', 'input[type="checkbox"]', function() {
-
-       var c = {};
-jQuery('div#src_val input[type="checkbox"]').each(function(){
-if (jQuery(this).prop( "checked" ) == true){
-        var a = jQuery(this).attr('srch-type');
-        var b = jQuery(this).val();
-   if (!c[a]){ c[a] = b; }
-  else {
-var g = c[a];
- c[a] = ''+ b + ',' + g + '';
-  }
-};
-})  ;
-
-var o = c;
-  var generated_url = '';
-for (var key in o) {
-  generated_url += key + '=' + o[key] +'&';
-};
-  var cut_url = generated_url
-//  .slice(0, -1)
-  ;
-  var default_url = '<?php echo home_url('kvartiri'); ?>'+ link_prefix +'';
-  var done_url = default_url += cut_url;
-  console.clear();
-// console.log("%cТы красава, сделал свой выбор", "color: #18b94a; font-size:16px;");
-  jQuery('#searchstarter').attr('search-direct', done_url);
+src_val();
 });
 jQuery('#searchstarter').click(function(){
+  src_val();
 var readysearchdirect = jQuery(this).attr('search-direct');
 var input_link_builder = '';
 var finish_link_builder = '';
@@ -155,7 +140,6 @@ curloc.indexOf('block=') == -1 && curloc.indexOf('mnp=') == -1 &&
   jQuery('div#sqrt_inp input, div#prc_inp input').each(function(){
   var srch_type = jQuery(this).attr('data-srch-type');
   var srch_val = jQuery(this).val();
-
       if (jQuery(this).val())
         {
           input_link_builder += srch_type + '=' + srch_val + '&';
@@ -163,20 +147,16 @@ curloc.indexOf('block=') == -1 && curloc.indexOf('mnp=') == -1 &&
     }),
   input_link_builder = input_link_builder.slice(0, -1),
 readysearchdirect += '?' + input_link_builder,
-
  window.location.replace( readysearchdirect );
 } else {
   if ( curloc.indexOf('mnp=') != -1 || curloc.indexOf('mxp=') != -1 || curloc.indexOf('mns=') != -1 || curloc.indexOf('mxs=') != -1 )
    {
-     // hardway - one of the same gets is already installed but how can this branch be? only if they were installed before ! so they must install if set in get in php 1st cycle
 console.log(curloc);
 console.log('hardway');
    } else {
-     // easyway - just add the link  and go
      jQuery('div#sqrt_inp input, div#prc_inp input').each(function(){
      var srch_type = jQuery(this).attr('data-srch-type');
      var srch_val = jQuery(this).val();
-
          if (jQuery(this).val())
            {
              input_link_builder += srch_type + '=' + srch_val + '&';
@@ -185,13 +165,7 @@ console.log('hardway');
      input_link_builder = input_link_builder.slice(0, -1),
    readysearchdirect += input_link_builder,
     window.location.replace( readysearchdirect );
-   } // 1 tree 2 branch ifelse end
- } // 1 tree 1 branch ifelse end
-
-  // console.log("%c" + input_link_builder + " Redirecting in 30 sec...", "color: #18acb9; font-size:36px;");
-// var possible_other_args = ['rom', 'bld', 'block', 'mnp', 'mxp', 'mns', 'mxs'],
-// var get_new_req_object = new search_any_req(possible_other_args),
-// jQuery.each(get_new_req_object, function(name, value) {
-//   get_req_object
+   }
+ }
    });
 </script>
