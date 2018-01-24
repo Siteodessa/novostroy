@@ -473,3 +473,29 @@ function true_register_products() {
 //	flush_rewrite_rules();
 }
 add_action( 'init', 'true_register_products' ); // Использовать функцию только внутри хука init
+
+
+
+
+
+
+add_action("pre_get_posts", "custom_front_page");
+function custom_front_page($wp_query){
+	if(is_admin()) return;
+    //Ensure this filter isn't applied to the admin area
+    if(is_admin()) {
+        return;
+    }
+
+    if($wp_query->get('page_id') == get_option('page_on_front')):
+
+        $wp_query->set('post_type', 'kvartiri');
+        $wp_query->set('page_id', ''); //Empty
+        $wp_query->is_page = 0;
+        $wp_query->is_singular = 0;
+        $wp_query->is_post_type_archive = 1;
+        $wp_query->is_archive = 1;
+
+    endif;
+
+}
