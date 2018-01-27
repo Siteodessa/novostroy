@@ -42,7 +42,6 @@ div.special_counter {
 }
 
 strong.rom {
-    border-radius: 100%;
     border: 1px solid;
     padding: 5px 11px !important;
     margin: 0 0px;
@@ -58,19 +57,29 @@ strong.rom {
 }
 
 .appartment {
-    width: 100%;
+    width: auto;
     display: grid;
     border: 1px solid;
-    padding: 10px 12px;
+    padding: 10px 8px;
     margin: 5px;
-    grid-template-columns: 50px 32px 100px 250px 60px 110px 80px 50px 50px 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     grid-gap: 6px;
+    position:  relative;
+    overflow:  hidden;
 }
 
 .appartment strong {
     padding: 5px 6px;
-    border: 1px solid;
+    border: 1px solid #cacaca;
     display: table;
+    width:  100%;
+    text-align:  right;
+    position:  absolute;
+    left:  0;
+    z-index: 1;
+    transform: translate(-6px,3px);
+    font-size:  13px;
 }
 
 b {
@@ -98,12 +107,14 @@ button#searchstarter {
     background: #f8fcff;
     grid-auto-rows: min-content;
     height: 60px;
+    z-index: 6;
 }
 
 .search_values div {
     margin: 0 0px;
     height: auto;
     overflow:  hidden;
+    z-index: 6;
 }
 
 .search_values .sqrt_inp input, .search_values .prc_inp input {
@@ -125,6 +136,7 @@ p.srch_labl {
     border-radius: 2px;
     z-index:  2;
     position:  relative;
+    cursor:  pointer;
 }
 
 p.srch_labl:first-letter {
@@ -154,10 +166,17 @@ div#sqrt_inp {
     justify-content: space-between;
 }
 
-.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition:  .6s;opacity: 1;}
+.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;}
 
 
 .choices.nxpan {
     transform: translate(0,-100%);
     opacity:  .5;
+}
+
+.apps_holder {
+    display:  grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-gap:  5px;
+    width: calc(100% - 15px);
 }

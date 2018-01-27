@@ -2,7 +2,7 @@
   <div>
     <ul class="menu">
       <li><a href="/">Строящиеся дома</a></li>
-      <li><a href="http://novostroy/category/sdannye-doma/">Сданные дома</a></li>
+      <li><a href="http://novostroy/sdannie_doma/kvartiri/">Сданные дома</a></li>
       <li><a href="http://novostroy/ofisy/">Офисы</a></li>
       <li><a href="http://novostroy/tseny/">Цены</a></li>
       <li><a href="http://novostroy/goryashhie-predlozheniya/">Горящие предложения</a></li>

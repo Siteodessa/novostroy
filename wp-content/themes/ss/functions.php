@@ -416,86 +416,61 @@ require get_template_directory() . '/inc/customizer.php';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function true_register_products() {
+// Создает тип записи "квартиры", которые группируются в
+function register_doma_i_kvartiri() {
 	$labels = array(
-		'name' => 'Квартиры',
-		'singular_name' => 'kvartiri', // админ панель Добавить->Функцию
+		'name' => 'объекты',
+		'singular_name' => 'objects',
 		'add_new' => 'Добавить новую квартиру',
-		'add_new_item' => 'Добавить новую квартиру', // заголовок тега <title>
-		'edit_item' => 'Редактировать квартиры',
+		'add_new_item' => 'Добавить новую квартиру',
+		'edit_item' => 'Редактировать квартиру',
 		'new_item' => 'Новая квартира',
 		'all_items' => 'Все квартиры',
 		'view_item' => 'Просмотр квартир на сайте',
 		'search_items' => 'Искать квартиры',
 		'not_found' =>  'Квартир не найдено.',
 		'not_found_in_trash' => 'В корзине нет квартир.',
-		'menu_name' => 'Квартиры' // ссылка в меню в админке
+		'menu_name' => 'Объекты'
 	);
 	$args = array(
 		'labels' => $labels,
-		'public' => true, // благодаря этому некоторые параметры можно пропустить
+		'public' => true,
 		'publicly-queryable' => true,
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'menu_icon' => 'dashicons-admin-home', // иконка корзины
-		'menu_position' => 2,
-		'rewrite' => array('slug' => 'kvartiri'),
+		'menu_icon' => 'dashicons-admin-home',
+		'menu_position' => 7,
+		'rewrite' => array('slug' => 'objects'),
 		'capability_type' => 'post',
-		'has_archive' => 'kvartiri',
-		'supports' => array( 'title', 'editor', 'thumbnail'),
-		'taxonomies' => array('post_tag')
+		'has_archive' => 'objects',
+						'hierarchical' => true,
+		'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes'),
+		'taxonomies' => array( 'topics', 'category')
 	);
-	register_post_type('kvartiri',$args);
+	register_post_type('objects',$args);
 //	flush_rewrite_rules();
+/*  flush_rewrite_rules() - Если здесь вносить некоторые изменения,
+ влияющие на структуру ссылок (например rewrite в args),
+  короче если ссылки изменились, надо раскомментировать flush_rewrite_rules();, затем загрузить
+	любую страницу из фронтенда пару раз(чтоб на верняк) и закомментировать обратно чтобы веррнуть скорость
+	Вместо этого можно в настройках обычной админки  - постоянные ссылки - сохранить, но это так долго */
 }
-add_action( 'init', 'true_register_products' ); // Использовать функцию только внутри хука init
+add_action( 'init', 'register_doma_i_kvartiri' );
 
-
-
-
-
-
-add_action("pre_get_posts", "custom_front_page");
 function custom_front_page($wp_query){
 	if(is_admin()) return;
-    //Ensure this filter isn't applied to the admin area
     if(is_admin()) {
         return;
     }
-
     if($wp_query->get('page_id') == get_option('page_on_front')):
 
-        $wp_query->set('post_type', 'kvartiri');
+        $wp_query->set('post_type', 'objects');
         $wp_query->set('page_id', ''); //Empty
         $wp_query->is_page = 0;
         $wp_query->is_singular = 0;
         $wp_query->is_post_type_archive = 1;
         $wp_query->is_archive = 1;
-
     endif;
-
 }
+add_action("pre_get_posts", "custom_front_page");

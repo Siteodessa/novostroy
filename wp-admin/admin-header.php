@@ -84,6 +84,67 @@ var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>',
 	decimalPoint = '<?php echo addslashes( $wp_locale->number_format['decimal_point'] ); ?>',
 	isRtl = <?php echo (int) is_rtl(); ?>;
 </script>
+<style>
+tr.form-field.term-description-wrap{ opacity:0; display: :none}#edittag {
+    max-width: 100% !important;
+}table.form-table tbody {
+    display: grid;
+    grid-template-columns: 1fr 800px;
+}
+body.admin-bar.post-type-objects.taxonomy-category table.form-table {
+    /* display:  grid; */
+    grid-template-columns:  1fr 270px;
+    grid-gap:  80px;
+}
+tr.form-field.term-slug-wrap {
+    display:  none;
+}body.admin-bar.post-type-objects.taxonomy-category img.acf-image-image {
+    width: 340px;
+}.dno{
+	display: none;
+}
+div#wp-wysiwyg-acf-field-описание-5a6cb79f61776-wrap {
+    width: 470px;
+}
+div#desc_photo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 250px;
+    background: #e1e1e1;
+    padding: 20px;
+}tr.form-field.field.field_type-wysiwyg.field_key-field_5a6b93350e267 {
+    display:  grid;
+    grid-template-columns:  1fr;
+    grid-template-rows: 40px 1fr;
+}
+
+
+div#afteradmin tr {
+    height: 10px !important;
+    display: block;
+    margin: 0  0 12px;
+}
+
+tr.form-field.field.field_type-true_false.field_key-field_5a6ca1b35c986 {
+    padding: 20px 0;
+}
+tr.form-field.field.field_type-image.field_key-field_5a6b937a0e269 {
+    display:  grid;
+    grid-template-columns: 60px 1fr 1fr;
+}
+img.plusico:hover {
+    cursor: pointer;
+    background: transparent;
+}
+img.plusico {
+    width: 40px;
+    position: relative;
+    top: -20px;
+    left: 190px;
+    background: white;
+    border-radius: 100%;
+    transition: .4s;
+}
+</style>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <?php
 

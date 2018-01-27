@@ -48,8 +48,6 @@
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-
-
 var current = 0;
 var slides = $(".slide");
 $("#right").click(function() {
@@ -85,7 +83,6 @@ setInterval(function() {
   $("#left").click();
 }, 5000);
 </script>
-
 <?php wp_footer(); ?>
 </div>
 </body>
