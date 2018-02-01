@@ -25,8 +25,6 @@
     <div class="container hd">
       <header>
         <div class="header-banner">
-
-
           <button role="buttton" class="btn-success cnct" onclick="alert('binotel')"> Связаться с нами</button>
         </div>
         <div class="clear"></div>

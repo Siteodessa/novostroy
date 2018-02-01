@@ -407,15 +407,6 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
 
 
-
-
-
-
-
-
-
-
-
 // Создает тип записи "квартиры", которые группируются в
 function register_doma_i_kvartiri() {
 	$labels = array(
@@ -464,7 +455,6 @@ function custom_front_page($wp_query){
         return;
     }
     if($wp_query->get('page_id') == get_option('page_on_front')):
-
         $wp_query->set('post_type', 'objects');
         $wp_query->set('page_id', ''); //Empty
         $wp_query->is_page = 0;

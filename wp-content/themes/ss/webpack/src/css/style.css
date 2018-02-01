@@ -275,11 +275,14 @@ span.data p {
   position: fixed;
   bottom: 0px;
   z-index: -2;
-  background: rgb(68, 68, 68);
+  left:  auto;
+  width:  100%;
+  left:  0;
 }
 
 .footer .container {
   padding: 10px 30px 0px;
+  background: rgb(68, 68, 68);
 }
 
 .footer .row {
@@ -604,7 +607,7 @@ margin:10px 0;}
     height: 30px;
 }
 
-li.ro:before, li.bd:before, li.bl:before, li.sq:before, li.pr:before {
+li.ro:before, li.bd:before, li.bl:before, li.sq:before, li.pr:before, li.fl:before {
     content: '';
     background: #6ac2e7;
     position:  absolute;
@@ -641,4 +644,9 @@ li.bd:before {
 
 aside {
     position:  relative;
+}
+
+a#searchstarter, a#searchstarter .button {
+    width:  100%;
+    display: grid;
 }

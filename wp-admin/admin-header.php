@@ -98,9 +98,19 @@ body.admin-bar.post-type-objects.taxonomy-category table.form-table {
 }
 tr.form-field.term-slug-wrap {
     display:  none;
-}body.admin-bar.post-type-objects.taxonomy-category img.acf-image-image {
-    width: 340px;
-}.dno{
+}
+body.admin-bar.post-type-objects.taxonomy-category p.description{
+	display: none
+}
+
+
+
+body.admin-bar.post-type-objects.taxonomy-category img.acf-image-image {
+    width: 140px;
+}div#afteradmin2 tr.dno{
+	display: none;
+}
+.dno{
 	display: none;
 }
 div#wp-wysiwyg-acf-field-описание-5a6cb79f61776-wrap {
@@ -116,8 +126,12 @@ div#desc_photo {
     grid-template-columns:  1fr;
     grid-template-rows: 40px 1fr;
 }
-
-
+div#afteradmin2 tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 3px;
+    margin: 0 4px;
+}
 div#afteradmin tr {
     height: 10px !important;
     display: block;
@@ -134,15 +148,59 @@ tr.form-field.field.field_type-image.field_key-field_5a6b937a0e269 {
 img.plusico:hover {
     cursor: pointer;
     background: transparent;
-}
-img.plusico {
-    width: 40px;
+}img.plusico {
+    width: 30px;
     position: relative;
     top: -20px;
-    left: 190px;
+    left: 5px;
     background: white;
     border-radius: 100%;
     transition: .4s;
+}
+
+tr.form-field.field.field_type-text.field_key-field_5a6b92e927a81
+
+{
+	background: #e1e1e1;
+}
+tr.form-field.field.field_type-text.field_key-field_5a6b92c927a7f { padding:0 20px;background: #dbdbdb; } tr.form-field.field.field_type-text.field_key-field_5a6c9641f1813 { padding:0 20px;background: #d2d1d1; } tr.form-field.field.field_type-text.field_key-field_5a6c9657f1814 { } tr.form-field.field.field_type-text.field_key-field_5a6c9657f1814 { padding:0 20px;background: #b4b4b4; }
+tr#acf-цена_однокомнатных_квартир_от { padding:0 20px;background: #e4e2e2; } tr.form-field.field.field_type-number.field_key-field_5a6c97a5fa7c0 { padding:0 20px;background: #d2cdcd; } tr.form-field.field.field_type-number.field_key-field_5a6c97db191ff { padding:0 20px;background: #b4acac; }
+p.closy {
+    padding: 4px;
+    margin: 50px 0 -20px;
+    background: #d2cdcd;
+}
+div#photos {
+    display: grid;
+    grid-template-rows: 160px;
+    grid-template-columns: 120px 120px 120px 120px 120px 120px 120px 120px 120px 120px;
+    grid-gap: 2px;
+}
+div#photos p {
+    width: 160px;
+    transform: translate(0%, 130%);
+}
+div#photos div.field {
+    border: 1px solid #e14d43;
+    overflow: hidden;
+}
+div#photos p input {
+    transform: translate(-1%, -20px);
+    background: #e14d43;
+    color: #fff;
+    font-size: 0.8em;
+    padding: 0 2px;
+}
+body.auto-fold.admin-bar.post-type-objects img.acf-image-image {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    min-width: 120px;
+}
+div#photos label {
+    display:  none;
+}div#photos label {
+    display:  none;
 }
 </style>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">

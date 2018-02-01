@@ -1,7 +1,8 @@
 div#srch_stat {
-    width: 100%;
+    width: calc(100% - 7px);
     display: flex;
     justify-content: flex-end;
+    margin-bottom:  20px;
 }
 
 .fixie {
@@ -80,6 +81,7 @@ strong.rom {
     z-index: 1;
     transform: translate(-6px,3px);
     font-size:  13px;
+    height: 27px;
 }
 
 b {
@@ -100,11 +102,11 @@ button#searchstarter {
 
 .search_values {
     display: grid;
-    grid-template-columns: 180px 310px 190px 180px 180px 80px;
+    grid-template-columns: 100px 275px 145px 180px 180px 1fr 1fr;
     grid-gap: 4px;
-    margin: 12px 0;
-    padding: 12px 14px;
-    background: #f8fcff;
+    margin: 0px 0;
+    padding: 12px 7px;
+    /* background: #fff; */
     grid-auto-rows: min-content;
     height: 60px;
     z-index: 6;
@@ -179,4 +181,32 @@ div#sqrt_inp {
     grid-template-columns: 25% 25% 25% 25%;
     grid-gap:  5px;
     width: calc(100% - 15px);
+}
+
+a#searchstarter .button:hover {
+    text-decoration:  none;
+}
+
+a#searchstarter:hover {
+    text-decoration:  none;
+}
+
+.home-c.container {
+    background: #f3f3f3;
+    padding-bottom:  40px;
+}
+
+.z-dom {
+    position:  relative;
+    z-index: 6;
+}
+
+.after_search {
+    display: flex;
+    grid-template-columns: 105px 170px;
+    grid-gap: 10px;
+}
+
+a.flush_search {
+    padding: 4px 13px;
 }

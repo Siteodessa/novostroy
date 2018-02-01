@@ -19,10 +19,7 @@ if( $field ) {
   echo '<div id="'. $search_tag .'" class="'. $search_tag .'_values"><aside><p class="srch_labl">'. $field['label']  .'</p><div class="choices nxpan">';
   foreach( $field['choices'] as $k => $v )
   {
-    $z = $k;$where = $k;$what = "_";$p
-
-
-    osition = strpos($where,$what);if ($position !== false ){    $phrase  = $k;$healthy = array("_");$yummy   = array(" ");$newphrase = str_replace($healthy, $yummy, $phrase); $z = $newphrase; };
+    $z = $k;$where = $k;$what = "_";$position = strpos($where,$what);if ($position !== false ){    $phrase  = $k;$healthy = array("_");$yummy   = array(" ");$newphrase = str_replace($healthy, $yummy, $phrase); $z = $newphrase; };
          echo '<div class="choice" data-filter="'. $search_tag .'"><input type="checkbox" '. $checked .' srch-type="'. $search_tag .'" class="'. $search_tag .'" placeholder="' . $k . '" value="' . $v . '"><label title="'. $v . '" req="'. $req . '" class="srch_labl_val">'. $z . '</label><br></div>';
       };
        echo '</div></aside></div>';
@@ -59,9 +56,9 @@ $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false;
 $counter = 0;
-print_r('<div class="appartment_res">');
-print_r('<div class="sub_search_menu"></div>');
-print_r('<div class="apps_holder">');
+  print_r('<div class="appartment_res">');
+  print_r('<div class="sub_search_menu"></div>');
+  print_r('<div class="apps_holder">');
 while(have_posts()): the_post();?>
 <ul class="appartment">
 <li class="im"><img src="<?php echo the_post_thumbnail_url();?>"></li>

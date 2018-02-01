@@ -114,19 +114,20 @@ jQuery('body.admin-bar.post-type-objects.taxonomy-category tr.form-field.term-de
 
 jQuery('body.admin-bar.post-type-objects.taxonomy-category table.form-table tbody').after('<div id="afteradmin"></div>');
 jQuery('body.admin-bar.post-type-objects.taxonomy-category table.form-table tbody').after('<div id="afteradmin2"></div>');
-jQuery('body.admin-bar.post-type-objects.taxonomy-category table.form-table tbody').after('<div id="afteradmin3"></div>');
 setTimeout(function(){
+	jQuery('#afteradmin').append(jQuery('tr#acf-отделка'));
 jQuery('#afteradmin').append(jQuery('tr#acf-коммерческие_помещения'));
 jQuery('#afteradmin').append(jQuery('tr#acf-охраняемая_территория'));
 jQuery('#afteradmin').append(jQuery('tr#acf-паркинг_подземный'));
 jQuery('#afteradmin').append(jQuery('tr#acf-парковка'));
 jQuery('#afteradmin').append(jQuery('tr#acf-детские_площадки'));
+jQuery('#afteradmin').append('<p class="closy">Рядом есть:</p>');
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_детский_сад_'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_супермаркет'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_аптека'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_фитнес-клуб'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_сквер_парк_зеленая_зона'));
-jQuery('#afteradmin').append(jQuery('tr#acf-отделка'));
+
 },1400);
 setTimeout(function(){
 jQuery('#afteradmin2').append(jQuery('tr#acf-фото'));
@@ -139,9 +140,8 @@ jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото7'));
 jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото8'));
 jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото9'));
 jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото10'));
-jQuery('#afteradmin3').append(jQuery('tr#acf-описание'));
-jQuery('#afteradmin2, #afteradmin, #afteradmin3').wrapAll('<div id="adm_sect"></div>');
-jQuery('#afteradmin2, #afteradmin3, #afteradmin').wrapAll('<div id="desc_photo"></div>');
+jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="adm_sect"></div>');
+jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="desc_photo"></div>');
 
 },1600);
 setTimeout(function(){
@@ -155,11 +155,35 @@ jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0007').add
 jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caaf3a6b99').addClass('dno');
 jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caafca6b9a').addClass('dno');
 jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').addClass('dno');
+jQuery('tr.form-field.field.field_type-text.field_key-field_5a6b92e927a81').append(jQuery('div#desc_photo'));
 jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').after('<div id="photoadder"><img class="plusico" src="/wp-content/uploads/2018/01/plus.png"></div>');
+jQuery('body.auto-fold.admin-bar.post-type-objects .inside').first().append('<div id="photos"></div>');
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото2'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото3'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото4'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото5'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото6'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото7'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото8'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото9'));
+	jQuery('body').find('#photos').append(jQuery('div#acf-фото10'));
+
 jQuery('#photoadder').on('click', 'img', function(){
 	jQuery('body').find('.dno').first().removeClass('dno');
 });
-},1700);
+},400);
+
+jQuery(document).ready(function(){
+
+	setTimeout(function(){
+    jQuery("h2.hndle.ui-sortable-handle span").text(function(index, text) {
+    return text.replace("рубрики", "дома");
+
+    });
+console.log('');
+	},1700);
+});
 
 </script>
 </body>
