@@ -6726,3 +6726,7 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+.sqrt_inp label, .prc_inp label {
+    max-width: 50%;
+}

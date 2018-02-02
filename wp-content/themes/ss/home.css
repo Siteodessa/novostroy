@@ -40,6 +40,7 @@ div.special_counter {
     background: #e4e4e4;
     color: #444;
     padding: 4px;
+    margin: 50px 0 -10px;
 }
 
 strong.rom {
@@ -102,11 +103,11 @@ button#searchstarter {
 
 .search_values {
     display: grid;
-    grid-template-columns: 100px 275px 145px 180px 180px 1fr 1fr;
+    grid-template-columns: 100px 275px 145px 90px 180px 1fr 1fr;
     grid-gap: 4px;
     margin: 0px 0;
     padding: 12px 7px;
-    /* background: #fff; */
+    background: #f3f3f3d4;
     grid-auto-rows: min-content;
     height: 60px;
     z-index: 6;
@@ -124,6 +125,7 @@ button#searchstarter {
     margin: 7px 0px 0 0;
     border: 1px solid #6ac2e7;
     height: 30px;
+    text-indent:  15px;
 }
 
 p.srch_labl {
@@ -168,12 +170,14 @@ div#sqrt_inp {
     justify-content: space-between;
 }
 
-.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;}
+.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;transform: translate(0,-100%);opacity: .5;}
 
 
 .choices.nxpan {
     transform: translate(0,-100%);
     opacity:  .5;
+    transform: translate(0,0);
+    opacity: 1;
 }
 
 .apps_holder {
@@ -194,11 +198,12 @@ a#searchstarter:hover {
 .home-c.container {
     background: #f3f3f3;
     padding-bottom:  40px;
-}
-
-.z-dom {
-    position:  relative;
+    position: relative;
     z-index: 6;
+}
+.z-dom2 {
+     position:  relative;
+     z-index: 7; 
 }
 
 .after_search {
@@ -209,4 +214,46 @@ a#searchstarter:hover {
 
 a.flush_search {
     padding: 4px 13px;
+}
+
+div#src_val.touched {
+    background: #e7e7e7;
+}
+
+div#src_val.touched {
+    background: #d7d7d7;
+}
+
+.rom_values .rom_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.bld_values .bld_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.block_values .block_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.floor_values .floor_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.sqrt_inp .sqrt_inp .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}.prc_inp .prc_inp .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+
+.rom_values .search_values, .bld_values .search_values, .block_values .search_values, .floor_values .search_values, .sqrt_inp .search_values, .prc_inp .search_values {
+    height:  100%;
+    margin-bottom: calc( -100% + 30px);
+}
+
+div#srch_vals.active + .home-c.container {
+    margin-top: 60px;
 }

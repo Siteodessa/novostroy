@@ -15,25 +15,7 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
-
-
-
-
-
-
-
-
-
-
 // управление перекрытием меню делается через релатив и з индекс  home-c container и srch_vals, управляй классом который перебрасывает индекс доминацию между этими двумя, короче два тогла вряд вполне хватит
-
-
-
-
-
-
-
-
 get_header();
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/home.css">');
 function default_kvartiri_behaviour()
@@ -48,7 +30,7 @@ function default_kvartiri_behaviour()
 $search_tago = $search_tag;
  $field = get_field_object($search_tago);
 if( $field ) {
-  echo '<div id="'. $search_tag .'" class="'. $search_tag .'_values"><aside><p class="srch_labl">'. $field['label']  .'</p><div class="choices nxpan">';
+  echo '<div id="'. $search_tag .'" class="'. $search_tag .'_values"><aside><p class="srch_labl">'. $field['label']  .'</p><div class="choices">';
   foreach( $field['choices'] as $k => $v )
   {
     $z = $k;$where = $k;$what = "_";$position = strpos($where,$what);if ($position !== false ){    $phrase  = $k;$healthy = array("_");$yummy   = array(" ");$newphrase = str_replace($healthy, $yummy, $phrase); $z = $newphrase; };
@@ -61,7 +43,7 @@ if( $field ) {
   print_r('<div id="mini_block" class="srch-top">');
   print_r('</div>');
 print_r('<div class="container">');
-print_r('<div id="src_val" class="search_values">');
+print_r('<div id="src_val" class="search_values z-dom">');
 make_search_values_checkboxes("rom");
 make_search_values_checkboxes("bld");
 make_search_values_checkboxes("block");
@@ -70,8 +52,8 @@ if (isset($_GET[mns])){ $received_value_mns = $_GET[mns]; } else { $received_val
 if (isset($_GET[mxs])){ $received_value_mxs = $_GET[mxs]; } else { $received_value_mxs = '';}
 if (isset($_GET[mnp])){ $received_value_mnp = $_GET[mnp]; } else { $received_value_mnp = '';}
 if (isset($_GET[mxp])){ $received_value_mxp = $_GET[mxp]; } else { $received_value_mxp = '';}
-print_r('<div id="sqrt_inp" class="sqrt_inp"><p class="srch_labl">Площадь</p><div class="inps choices nxpan"><label><input type="text" data-srch-type="mns" value="'. $received_value_mns .'" placeholder="От" /> </label><label><input value="'. $received_value_mxs .'"  type="text" data-srch-type="mxs" placeholder="До" /></label></div></div>');
-print_r('<div id="prc_inp" class="prc_inp"><p class="srch_labl">Цена</p><div class="inps choices nxpan"><label><input type="text" value="'. $received_value_mnp .'" data-srch-type="mnp" placeholder="От" /> </label><label><input type="text" value="'. $received_value_mxp .'" data-srch-type="mxp" placeholder="До" /></label></div></div><a id="searchstarter"><button id="start" class="btn">Поиск</button></a>');
+print_r('<div id="sqrt_inp" class="sqrt_inp"><p class="srch_labl">Площадь</p><div class="inps choices "><label><input type="text" data-srch-type="mns" value="'. $received_value_mns .'" placeholder="От" /> </label><label><input value="'. $received_value_mxs .'"  type="text" data-srch-type="mxs" placeholder="До" /></label></div></div>');
+print_r('<div id="prc_inp" class="prc_inp"><p class="srch_labl">Цена</p><div class="inps choices"><label><input type="text" value="'. $received_value_mnp .'" data-srch-type="mnp" placeholder="От" /> </label><label><input type="text" value="'. $received_value_mxp .'" data-srch-type="mxp" placeholder="До" /></label></div></div><a id="searchstarter"><button id="start" class="btn">Поиск</button></a>');
   print_r('</div>');
     print_r('<div id="mini_block_b" class="srch-bot">');
     // print_r('a');
@@ -128,20 +110,14 @@ $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false;
 $counter = 0;
-print_r('<div class="home-c container z-dom">');
+print_r('<div class="home-c container">');
   print_r('<div class="appartment_res">');
-
-
-
   print_r('<div class="sub_search_menu"></div>');
   print_r('<div class="apps_holder">');
-
-
-
-
 while(have_posts()): the_post();?>
 <ul class="appartment">
-<li class="im"><img src="<?php echo get_field('фото');?>" /></li>
+<li class="im">
+  <a href="<?= the_permalink()?>"><img src="<?php echo get_field('фото');?>" /></a></li>
 <li class="bd"><p>Застройщик</p><strong class="bld"><?php echo  get_field('bld') ;?></strong></li>
 <li class="ro"><p class="app_comn">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
 <li class="bl"><p>Район</p><strong class="block"><?php echo get_field('block')  ;?></strong></li>
@@ -172,29 +148,17 @@ default_kvartiri_behaviour();
 </script>
 <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
    <script>
-
-
 let app_res = jQuery('.sub_search_menu');
-
 let after_search = jQuery('div.after_search');
-
 after_search.prependTo(app_res);
-
 after_search.wrap('<div id="srch_stat"></div>');
-
 jQuery('#searchstarter').attr('search-direct', '<?php echo $_SERVER['SERVER_NAME']; ?>');
-
 var url = jQuery('#searchstarter').attr('href');
-
 const input_tables = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#sqrt_inp'),
  jQuery('#prc_inp')];
 const slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#floor')];
-
 const possible_received_args = ['rom', 'bld', 'block', 'floor', 'mnp', 'mxp', 'mns', 'mxs'];
-
 var link_prefix = '/?';
 var link_addon = '';
 var default_url = '<?php echo $_SERVER['SERVER_NAME']; ?>'+ link_prefix +'';
@@ -205,7 +169,6 @@ jQuery.each(get_req_object, function(name, value) {
   if (value_len == 1)
     {jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value){ jQuery(this).attr('checked',true);  }}); } else  {  for (k = 0 ; k < value_len; k++){  jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value[k]){ jQuery(this).attr('checked',true);  }});}}
 });
-
 function src_val(){
          var c = {};
   jQuery('div#src_val input[type="checkbox"]').each(function(){
@@ -234,49 +197,6 @@ function src_val(){
 jQuery('div#src_val').on('change', 'input[type="checkbox"]', function() {
 src_val();
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 jQuery('#searchstarter').click(function(){
 jQuery('.choices').addClass('nxpan');
 src_val();
@@ -317,63 +237,67 @@ console.log('hardway');
    }
  }
    });
-
 }
   window.location.replace( readysearchdirect );
 });
 function any_opened_dropdwns(){
   var choices = jQuery('div.choices');
   var gt = 0;
-
 jQuery(choices).each(function () {
   if (jQuery(this).hasClass('nxpan') != true)
   {
 console.log(' !=true')
   }
 });
-
-
 jQuery(choices).each(function () {
   if (jQuery(this).hasClass('nxpan') == true)
   {
 console.log(' !=true')
   }
 });
-
-
-
 setTimeout(function(){
   if (gt > 0)  {return true} else { return false }
 },100);
-
 };
-jQuery('p.srch_labl').each(function () {
-jQuery(this).click(function () {
-if (jQuery(this).siblings('.choices').hasClass('nxpan') != true)
+function close_all(){
+      jQuery('div#src_val').removeClass('touched')
+        jQuery('.choices').removeClass('nxpan');
+}
+function open_this(obj){
+        jQuery('div#src_val').addClass('touched')
+  obj.siblings('.choices').addClass('nxpan');
+}
+jQuery('p.srch_labl').click(function () {
+var dis = jQuery(this);
+
+
+  var current_class = jQuery(this).parent('aside').parent('div').attr('class');
+
+if (typeof(current_class) == 'undefined')
 {
+  var current_class = jQuery(this).parent('div').attr('class');
+console.log(typeof(current_class))
+console.log(current_class)
 
+}
+
+
+  // console.log(current_class)
+  if( jQuery('#srch_vals').hasClass(current_class) == false){
+  jQuery('#srch_vals').attr('class', 'search_block z-dom2 active');
+  jQuery('#srch_vals').attr('class', 'search_block z-dom2 active ' + current_class + '');
+  }
+else {
   setTimeout(function(){
-    jQuery('.home-c.container, #srch_vals').toggleClass('z-dom');
-  },300);
-    jQuery(this).siblings('.choices').addClass('nxpan');
-    console.log(any_opened_dropdwns());
-
-}
-else
-{ //   console.log('fork2'); событие при открытии
-   jQuery('.home-c.container, #srch_vals').toggleClass('z-dom');
-    jQuery('.choices').addClass('nxpan');
-    jQuery(this).siblings('.choices').removeClass('nxpan');
-  console.log(any_opened_dropdwns());
+        jQuery('#srch_vals').attr('class', 'search_block');
+  }, 296)
+    jQuery('#srch_vals').attr('class', 'search_block z-dom2');
 
 
 
 }
 });
-});
-   // Не сккладывается при повторном нажатии, нужно сделать тк чтобы можно было сбросиь параметры поиска и раскрыть все ячейки
-</script>
-<script>
+/* ---------------------------------------- */
 var current = 0;
   var slides = $(".slide");
   $("#right").click(function() {
