@@ -129,50 +129,53 @@ jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_фитнес-к�
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_сквер_парк_зеленая_зона'));
 
 },1400);
+// setTimeout(function(){
+// jQuery('#afteradmin2').append(jQuery('tr#acf-фото'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото2'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото3'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото4'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото5'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото6'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото7'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото8'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото9'));
+// jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото10'));
+// jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="adm_sect"></div>');
+// jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="desc_photo"></div>');
+//
+// },1600);
 setTimeout(function(){
-jQuery('#afteradmin2').append(jQuery('tr#acf-фото'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото2'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото3'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото4'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото5'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото6'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото7'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото8'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото9'));
-jQuery('#afteradmin2').append(jQuery('tr#acf-добавить_фото10'));
-jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="adm_sect"></div>');
-jQuery('#afteradmin2, #afteradmin').wrapAll('<div id="desc_photo"></div>');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa8ec0004').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa96c0009').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0008').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0008').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa91c0005').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa92c0006').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0007').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caaf3a6b99').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caafca6b9a').addClass('dno');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').addClass('dno');
 
-},1600);
-setTimeout(function(){
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa8ec0004').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa96c0009').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0008').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0008').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa91c0005').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa92c0006').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caa93c0007').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caaf3a6b99').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caafca6b9a').addClass('dno');
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').addClass('dno');
-jQuery('tr.form-field.field.field_type-text.field_key-field_5a6b92e927a81').append(jQuery('div#desc_photo'));
-jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').after('<div id="photoadder"><img class="plusico" src="/wp-content/uploads/2018/01/plus.png"></div>');
-jQuery('body.auto-fold.admin-bar.post-type-objects .inside').first().append('<div id="photos"></div>');
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото2'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото3'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото4'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото5'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото6'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото7'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото8'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото9'));
-	jQuery('body').find('#photos').append(jQuery('div#acf-фото10'));
-
-jQuery('#photoadder').on('click', 'img', function(){
-	jQuery('body').find('.dno').first().removeClass('dno');
-});
-},400);
+jQuery('tr#acf-количество_этажей').wrap('<div id="right_block"></div>');
+jQuery('div#afteradmin').appendTo(jQuery('#right_block'));
+// jQuery('tr#acf-описание').wrap('<div id="left_block"></div>');
+// jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').after('<div id="photoadder"><img class="plusico" src="/wp-content/uploads/2018/01/plus.png"></div>');
+// jQuery('body.auto-fold.admin-bar.post-type-objects .inside').first().append('<div id="photos"></div>');
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото2'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото3'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото4'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото5'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото6'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото7'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото8'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото9'));
+// 	jQuery('body').find('#photos').append(jQuery('div#acf-фото10'));
+//
+// jQuery('#photoadder').on('click', 'img', function(){
+// 	jQuery('body').find('.dno').first().removeClass('dno');
+// });
+},1400);
 
 jQuery(document).ready(function(){
 

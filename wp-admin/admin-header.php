@@ -121,10 +121,15 @@ div#desc_photo {
     grid-template-columns: 1fr 1fr 250px;
     background: #e1e1e1;
     padding: 20px;
-}tr.form-field.field.field_type-wysiwyg.field_key-field_5a6b93350e267 {
-    display:  grid;
-    grid-template-columns:  1fr;
+}
+tr.form-field.field.field_type-wysiwyg.field_key-field_5a6b93350e267 {
+    display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: 40px 1fr;
+    background: #b4acac2b;
+}
+tr.form-field.field.field_type-wysiwyg.field_key-field_5a6b93350e267 label {
+    padding: 13px;
 }
 div#afteradmin2 tr {
     display: grid;
