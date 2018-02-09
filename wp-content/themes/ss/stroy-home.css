@@ -60,20 +60,18 @@ strong.rom {
 
 .appartment {
     width: auto;
-    display: grid;
-    border: 1px solid;
-    padding: 10px 8px;
-    margin: 5px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    border: 3px solid #d1d1d1;
+    padding: 0;
+    margin: 5px 0 0 35px;
     grid-gap: 6px;
     position:  relative;
     overflow:  hidden;
+    background: #efefef;
 }
 
 .appartment strong {
     padding: 5px 6px;
-    border: 1px solid #cacaca;
+    /* border: 1px solid #cacaca; */
     display: table;
     width:  100%;
     text-align:  right;
@@ -82,7 +80,7 @@ strong.rom {
     z-index: 1;
     transform: translate(-6px,3px);
     font-size:  13px;
-    height: 27px;
+    height: auto;
 }
 
 b {
@@ -186,11 +184,12 @@ div#sqrt_inp {
     grid-gap:  5px;
     width: calc(100% - 15px);
 }
-.haus_holder {
+.haus_grid {
     display:  grid;
     grid-template-columns: 1fr;
-    grid-gap:  5px;
+    grid-gap: 25px;
     width: calc(100% - 15px);
+    margin-left:  7px;
 }
 
 a#searchstarter .button:hover {
@@ -262,4 +261,156 @@ div#src_val.touched {
 
 div#srch_vals.active + .home-c.container {
     margin-top: 60px;
+}
+
+.haus_grid_elem {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 310px;
+    position:  relative;
+}
+
+.im img {max-height:  300px;width: 300px;z-index:  2;position:  absolute;}
+
+li.description {
+    height: auto;
+    margin-top: 0px;
+    display:  block;
+    overflow: hidden;
+}
+
+a.cat_img_h:before {
+    border: 11px solid #6ac2e7;
+    content: '';
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 10px;
+    left: 22px;
+    z-index:  0;
+}
+
+li.name strong.dom_adres {
+    text-align:  left;
+    margin: -20px -18px;
+}
+
+ul.app_features {
+    display:  grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+ul.app_main {
+    display:  grid;
+    grid-template-columns:  1fr;
+    grid-template-rows: 45px 40px 145px 70px;
+    background: #fff;
+}
+
+.app_features {
+    display:  grid;
+    height: 60px;
+    grid-template-columns:  1fr 1fr 1fr;
+    width: 100%;
+}
+
+.commerce {
+    background: url(http://novostroy/wp-content/uploads/2018/02/003-business-center.png) no-repeat;
+    background-size: 33px;
+}
+
+.parking {
+    background: url('http://novostroy/wp-content/uploads/2018/02/001-parking.png') no-repeat;
+    background-size: 33px;
+}
+
+.security {
+    background: url(http://novostroy/wp-content/uploads/2018/02/002-secure.png) no-repeat;
+    background-size: 33px;
+}
+
+li.rayon, li.zastr {
+    justify-content: flex-start;
+}
+
+.info-banner strong {
+    position:  static;
+    width:  auto;
+    transform:  none;
+    padding:  0;
+}
+
+li.mini-data {
+    justify-content: flex-end;
+    position:  relative;
+}
+
+li.description {
+    border-bottom: 16px solid #ffffff;
+}
+
+li.mini-data div {
+    display:  inline-flex;
+    position:  absolute;
+}
+
+.zastr {
+    top: 85px;
+}
+
+.rayon {
+    top: 37px;
+}
+
+.rayon, .zastr {
+    border: 3px solid #6ac2e7;
+    padding: 7px 9px;
+    right:  8px;
+}
+
+.rayon:before {
+    content:  '';
+    background: #Fff;
+    width: 40px;
+    height:  10px;
+    position:  absolute;
+    top: -7px;
+}
+
+.zastr:before {
+    content: '';
+    background: #fff;
+    width: 40px;
+    height: 10px;
+    position: absolute;
+    top: 28px;
+    left:  100px;
+}
+
+.mini-data p {
+    margin:  0;
+}
+
+button.cta, button.cta2 {
+    position:  absolute;
+    z-index:  1;
+    background:  transparent;
+    top: 6px;
+    border: 1px solid #6ac2e7;
+    color: #6ac2e7;
+    padding: 7px 20px 8px;
+    border-top: none;
+}
+
+button.cta {
+    right: 10px;
+}
+
+button.cta2 {
+    right: 188px;
+}
+
+button.cta:hover, button.cta2:hover {
+    background: #6ac2e7;
+    color:  #Fff;
 }

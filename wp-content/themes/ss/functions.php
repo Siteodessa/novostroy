@@ -412,15 +412,15 @@ function register_doma_i_kvartiri() {
 	$labels = array(
 		'name' => 'объекты',
 		'singular_name' => 'objects',
-		'add_new' => 'Добавить новую квартиру',
-		'add_new_item' => 'Добавить новую квартиру',
-		'edit_item' => 'Редактировать квартиру',
-		'new_item' => 'Новая квартира',
-		'all_items' => 'Все квартиры',
-		'view_item' => 'Просмотр квартир на сайте',
-		'search_items' => 'Искать квартиры',
-		'not_found' =>  'Квартир не найдено.',
-		'not_found_in_trash' => 'В корзине нет квартир.',
+		'add_new' => 'Добавить новый объект',
+		'add_new_item' => 'Добавить новый объект',
+		'edit_item' => 'Редактировать объект',
+		'new_item' => 'Новый объект',
+		'all_items' => 'Все объекты',
+		'view_item' => 'Просмотр объектов на сайте',
+		'search_items' => 'Искать объекты',
+		'not_found' =>  'Объектов не найдено.',
+		'not_found_in_trash' => 'В корзине нет объектов.',
 		'menu_name' => 'Объекты'
 	);
 	$args = array(
@@ -437,7 +437,7 @@ function register_doma_i_kvartiri() {
 		'has_archive' => 'objects',
 						'hierarchical' => true,
 		'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes'),
-		'taxonomies' => array( 'topics', 'category')
+		// 'taxonomies' => array( 'topics', 'category')
 	);
 	register_post_type('objects',$args);
 //	flush_rewrite_rules();

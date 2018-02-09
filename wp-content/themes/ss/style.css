@@ -1,202 +1,347 @@
-/*
-Theme Name: JSS
-Theme URI: http://siteodessa.com
-Author: the Siteodessa team
-Author URI: https://siteodessa.com/
-Description: Наша тема является вариантом использования "чистого" Wordpress для разработчиков. Она укомплектована следующим комплектом технологий для разработки - JSX, React, Webpack, Three.js, Комплект циклов записей, страниц рубрик, сверстанных в Css Grid или Bootstrap,  Jquery ,актуальный на 19.11.2017, комплект шрифтов (font-family:(x1-200)) и еще кучу вкусностей.
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: пишем,код,даже,во,сне
-Text Domain: ss
-
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned with others.
+.cq-borderhover-overlay{
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  -webkit-transition: opacity 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  -moz-transition: opacity 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  -o-transition: opacity 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  transition: opacity 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+}
+.cq-borderhover-item {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  height: 240px;
+  min-height: 200px;
+  margin-bottom: 24px;
+}
+/*@media (max-width:991px) {
+  .cq-borderhover-item {
+    padding-top: 400px
+  }
+}
+@media (max-width:767px) {
+  .cq-borderhover-item {
+    padding-top: 200px
+  }
+}
 */
-@font-face{font-family:'x1';src: url(f/AdverGothicC.ttf);}
-@font-face{font-family:'x2' ; src: url(f/AdverGothicCamC.ttf);}
-@font-face{font-family:'x3';src: url(f/AnnaC.ttf);}
-@font-face{font-family:'x4';src: url(f/AnnaC_B.ttf);}
-@font-face{font-family:'x5';src: url(f/AnnaLightC.ttf);}
-@font-face{font-family:'x6';src: url(f/AstronC.ttf);}
-@font-face{font-family:'x7';src: url(f/BauhausC_B.ttf);}
-@font-face{font-family:'x8';src: url(f/BauhausC_DemiB.ttf);}
-@font-face{font-family:'x9';src: url(f/BauhausC_Heavy.ttf);}
-@font-face{font-family:'x10';src: url(f/BauhausC_Light.ttf);}
-@font-face{font-family:'x11';src: url(f/BauhausC_Medium.ttf);}
-@font-face{font-family:'x12';src: url(f/Bebit.ttf);}
-@font-face{font-family:'x13';src: url(f/BeeskneesC.ttf);}
-@font-face{font-family:'x14';src: url(f/BenguiatGothicC_B.ttf);}
-@font-face{font-family:'x15';src: url(f/BenguiatGothicC_BI.ttf);}
-@font-face{font-family:'x16';src: url(f/BenguiatGothicC_Book.ttf);}
-@font-face{font-family:'x17';src: url(f/BenguiatGothicC_BookI.ttf);}
-@font-face{font-family:'x18';src: url(f/BernhardC.ttf);}
-@font-face{font-family:'x19';src: url(f/BetinaScriptC.ttf);}
-@font-face{font-family:'x20';src: url(f/BetinaScriptC_B.ttf);}
-@font-face{font-family:'x21';src: url(f/BetinaScriptExtraC.ttf);}
-@font-face{font-family:'x22';src: url(f/BlGroteskC.ttf);}
-@font-face{font-family:'x23';src: url(f/BlGroteskC_I.ttf);}
-@font-face{font-family:'x24';src: url(f/BodoniC_B.ttf);}
-@font-face{font-family:'x25';src: url(f/BodoniC_BI.ttf);}
-@font-face{font-family:'x26';src: url(f/BodoniC_I.ttf);}
-@font-face{font-family:'x27';src: url(f/BodoniCameoC.ttf);}
-@font-face{font-family:'x28';src: url(f/BodoniCondC.ttf);}
-@font-face{font-family:'x29';src: url(f/CompactC.ttf);}
-@font-face{font-family:'x30';src: url(f/CompactC_B.ttf);}
-@font-face{font-family:'x31';src: url(f/CompactC_BI.ttf);}
-@font-face{font-family:'x32';src: url(f/CompactC_I.ttf);}
-@font-face{font-family:'x33';src: url(f/Countdown.ttf);}
-@font-face{font-family:'x34';src: url(f/CourierC.ttf);}
-@font-face{font-family:'x35';src: url(f/CourierC_B.ttf);}
-@font-face{font-family:'x36';src: url(f/CourierC_BOblique.ttf);}
-@font-face{font-family:'x37';src: url(f/CourierC_Oblique);}
-@font-face{font-family:'x38';src: url(f/CrashC.ttf);}
-@font-face{font-family:'x39';src: url(f/DaggerC.ttf);}
-@font-face{font-family:'x40';src: url(f/DecorC.ttf);}
-@font-face{font-family:'x41';src: url(f/DidonaC.ttf);}
-@font-face{font-family:'x42';src: url(f/Dikovina.ttf);}
-@font-face{font-family:'x43';src: url(f/Dikovina_B.ttf);}
-@font-face{font-family:'x44';src: url(f/DisneyPark.ttf);}
-@font-face{font-family:'x45';src: url(f/DoloresCyr_B);}
-@font-face{font-family:'x46';src: url(f/DoloresCyr_Bl.ttf);}
-@font-face{font-family:'x47';src: url(f/DoloresCyr_ExtraB.ttf);}
-@font-face{font-family:'x48';src: url(f/DoloresCyr_Light.ttf);}
-@font-face{font-family:'x49';src: url(f/DoloresCyr_Reg.ttf);}
-@font-face{font-family:'x50';src: url(f/DublonC.ttf);}
-@font-face{font-family:'x51';src: url(f/DublonC_B.ttf);}
-@font-face{font-family:'x52';src: url(f/DublonLightC.ttf);}
-@font-face{font-family:'x53';src: url(f/EdgeLine.ttf);}
-@font-face{font-family:'x54';src: url(f/EdgeLine_B.ttf);}
-@font-face{font-family:'x55';src: url(f/EdgeLineOutline.ttf);}
-@font-face{font-family:'x56';src: url(f/EdgeLineShadow.ttf);}
-@font-face{font-family:'x57';src: url(f/EpsilonC.ttf);}
-@font-face{font-family:'x58';src: url(f/ExposureCMixOne.ttf);}
-@font-face{font-family:'x59';src: url(f/ExposureCMixTwo.ttf);}
-@font-face{font-family:'x60';src: url(f/ExposureCOne.ttf);}
-@font-face{font-family:'x61';src: url(f/ExposureCOneRough.ttf);}
-@font-face{font-family:'x62';src: url(f/ExposureCOutline.ttf);}
-@font-face{font-family:'x63';src: url(f/ExposureCThree.ttf);}
-@font-face{font-family:'x64';src: url(f/ExposureCThreeRough.ttf);}
-@font-face{font-family:'x65';src: url(f/ExposureCTwo.ttf);}
-@font-face{font-family:'x66';src: url(f/ExposureCTwoRough.ttf);}
-@font-face{font-family:'x67';src: url(f/FagotCondensed.ttf);}
-@font-face{font-family:'x68';src: url(f/FagotCondensed_I.ttf);}
-@font-face{font-family:'x69';src: url(f/FatFaceC.ttf);}
-@font-face{font-family:'x70';src: url(f/FixSysC.ttf);}
-@font-face{font-family:'x71';src: url(f/FloraC.ttf);}
-@font-face{font-family:'x72';src: url(f/FloraC_B.ttf);}
-@font-face{font-family:'x73';src: url(f/FrizQuadrataC.ttf);}
-@font-face{font-family:'x74';src: url(f/FrizQuadrataC_B.ttf);}
-@font-face{font-family:'x75';src: url(f/FrizQuadrataC_BI.ttf);}
-@font-face{font-family:'x76';src: url(f/FrizQuadrataC_I.ttf);}
-@font-face{font-family:'x77';src: url(f/FuturaEugeniaC.ttf);}
-@font-face{font-family:'x78';src: url(f/FuturaEugeniaC_W30.ttf);}
-@font-face{font-family:'x79';src: url(f/FuturaEugeniaC_W60.ttf);}
-@font-face{font-family:'x80';src: url(f/FuturaEugeniaC_W90.ttf);}
-@font-face{font-family:'x81';src: url(f/FuturaEugeniaC_W120.ttf);}
-@font-face{font-family:'x82';src: url(f/FuturisShadowC);}
-@font-face{font-family:'x83';src: url(f/FuturisVolumeC.ttf);}
-@font-face{font-family:'x84';src: url(f/FuturisXC.ttf);}
-@font-face{font-family:'x85';src: url(f/FuturisXC_B.ttf);}
-@font-face{font-family:'x86';src: url(f/FuturisXCameoC.ttf);}
-@font-face{font-family:'x87';src: url(f/FuturisXCondC.ttf);}
-@font-face{font-family:'x88';src: url(f/FuturisXCondC_B);}
-@font-face{font-family:'x89';src: url(f/FuturisXShadowC.ttf);}
-@font-face{font-family:'x90';src: url(f/Graffiti1C.ttf);}
-@font-face{font-family:'x91';src: url(f/Graffiti2C.ttf);}
-@font-face{font-family:'x92';src: url(f/Graffiti3C.ttf);}
-@font-face{font-family:'x93';src: url(f/Graffiti4C.ttf);}
-@font-face{font-family:'x94';src: url(f/Graffiti5C.ttf);}
-@font-face{font-family:'x95';src: url(f/HeroldC.ttf);}
-@font-face{font-family:'x96';src: url(f/HeroldC_B.ttf);}
-@font-face{font-family:'x97';src: url(f/IrinaC.ttf);}
-@font-face{font-family:'x98';src: url(f/IzhitsaC.ttf);}
-@font-face{font-family:'x99';src: url(f/IzhitsaShadowC);}
-@font-face{font-family:'x100';src: url(f/JakobC.ttf);}
-@font-face{font-family:'x101';src: url(f/JakobC_B.ttf);}
-@font-face{font-family:'x102';src: url(f/JakobExtraC.ttf);}
-@font-face{font-family:'x103';src: url(f/KabelC_B.ttf);}
-@font-face{font-family:'x104';src: url(f/KabelC_Book.ttf);}
-@font-face{font-family:'x105';src: url(f/KabelC_Demi.ttf);}
-@font-face{font-family:'x106';src: url(f/KabelC_Medium.ttf);}
-@font-face{font-family:'x107';src: url(f/KabelC_Ultra.ttf);}
-@font-face{font-family:'x108';src: url(f/KarollaC.ttf);}
-@font-face{font-family:'x109';src: url(f/KorinnaBlC.ttf);}
-@font-face{font-family:'x110';src: url(f/KorinnaBlC_Heavy.ttf);}
-@font-face{font-family:'x111';src: url(f/KorinnaBlC_Kursiv.ttf);}
-@font-face{font-family:'x112';src: url(f/KorinnaBlC_KursivH.ttf);}
-@font-face{font-family:'x113';src: url(f/LazurskiC.ttf);}
-@font-face{font-family:'x114';src: url(f/LazurskiC_B.ttf);}
-@font-face{font-family:'x115';src: url(f/LazurskiC_BI.ttf);}
-@font-face{font-family:'x116';src: url(f/LazurskiC_I.ttf);}
-@font-face{font-family:'x117';src: url(f/MachineC.ttf);}
-@font-face{font-family:'x118';src: url(f/MachineC_B.ttf);}
-@font-face{font-family:'x119';src: url(f/MagistralBlC.ttf);}
-@font-face{font-family:'x120';src: url(f/MagistralC.ttf);}
-@font-face{font-family:'x121';src: url(f/MagistralC_B.ttf);}
-@font-face{font-family:'x122';src: url(f/MatterhornC.ttf);}
-@font-face{font-family:'x123';src: url(f/MontblancC.ttf);}
-@font-face{font-family:'x124';src: url(f/MontblancC_I.ttf);}
-@font-face{font-family:'x125';src: url(f/NewBaskervilleC_B.ttf);}
-@font-face{font-family:'x126';src: url(f/NewtonXC.ttf);}
-@font-face{font-family:'x127';src: url(f/NewZelek.ttf);}
-@font-face{font-family:'x128';src: url(f/Opium.ttf);}
-@font-face{font-family:'x129';src: url(f/Opium_B.ttf);}
-@font-face{font-family:'x130';src: url(f/Opium_B_I.ttf);}
-@font-face{font-family:'x131';src: url(f/Opium_I.ttf);}
-@font-face{font-family:'x132';src: url(f/ParsekC.ttf);}
-@font-face{font-family:'x133';src: url(f/PlainScriptC.ttf);}
-@font-face{font-family:'x134';src: url(f/Pollock1C.ttf);}
-@font-face{font-family:'x135';src: url(f/Pollock2C.ttf);}
-@font-face{font-family:'x136';src: url(f/Pollock3C.ttf);}
-@font-face{font-family:'x137';src: url(f/Pollock4C.ttf);}
-@font-face{font-family:'x138';src: url(f/PragmaticaShadCB.ttf);}
-@font-face{font-family:'x139';src: url(f/PragmaticaShadCBI.ttf);}
-@font-face{font-family:'x140';src: url(f/ProunBC.ttf);}
-@font-face{font-family:'x141';src: url(f/ProunBC_B.ttf);}
-@font-face{font-family:'x142';src: url(f/ProunC.ttf);}
-@font-face{font-family:'x143';src: url(f/ProunC_B.ttf);}
-@font-face{font-family:'x144';src: url(f/Psaltyr.ttf);}
-@font-face{font-family:'x145';src: url(f/RodchenkoC.ttf);}
-@font-face{font-family:'x146';src: url(f/RodchenkoIlC.ttf);}
-@font-face{font-family:'x147';src: url(f/Romul.ttf);}
-@font-face{font-family:'x148';src: url(f/SecesLight_Book.ttf);}
-@font-face{font-family:'x149';src: url(f/SecesLight_DemiB.ttf);}
-@font-face{font-family:'x150';src: url(f/Secession.ttf);}
-@font-face{font-family:'x151';src: url(f/Secession_B.ttf);}
-@font-face{font-family:'x152';src: url(f/ShablonC.ttf);}
-@font-face{font-family:'x153';src: url(f/Simeiz.ttf);}
-@font-face{font-family:'x154';src: url(f/Simeiz_B.ttf);}
-@font-face{font-family:'x155';src: url(f/Simeiz_BI.ttf);}
-@font-face{font-family:'x156';src: url(f/Simeiz_I.ttf);}
-@font-face{font-family:'x157';src: url(f/SimeizLight.ttf);}
-@font-face{font-family:'x158';src: url(f/SimeizLight_B.ttf);}
-@font-face{font-family:'x159';src: url(f/SimeizLight_BI.ttf);}
-@font-face{font-family:'x160';src: url(f/SimeizLight_I.ttf);}
-@font-face{font-family:'x161';src: url(f/SonetSerif.ttf);}
-@font-face{font-family:'x162';src: url(f/SonetSerif_B.ttf);}
-@font-face{font-family:'x163';src: url(f/SonetSerif_B_I.ttf);}
-@font-face{font-family:'x164';src: url(f/SonetSerif_I.ttf);}
-@font-face{font-family:'x165';src: url(f/StandardPosterC.ttf);}
-@font-face{font-family:'x166';src: url(f/StarC.ttf);}
-@font-face{font-family:'x167';src: url(f/TauernC.ttf);}
-@font-face{font-family:'x168';src: url(f/TauernC_I);}
-@font-face{font-family:'x169';src: url(f/TauernEC.ttf);}
-@font-face{font-family:'x170';src: url(f/TauernEC_I.ttf);}
-@font-face{font-family:'x171';src: url(f/Tavrida.ttf);}
-@font-face{font-family:'x172';src: url(f/Tavrida_B.ttf);}
-@font-face{font-family:'x173';src: url(f/TavridaAd.ttf);}
-@font-face{font-family:'x174';src: url(f/Trafaret.ttf);}
-@font-face{font-family:'x175';src: url(f/Traktir.ttf);}
-@font-face{font-family:'x176';src: url(f/TraktirCameo.ttf);}
-@font-face{font-family:'x177';src: url(f/TrixieCyr_Cameo.ttf);}
-@font-face{font-family:'x178';src: url(f/TrixieCyr_Light.ttf);}
-@font-face{font-family:'x179';src: url(f/TrixieCyr_Plain.ttf);}
-@font-face{font-family:'x180';src: url(f/TrueGritC.ttf);}
-@font-face{font-family:'x181';src: url(f/Viola.ttf);}
-@font-face{font-family:'x182';src: url(f/Wien_B.ttf);}
-@font-face{font-family:'x183';src: url(f/WienInline.ttf);}
-@font-face{font-family:'x184';src: url(f/WienLight_Book.ttf);}
-@font-face{font-family:'x185';src: url(f/WienLight_DemiB.ttf);}
-@font-face{font-family:'x186';src: url(f/WindC.ttf);}
-@font-face{font-family:'x187';src: url(f/ZapfChanceryC.ttf);}
-h1 {font-family: 'x121';}
+.cq-borderhover-item:hover .cq-borderhover-overlay{
+  opacity: 1;
+}
+.cq-borderhover-item:hover .cq-borderhover-background {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1)
+}
+.cq-borderhover-item .cq-borderhover-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  -webkit-transition: all 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  -moz-transition: all 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  -o-transition: all 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  transition: all 400ms cubic-bezier(0.175, 0.885, 0.320, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1)
+}
+
+.cq-borderhover-item a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20% 20px;
+  z-index: 2
+}
+/*@media (max-width:1199px) {
+  .cq-borderhover-item a {
+    padding: 10% 0px
+  }
+}
+@media (max-width:991px) {
+  .cq-borderhover-item a {
+    padding: 60px 10px
+  }
+}
+@media (max-width:767px) {
+  .cq-borderhover-item a {
+    padding: 50px 10px
+  }
+}
+*/
+
+
+.cq-borderhover-item a .cq-borderhover-topborder {
+  border-top: 2px solid #fff;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 90%;
+  /*left: 5%;*/
+  top: 5%;
+  -webkit-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -moz-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -o-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -moz-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -o-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  transition-timing-function: cubic-bezier(1, 0, 0, 1)
+}
+.cq-borderhover-item a .cq-borderhover-rightborder {
+  border-right: 2px solid #fff;
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 0;
+  left: 5%;
+  /*top: 5%;*/
+  -webkit-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -moz-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -o-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -moz-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -o-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  transition-timing-function: cubic-bezier(1, 0, 0, 1)
+}
+.cq-borderhover-item a .cq-borderhover-bottomborder {
+  border-bottom: 2px solid #fff;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 90%;
+  /*right: 5%;*/
+  top: 5%;
+  -webkit-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -moz-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -o-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -moz-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -o-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  transition-timing-function: cubic-bezier(1, 0, 0, 1)
+}
+
+.cq-borderhover-item a .cq-borderhover-leftborder {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 0;
+  left: 5%;
+  bottom: 5%;
+  -webkit-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -moz-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -o-transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  transition: all 600ms cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -moz-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -o-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  transition-timing-function: cubic-bezier(1, 0, 0, 1)
+}
+
+
+
+.cq-borderhover.cq-bordertype-solid .cq-borderhover-topborder{
+  border-top: 2px solid #fff;
+}
+.cq-borderhover.cq-bordertype-solid .cq-borderhover-rightborder{
+  border-right: 2px solid #fff;
+}
+.cq-borderhover.cq-bordertype-solid .cq-borderhover-bottomborder{
+  border-bottom: 2px solid #fff;
+}
+.cq-borderhover.cq-bordertype-solid .cq-borderhover-leftborder{
+  border-left: 2px solid #fff;
+}
+
+.cq-borderhover.cq-bordertype-dashed .cq-borderhover-topborder{
+  border-top: 2px dashed #fff;
+}
+.cq-borderhover.cq-bordertype-dashed .cq-borderhover-rightborder{
+  border-right: 2px dashed #fff;
+}
+.cq-borderhover.cq-bordertype-dashed .cq-borderhover-bottomborder{
+  border-bottom: 2px dashed #fff;
+}
+.cq-borderhover.cq-bordertype-dashed .cq-borderhover-leftborder{
+  border-left: 2px dashed #fff;
+}
+
+.cq-borderhover.cq-bordertype-none .cq-borderhover-topborder{
+  border-top: none;
+}
+.cq-borderhover.cq-bordertype-none .cq-borderhover-rightborder{
+  border-right: none;
+}
+.cq-borderhover.cq-bordertype-none .cq-borderhover-bottomborder{
+  border-bottom: none;
+}
+.cq-borderhover.cq-bordertype-none .cq-borderhover-leftborder{
+  border-left: none;
+}
+
+
+.cq-borderhover.cq-bordertype-dotted .cq-borderhover-topborder{
+  border-top: 2px dotted #fff;
+}
+.cq-borderhover.cq-bordertype-dotted .cq-borderhover-rightborder{
+  border-right: 2px dotted #fff;
+}
+.cq-borderhover.cq-bordertype-dotted .cq-borderhover-bottomborder{
+  border-bottom: 2px dotted #fff;
+}
+.cq-borderhover.cq-bordertype-dotted .cq-borderhover-leftborder{
+  border-left: 2px dotted #fff;
+}
+
+
+
+.cq-borderhover-item.cq-crosshand1 a .cq-borderhover-topborder{
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand1 a .cq-borderhover-rightborder{
+  bottom: 5%;
+}
+.cq-borderhover-item.cq-crosshand1 a .cq-borderhover-bottomborder{
+  right: 5%;
+}
+.cq-borderhover-item.cq-crosshand1 a .cq-borderhover-leftborder{
+  top: 5%;
+}
+
+.cq-borderhover-item.cq-crosshand2 a .cq-borderhover-topborder{
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand2 a .cq-borderhover-rightborder{
+  top: 5%;
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand2 a .cq-borderhover-bottomborder{
+  right: 5%;
+}
+.cq-borderhover-item.cq-crosshand2 a .cq-borderhover-leftborder{
+  right: 5%;
+}
+
+.cq-borderhover-item.cq-crosshand3 a .cq-borderhover-topborder{
+  right: 5%;
+}
+.cq-borderhover-item.cq-crosshand3 a .cq-borderhover-rightborder{
+  top: 5%;
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand3 a .cq-borderhover-bottomborder{
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand3 a .cq-borderhover-leftborder{
+  left: 5%;
+}
+
+
+.cq-borderhover-item.cq-crosshand4 a .cq-borderhover-topborder{
+  right: 5%;
+}
+.cq-borderhover-item.cq-crosshand4 a .cq-borderhover-rightborder{
+  bottom: 5%;
+  right: 5%;
+}
+.cq-borderhover-item.cq-crosshand4 a .cq-borderhover-bottomborder{
+  left: 5%;
+}
+.cq-borderhover-item.cq-crosshand4 a .cq-borderhover-leftborder{
+  top: 5%;
+  left: 5%;
+}
+
+
+
+
+
+
+.cq-borderhover-item a:hover .cq-borderhover-leftborder {
+  height: 90%
+}
+.cq-borderhover-item a:hover .cq-borderhover-topborder {
+  width: 90%
+}
+.cq-borderhover-item a:hover .cq-borderhover-rightborder {
+  height: 90%
+}
+.cq-borderhover-item a:hover .cq-borderhover-bottomborder {
+  width: 90%
+}
+
+.cq-borderhover-item .cq-borderhover-textcontainer {
+  width: 80%;
+  text-align: center;
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.cq-borderhover.cq-borderhover-hidetexttrue .cq-borderhover-textcontainer{
+  opacity: 0;
+  -webkit-transition: opacity 400ms ease;
+  -moz-transition: opacity 400ms ease;
+  -o-transition: opacity 400ms ease;
+  transition: opacity 400ms ease;
+}
+.cq-borderhover.cq-borderhover-hidetexttrue:hover .cq-borderhover-textcontainer{
+  opacity: 1;
+}
+.cq-borderhover-item .cq-borderhover-title {
+  color: #FFF;
+  margin: 0;
+  position: relative;
+  line-height: 140%;
+  /*padding-bottom: 20px;*/
+  margin-bottom: 12px
+}
+.cq-borderhover-item .cq-borderhover-label {
+  margin: 0px 0 0 0;
+  line-height: 150%;
+  padding-top: 12px;
+}
+
+/*@media (min-width:1400px) {
+  .cq-borderhover-item .cq-borderhover-title {
+    font-size: 25px
+  }
+}
+*/.cq-borderhover-item .cq-borderhover-titleborder {
+  display: inline-block;
+  width: 40px;
+  position: absolute;
+  left: 50%;
+  /*bottom: 20px;*/
+  margin-left: -20px;
+  border-bottom: 1px solid #fff
+}

@@ -18,6 +18,7 @@
 // управление перекрытием меню делается через релатив и з индекс  home-c container и srch_vals, управляй классом который перебрасывает индекс доминацию между этими двумя, короче два тогла вряд вполне хватит
 get_header();
 
+
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/home.css">');
 
 

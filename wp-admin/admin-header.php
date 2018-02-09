@@ -145,6 +145,8 @@ div#afteradmin tr {
 
 tr.form-field.field.field_type-true_false.field_key-field_5a6ca1b35c986 {
     padding: 20px 0;
+}div#acf-more_appar_image_predicat {
+    margin-top: 60px;
 }
 tr.form-field.field.field_type-image.field_key-field_5a6b937a0e269 {
     display:  grid;

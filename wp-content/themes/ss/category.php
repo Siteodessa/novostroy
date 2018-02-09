@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying category pages
+ * The template for displaying archive pages
  *
  * Used to display archive-type pages if nothing more specific matches a query.
  * For example, puts together date-based pages if no date.php file exists.
@@ -15,151 +15,155 @@
  * @subpackage Twenty_Fifteen
  * @since Twenty Fifteen 1.0
  */
+// управление перекрытием меню делается через релатив и з индекс  home-c container и srch_vals, управляй классом который перебрасывает индекс доминацию между этими двумя, короче два тогла вряд вполне хватит
 get_header();
+print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/home.css">');
+$params = array(
+  'post_type' =>  'objects',
+  'category_name' =>  'sdannye-doma',
+  'posts_per_page' => 500,
+  'order'  => 'DESC',
+     );
+$current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts($params); $wp_query->is_archive = true;
+$wp_query->is_home = false;
+$counter = 0;
+  print_r('<div class="appartment_res">');
+  print_r('<div class="sub_search_menu"></div>');
+  print_r('<div class="apps_holder">');
+$stack = array();
+while(have_posts()): the_post();
 ?>
-<?php
+<ul class="cat_hold">
+  <li class="one_cat_hold">
+<?
+$categories = get_the_category();
+$category_id = $categories[0]->cat_ID;
+$term = get_queried_object();
+$link = get_permalink();
+array_push($stack, $category_id);
+print_r('<div style="width:10%">');
+print_r($category_id);
+print_r('<br>');
+print_r(get_field('фото', $term));
+print_r('<br>');
+print_r(get_field('район', $term));
+print_r('<br>');
+print_r('<a href="'. $link .'">Ссылка</a>');
+print_r('<br>');
+print_r('</div>');
 ?>
-
+</li>
+</ul>
 <?php
+endwhile;
+print_r('</div>');
+print_r('</div>');
+print_r('<div style="display:flex;flex-direction:column;background:#444;color:#fff;padding:20px 50px;">');
+$stack = array_unique($stack);
+print_r($stack);
 
-   the_post();
-    the_title();
-      ?>
-     <li>Количество комнат :
+  echo '<br>Цикл дочерних текущей категорий<br>';
+foreach ($stack as $key => $value) {
+ echo '<br>ID -';
+ echo $value;
+ echo '<br>Name - ';
+ echo get_cat_name( $value ) ;
+ echo '<br>Link - ';
+ echo get_category_link($value) ;
+ echo '<br>';
+ echo '<br>other - ';
+ $terms = get_the_terms( $value, 'category' );
+if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+    echo '<ul>';
+    foreach ( $terms as $term ) {
+        echo '<li>' . $term->name . '</li>';
+    }
+    echo '</ul>';
+}
+ echo '<br>';
+}
 
-       <?php echo get_field('количество_комнат'); ?>
-     </li>
-     <li>Площадь :
-       <?php echo get_field('площадь');?>
-     </li>
-     <li>Этаж :
-       <?php echo get_field('этаж');?>
-     </li>
-     <li>Секция :
-       <?php echo get_field('секция');?>
-     </li>
-     <li>Описание :<?php echo get_field('описание');?>
-     </li>
-     <li>Цена :
-       <?php echo get_field('цена');?>
-     </li>
-     <li>Застройщик :
-       <?php echo get_field('застройщик');?>
-     </li>
-     <li>Район :
-       <?php echo get_field('район');?>
-     </li>
-<?php echo '<br>'; echo '<br>'; echo '<br>'; echo '<br>'; echo '<br>'; ?>
-<?php
 
- ?>
-    <div class="row">
-      <div class="container hb">
-        <?php
-$term = get_queried_object();
-$image = get_field('image', $term);
-if( is_category() )
-if ( have_posts() ) :
-if ( get_queried_object()->name == 'Строящиеся дома' || get_queried_object()->name == 'Сданные дома')  {
-$i=1;
-$cat = get_query_var('cat');
-$categories = get_categories('parent='.$cat.'');
-foreach ($categories as $category) { $i++; }
-if ($i > 1) {
-echo "<div id='catblocks'>";
-    $g = 1;
-foreach ($categories as $category) {
-$term = get_queried_object();
-$image = get_field('image', $category);
-$adress = get_field('адрес', $category);
-$quantity = get_field('количество_квартир', $category);
-$sqrt = get_field('площадь_квартир', $category);
-$status = get_field('статус_дома', $category);
-if($desc_acf=get_field("image",get_category($cat))){
-echo apply_filters("the_content", $desc_acf);
-}?>
-          <div class="col-md-4 bldng" name="building-<?php echo $g;?>">
-            <div class="blda" title="<?php echo $category->name; ?>">
-              <span class="bdg-name"><?php echo $category->name; ?></span>
-              <a href="<?php echo get_category_link($category->term_id); ?>"><span class="bdg-image"><?php echo '<img alt="'.$category->name.'" src="'.$image.'">';?></span></a>
-              <span class="data">
-    <span class="bdg-adress">
-      <img class="icon" src="http://novostroy/wp-content/uploads/2017/12/003-gps.png">
-            Адрес:  <p><?php echo $adress; ?></p> </span>
-              <span class="bdg-quantity">
-                <img class="icon" src="http://novostroy/wp-content/uploads/2017/12/002-appartments.png">
-            Количество квартир: <p> <?php echo $quantity; ?></p></span>
-              <span class="bdg-sqrt"><img class="icon" src="http://novostroy/wp-content/uploads/2017/12/001-ruler.png">
-            Площадь квартир: <p> <?php echo $sqrt; ?></p></span>
-              <span class="bdg-status"><img class="icon" src="http://novostroy/wp-content/uploads/2017/12/004-list.png">
-            Статус дома: <p><?php echo $status; ?></p> </span></span>
-            </div>
-          </div>
-          <?php $g++;}
-        	echo "</div>";
-        } else {
-        	$pcat = get_category(get_query_var('cat'),false);
-        	$pcatid = $pcat->category_parent;
-        	$categories = get_categories('parent='.$pcatid.'');
-        	echo "<div>";
-        	foreach ($categories as $category) { ?>
-          <li<?php if ($category->term_id == $cat) { ?> class="active"
-            <?php } ?>><a href="<?php echo get_category_link($category->term_id); ?>"><?php echo $category->name; ?></a></li>
-            <?php the_field('фото', $post_id);
-if($imgcat1=get_field("фото",get_category($cat))){?>
-            <img src="<?php echo $imgcat1;?>" />
-            <?php } }
-        	echo "</div>";
-        }
-   }
-   else {
-   include('catbaner.php');
-			// Start the Loop.
-			while ( have_posts() ) : the_post();
-      $fieldyroom = get_field('количество_комнат');
-       $fieldysqrt = get_field('площадь');
-       $fieldyfloor = get_field('этаж');
-      $fieldysection = get_field('секция');
-      $fieldydescription = get_field('описание');
-       $fieldyprice = get_field('цена');
-        $fieldyvendor = get_field('застройщик');
-        $fieldyblock = get_field('район');
-        if (empty($fieldyroom) && empty($fieldysqrt) && empty($fieldyfloor) && empty($fieldysection) && empty($fieldydescription) && empty($fieldyprice) && empty($fieldyvendor) && empty($fieldyblock) ){ echo '';} else {
-			?>
-      <div class="col-md-6 appa">
-              <div class="ch arch">
-                <ul>
-                  <div class="col-md-8">
-                    <?php // echo the_title(); // echo the_permalink(); ?>
-                    <?php
-                     if (!empty($fieldyroom)){echo '<li>Количество комнат : '.$fieldyroom.'</li>';};
-                     if (!empty($fieldysqrt)){echo '<li>Площадь квартиры : '.$fieldysqrt.'</li>';};
-                     if (!empty($fieldyfloor)){echo '<li>Этаж : '.$fieldyfloor.'</li>';};
-                     if (!empty($fieldysection)){echo '<li>Секция : '.$fieldysection.'</li>';};
-                     if (!empty($fieldydescription)){echo '<br><li> '.$fieldydescription.'</li>';};
-                     if (!empty($fieldyprice)){echo '<li>Цена : '.$fieldyprice.'</li>';};
-                     if (!empty($fieldyvendor)){echo '<li>Застройщик : '.$fieldyvendor.'</li>';};
-                     if (!empty($fieldyblock)){echo '<li>Район : '.$fieldyblock.'</li>';};
-                    ?>
-                  </div>
-                  <div class="col-md-4 image">
-                    <li class=""><img alt="Купить квартиру в Одессе <?php echo get_field('застройщик');?>" src="<?php echo get_field('планировка');?>" /></li>
-                  </div>
-                </ul>
-              </div>
-            </div>
-            <?php
-          };
-			endwhile;
-   }
-
-		else :
-			get_template_part( 'content', 'none' );
-		endif;
-		?>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
+print_r(the_field('район', $stack[1]));
+get_post_meta( $post_id, $key = '', $single = false );
+print_r('</div>');
+$params = array(
+  'post_type' =>  'objects',
+  'category_name' =>  'sdannye-doma',
+  'posts_per_page' => 500,
+  'order'  => 'DESC',
+     );
+$current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+query_posts($params); $wp_query->is_archive = true;
+$wp_query->is_home = false;
+$counter = 0;
+  print_r('<div class="appartment_res">');
+  print_r('<div class="sub_search_menu"></div>');
+  print_r('<div class="apps_holder">');
+while(have_posts()): the_post();
+// все что ниже - просто базовая верстка - сверху надо собрать нормальный цикл который хоть категории получит
+?>
+<ul class="appartment">
+  <li class="im">
+    <a href="<?= the_permalink()?>"><img src="<?php echo get_field('фото');?>" />    <?php echo 'Айдишники нужно напихать в массив как минимум, и каждый раз проверять есть ли такой айдишник в массиве, и когда будет полный  массив , запустить второй цикл который по каждому из айдишников пройдется и будет вытаскивать поля уже по айдишнику'; echo get_the_ID();?></a></li>
+<li class="bd"><p>Застройщик</p><strong class="bld"><?php echo  get_field('bld') ;?></strong></li>
+<li class="ro"><p class="app_comn">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
+<li class="bl"><p>Район</p><strong class="block"><?php echo get_field('block')  ;?></strong></li>
+<li class="sq"><p>Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
+<li class="pr"><p>Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
+       title    <?php echo get_field('title');?><br>
+       адрес    <?php echo get_field('адрес');?><br>
+       район    <?php echo get_field('район');?><br>
+       площадь_однокомнатных_квартир_от    <?php echo get_field('площадь_однокомнатных_квартир_от');?><br>
+       цена_однокомнатных_квартир_от    <?php echo get_field('цена_однокомнатных_квартир_от');?><br>
+       площадь_двухкомнатных_квартир_от    <?php echo get_field('площадь_двухкомнатных_квартир_от');?><br>
+       цена_двухкомнатных_квартир_от    <?php echo get_field('цена_двухкомнатных_квартир_от');?><br>
+       площадь_трехкомнатных_квартир_от    <?php echo get_field('площадь_трехкомнатных_квартир_от');?><br>
+       цена_трехкомнатных_квартир_от    <?php echo get_field('цена_трехкомнатных_квартир_от');?><br>
+       срок_сдачи    <?php echo get_field('срок_сдачи');?><br>
+       застройщик    <?php echo get_field('застройщик');?><br>
+       фото    <?php echo get_field('фото');?><br>
+       добавить_еще_фото    <?php echo get_field('добавить_еще_фото');?><br>
+       добавить_фото2    <?php echo get_field('добавить_фото2');?><br>
+       добавить_фото3    <?php echo get_field('добавить_фото3');?><br>
+       добавить_фото4    <?php echo get_field('добавить_фото4');?><br>
+       добавить_фото5    <?php echo get_field('добавить_фото5');?><br>
+       добавить_фото6    <?php echo get_field('добавить_фото6');?><br>
+       добавить_фото7    <?php echo get_field('добавить_фото7');?><br>
+       добавить_фото8    <?php echo get_field('добавить_фото8');?><br>
+       добавить_фото9    <?php echo get_field('добавить_фото9');?><br>
+       добавить_фото10    <?php echo get_field('добавить_фото10');?><br>
+       описание    <?php echo get_field('описание');?><br>
+       количество_этажей    <?php echo get_field('количество_этажей');?><br>
+       отделка    <?php echo get_field('отделка');?><br>
+       коммерческие_помещения    <?php echo get_field('коммерческие_помещения');?><br>
+       охраняемая_территория    <?php echo get_field('охраняемая_территория');?><br>
+       паркинг_подземный    <?php echo get_field('паркинг_подземный');?><br>
+       парковка    <?php echo get_field('парковка');?><br>
+       детские_площадки    <?php echo get_field('детские_площадки');?><br>
+       рядом_есть_детский_сад_    <?php echo get_field('рядом_есть_детский_сад_');?><br>
+       рядом_есть_супермаркет    <?php echo get_field('рядом_есть_супермаркет');?><br>
+       рядом_есть_аптека    <?php echo get_field('рядом_есть_аптека');?><br>
+       сквер_парк_зеленая    <?php echo get_field('сквер_парк_зеленая');?><br>
+       рядом_есть_сквер_парк_зеленая_зона    <?php echo get_field('рядом_есть_сквер_парк_зеленая_зона');?><br>
+     <?php
+     if (!is_admin){
+  print_r('<b class="editka">');
+    edit_post_link();?><a href=" <?php the_permalink();?>">Смотреть</a><?
+         print_r('</b>');
+       };
+           print_r('</ul>');
+      $counter++;
+      endwhile;
+      print_r('</div>');
+      print_r('</div>');
+    print_r('<div class="special_counter">Показывается квартир: '. $counter .'</div>');
+// default_kvartiri_behaviour();
+      get_footer();
+   ?>
+<script>
+</script>
     <div class="footer">
       <div class="container">
         <div class="row">
@@ -197,13 +201,6 @@ if($imgcat1=get_field("фото",get_category($cat))){?>
       </div>
     </div>
     <div id="root"></div>
-
-  <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script>
-    $(".wrpovr img").click(function() {
-      var s = $(this)
-      $('.wim').css('background-image', s);
-    });
-  </script>
+  </div>
+  </div>
   <?php get_footer(); ?>

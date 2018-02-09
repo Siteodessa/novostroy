@@ -26,6 +26,7 @@ get_header(); ?>
 
 		while ( have_posts() ) : the_post();
 		?>
+		Если Квартира
 		<ul>
 			<li>Количество комнат : <?php echo get_field('количество_комнат'); ?></li>
 			<li>Площадь :<?php echo get_field('площадь');?></li>
@@ -37,6 +38,53 @@ get_header(); ?>
 			<li>Район :<?php echo get_field('район');?></li>
 			<li>Планировка :<img alt="Купить квартиру в Одессе <?php echo get_field('застройщик');?>" src="<?php echo get_field('планировка');?>" /></li>
 		</ul>
+
+
+		Если дом строящийся
+		<ul class="appartment">
+		  Для сингла
+		  <li class=""><p>Название</p><strong class="dom_adres"><?php echo  the_title() ;?></strong></li>
+		  <li class=""><p>Адрес</p><strong class="dom_adres"><?php echo  get_field('адрес_дома') ;?></strong></li>
+		  <li class=""><p>Район</p><strong class="dom_block"><?php echo  get_field('район') ;?></strong></li>
+		  <li class=""><p>Площадь однокомнатных квартир от</p><strong class="prc"><?php echo  get_field('площадь_однокомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Цена однокомнатных квартир от</p><strong class="prc"><?php echo  get_field('цена_однокомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Площадь двухкомнатных квартир от</p><strong class="prc"><?php echo  get_field('площадь_двухкомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Цена двухкомнатных квартир от</p><strong class="prc"><?php echo  get_field('цена_двухкомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Площадь трехкомнатных квартир от</p><strong class="prc"><?php echo  get_field('площадь_трехкомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Цена трехкомнатных квартир от</p><strong class="prc"><?php echo  get_field('цена_трехкомнатных_квартир_от') ;?></strong></li>
+		  <li class=""><p>Срок сдачи</p><strong class="prc"><?php echo  get_field('срок_сдачи') ;?></strong></li>
+		  <li class=""><p>Застройщик</p><strong class="prc"><?php echo  get_field('застройщик') ;?></strong></li>
+		  <li class=""><p>Фото</p><strong class="prc"><?php echo  get_field('основное_фото_дома') ;?></strong></li>
+		  <li class=""><p>True для слайдера</p><strong class="prc"><?php echo get_field('добавить_еще_фото_дома') ;?></strong></li>
+		  <li class=""><p>Фото дома 2</p><strong class="prc"><?php echo  get_field('фото_дома_2') ;?></strong></li>
+		  <li class=""><p>Фото дома 3</p><strong class="prc"><?php echo  get_field('фото_дома_3') ;?></strong></li>
+		  <li class=""><p>Фото дома 4</p><strong class="prc"><?php echo  get_field('фото_дома_4') ;?></strong></li>
+		  <li class=""><p>Фото дома 5</p><strong class="prc"><?php echo  get_field('фото_дома_5') ;?></strong></li>
+		  <li class=""><p>Фото дома 6</p><strong class="prc"><?php echo  get_field('фото_дома_6') ;?></strong></li>
+		  <li class=""><p>Фото дома 7</p><strong class="prc"><?php echo  get_field('фото_дома_7') ;?></strong></li>
+		  <li class=""><p>Фото дома 8</p><strong class="prc"><?php echo  get_field('фото_дома_8') ;?></strong></li>
+		  <li class="description"><p>описание</p><strong class="prc"><?php echo  get_field('описание') ;?></strong></li>
+		  <li class=""><p>количество этажей</p><strong class="prc"><?php echo  get_field('количество_этажей') ;?></strong></li>
+		  <li class=""><p>квартиры с отделкой</p><strong class="prc"><?php echo  get_field('квартиры_с_отделкой') ;?></strong></li>
+		  <li class=""><p>коммерческие помещения</p><strong class="prc"><?php echo  get_field('коммерческие_помещения') ;?></strong></li>
+		  <li class=""><p>охраняемая территория</p><strong class="prc"><?php echo  get_field('охраняемая_территория') ;?></strong></li>
+		  <li class=""><p>паркинг подземный</p><strong class="prc"><?php echo  get_field('паркинг_подземный') ;?></strong></li>
+		  <li class=""><p>парковка</p><strong class="prc"><?php echo  get_field('парковка') ;?></strong></li>
+		  <li class=""><p>детские площадки</p><strong class="prc"><?php echo  get_field('детские_площадки') ;?></strong></li>
+		  <li class=""><p>рядом есть детский сад</p><strong class="prc"><?php echo  get_field('рядом_есть_детский_сад_') ;?></strong></li>
+		  <li class=""><p>аптека</p><strong class="prc"><?php echo  get_field('аптека') ;?></strong></li>
+		  <li class=""><p>сквер парк зеленая зона</p><strong class="prc"><?php echo  get_field('сквер_парк_зеленая_зона') ;?></strong></li>
+
+		    <li class=""><a href="<?php echo get_the_permalink() ;?>"><p>Постоянная ссылка</p></a><p class=""><?php echo get_the_permalink() ;?></p></li>
+		<?php echo  edit_post_link(); ;?>
+		</ul>
+
+
+
+
+				Если дом Сданный
+
+
 		<?php
 		endwhile;
 		?>
