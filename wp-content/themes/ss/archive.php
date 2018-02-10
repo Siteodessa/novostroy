@@ -40,9 +40,7 @@ if( $field ) {
 
        echo '</div></aside></div>';
      };
-     echo '<pre>';
-    var_dump( $field );
-    echo '</pre>';
+
   };
   print_r('<div id="srch_vals" class="search_block">');
   print_r('<div id="mini_block" class="srch-top">');
@@ -98,6 +96,9 @@ $params = array(
   'order'  => 'DESC',
  	'meta_query'	=> array(
 		  'relation'		=> 'AND',
+      array( 'key'	  	=> 'house_or_appartment',
+      'value'	  	=> 'Квартира',
+      'compare' 	=> 'IN', ),
 		  array( 'key'	 	=> 'rom',
       'value'	  	=>  $rom_value,
       'compare' 	=> 'IN', ),
@@ -131,12 +132,12 @@ while(have_posts()): the_post();?>
 <ul class="appartment">
 <li class="im">
   <a href="<?= the_permalink()?>"><img src="<?php echo get_field('appar_image');?>" /></a></li>
-<li class="bd"><p>Застройщик</p><strong class="bld"><?php echo  get_field('bld') ;?></strong></li>
-<li class="ro"><p class="app_comn">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
-<li class="bl"><p>Район</p><strong class="block"><?php echo get_field('block')  ;?></strong></li>
-<li class="sq"><p>Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
-<li class="pr"><p>Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
-<li class="fl"><p>Этаж</p><strong class="floor"><?php echo  get_field('floor') ;?></strong></li>
+<li class="tx bd"><p>Застройщик</p><strong class="bld"><?php echo  get_field('bld') ;?></strong></li>
+<li class="tx ro"><p class="app_comn">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
+<li class="tx bl"><p>Район</p><strong class="block"><?php echo get_field('block')  ;?></strong></li>
+<li class="tx sq"><p>Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
+<li class="tx pr"><p>Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
+<li class="tx fl"><p>Этаж</p><strong class="floor"><?php echo  get_field('floor') ;?></strong></li>
      <?php
      if (!is_admin){
   print_r('<b class="editka">');

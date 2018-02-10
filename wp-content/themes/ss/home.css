@@ -2,7 +2,8 @@ div#srch_stat {
     width: calc(100% - 7px);
     display: flex;
     justify-content: flex-end;
-    margin-bottom:  20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e4e4e4;
 }
 
 .fixie {
@@ -40,7 +41,9 @@ div.special_counter {
     background: #e4e4e4;
     color: #444;
     padding: 4px;
-    margin: 50px 0 -10px;
+    margin: 12px 0 -10px;
+    border-radius:  8px;
+    padding:  4px 11px;
 }
 
 strong.rom {
@@ -62,26 +65,26 @@ strong.rom {
     width: auto;
     display: grid;
     border: 1px solid;
-    padding: 10px 8px;
+    padding: 8px 8px 20px;
     margin: 5px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-gap: 6px;
-    position:  relative;
-    overflow:  hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 .appartment strong {
     padding: 5px 6px;
     border: 1px solid #cacaca;
     display: table;
-    width:  100%;
-    text-align:  right;
-    position:  absolute;
-    left:  0;
+    width: 100%;
+    text-align: right;
+    position: absolute;
+    left: 0;
     z-index: 1;
     transform: translate(-6px,3px);
-    font-size:  13px;
+    font-size: 13px;
     height: 27px;
 }
 
@@ -115,8 +118,8 @@ button#searchstarter {
 
 .search_values div {
     margin: 0 0px;
-    height: auto;
-    overflow:  hidden;
+    /* height: 36px; */
+    overflow: hidden;
     z-index: 6;
 }
 
@@ -125,7 +128,7 @@ button#searchstarter {
     margin: 7px 0px 0 0;
     border: 1px solid #6ac2e7;
     height: 30px;
-    text-indent:  15px;
+    text-indent: 15px;
 }
 
 p.srch_labl {
@@ -138,9 +141,9 @@ p.srch_labl {
     padding: 9px 12px;
     border: 1px solid #6ac2e7;
     border-radius: 2px;
-    z-index:  2;
-    position:  relative;
-    cursor:  pointer;
+    z-index: 2;
+    position: relative;
+    cursor: pointer;
 }
 
 p.srch_labl:first-letter {
@@ -158,7 +161,7 @@ button#start {
     margin: 0 0px;
     height: 24px;
     z-index: 0;
-    position:  relative;
+    position: relative;
 }
 
 div#sqrt_inp {
@@ -170,46 +173,59 @@ div#sqrt_inp {
     justify-content: space-between;
 }
 
-.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;transform: translate(0,-100%);opacity: .5;}
-
+.choices {
+    padding-top: 7px;
+    background: aliceblue;
+    transform: translate(0,0);
+    will-change: transform;
+    transition: 0.3s;
+    opacity: 1;
+    z-index: 10;
+    transform: translate(0,-100%);
+    opacity: .5;
+}
 
 .choices.nxpan {
     transform: translate(0,-100%);
-    opacity:  .5;
+    opacity: .5;
     transform: translate(0,0);
     opacity: 1;
 }
 
 .apps_holder {
-    display:  grid;
+    display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-gap:  5px;
+    grid-gap: 5px;
     width: calc(100% - 15px);
 }
+
 .haus_holder {
-    display:  grid;
+    display: grid;
     grid-template-columns: 1fr;
-    grid-gap:  5px;
+    grid-gap: 5px;
     width: calc(100% - 15px);
 }
 
 a#searchstarter .button:hover {
-    text-decoration:  none;
+    text-decoration: none;
 }
 
 a#searchstarter:hover {
-    text-decoration:  none;
+    text-decoration: none;
 }
 
 .home-c.container {
     background: #f3f3f3;
-    padding-bottom:  40px;
+    padding-bottom: 40px;
     position: relative;
     z-index: 6;
+    height:  100%;
+    padding-bottom:  500px;
 }
+
 .z-dom2 {
-     position:  relative;
-     z-index: 7; 
+    position: relative;
+    z-index: 7;
 }
 
 .after_search {
@@ -234,32 +250,54 @@ div#src_val.touched {
     transform: translate(0,0);
     opacity: 1;
 }
+
 .bld_values .bld_values .choices {
     transform: translate(0,0);
     opacity: 1;
+    height: 600px !important;
 }
+
 .block_values .block_values .choices {
     transform: translate(0,0);
     opacity: 1;
 }
+
 .floor_values .floor_values .choices {
     transform: translate(0,0);
     opacity: 1;
 }
+
 .sqrt_inp .sqrt_inp .choices {
     transform: translate(0,0);
     opacity: 1;
-}.prc_inp .prc_inp .choices {
+}
+
+.prc_inp .prc_inp .choices {
     transform: translate(0,0);
     opacity: 1;
 }
 
-
-.rom_values .search_values, .bld_values .search_values, .block_values .search_values, .floor_values .search_values, .sqrt_inp .search_values, .prc_inp .search_values {
-    height:  100%;
-    margin-bottom: calc( -100% + 30px);
+li.tx {
+    margin: 9px 0 0;
 }
 
-div#srch_vals.active + .home-c.container {
-    margin-top: 60px;
+li.tx p {
+    z-index: 3;
+    color: #fff;
+    margin: 0;
+    padding-top: 7px;
+}
+
+li.im img {
+    border: 1px solid #fff;
+    padding: 4px;
+}
+
+div#srch_vals {
+    background: #f3f3f3;
+}
+
+
+.active .search_values div {
+    /* height:  auto; */
 }

@@ -13,7 +13,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.26) 0px 0px 15px;
   position: relative;
   z-index: 5;
-  padding: 0px 0px 300px;
+  padding: 0px 0px 285px;
   min-height: 1480px;
 }
 
@@ -671,4 +671,8 @@ a.cat_img_h {
 
 li.link .btn {
     margin:  0 8px;
+}
+
+.admin-bar .container.hd {
+    margin-top:  32px;
 }
