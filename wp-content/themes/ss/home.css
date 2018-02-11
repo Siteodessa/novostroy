@@ -5,7 +5,6 @@ div#srch_stat {
     margin-bottom: 20px;
     border-bottom: 1px solid #e4e4e4;
 }
-
 .fixie {
     position: fixed;
     top: 20px;
@@ -15,7 +14,54 @@ div#srch_stat {
     font-size: 17.5px;
     left: 0;
 }
-
+#src_val input[type=checkbox]:checked + label:before {
+    content:  '';
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6ac2e7;
+    z-index:  2;
+    position:  absolute;
+    left: auto;
+    transform:  rotate(45deg);
+}
+#src_val input[type=checkbox] + label:before {
+    content:  '';
+    width: 18px;
+    height: 18px;
+    border: 2px solid #b2b2b2;
+    z-index:  2;
+    position:  absolute;
+    left: auto;
+    right: 18px;
+    top: -2px;
+    background:  #fff;
+    transition: 0.3s;
+}
+#src_val input[type=checkbox]:checked + label:after {
+    content:  '';
+    width: 7px;
+    height: 11px;
+    border: 2px solid #6ac2e7;
+    border-top: none;
+    z-index:  2;
+    position:  absolute;
+    left: auto;
+    transform:  rotate(45deg);
+    border-left:  none;
+}
+#src_val input[type=checkbox] + label:after {
+    content:  '';
+    width: 12px;
+    height: 12px;
+    border: 2px solid transparent;
+    z-index:  2;
+    position:  absolute;
+    left: auto;
+    right: 23px;
+    top: 0px;
+    background: transparent;
+    transition: 0.3s;
+}
 .fixie {
     position: fixed;
     top: 20px;
@@ -26,13 +72,14 @@ div#srch_stat {
     z-index: 999999;
     left: 0;
 }
-
 #src_val input[type="checkbox"] {
-    transform: scale(1.4);
-    margin: 5px 12px;
-    outline: 1px solid #cadbe1;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    height: 30px;
+    opacity:  0;
+    margin:  0;
 }
-
 div.special_counter {
     text-align: right;
     font-size: 14px;
@@ -45,22 +92,18 @@ div.special_counter {
     border-radius:  8px;
     padding:  4px 11px;
 }
-
 strong.rom {
     border: 1px solid;
     padding: 5px 11px !important;
     margin: 0 0px;
 }
-
 .appartment b {
     padding: 5px 7px 0 12px;
 }
-
 .appartment b.app_comn {
     border: none;
     padding: 5px 7px 0 3px !important;
 }
-
 .appartment {
     width: auto;
     display: grid;
@@ -72,8 +115,8 @@ strong.rom {
     grid-gap: 6px;
     position: relative;
     overflow: hidden;
+    background:  #fff;
 }
-
 .appartment strong {
     padding: 5px 6px;
     border: 1px solid #cacaca;
@@ -87,42 +130,41 @@ strong.rom {
     font-size: 13px;
     height: 27px;
 }
-
 b {
     padding: 5px 4px 0 0;
     border-left: 1px solid;
     margin: 0 7px 0 0px;
 }
-
 .editka a.post-edit-link {
     padding: 5px;
     display: inline;
 }
-
 button#searchstarter {
     height: 40px;
     width: 80px;
 }
-
 .search_values {
     display: grid;
     grid-template-columns: 100px 275px 145px 90px 180px 1fr 1fr;
     grid-gap: 4px;
     margin: 0px 0;
-    padding: 12px 7px;
+    padding: 0 7px;
     background: #f3f3f3d4;
     grid-auto-rows: min-content;
-    height: 60px;
+    height: auto;
     z-index: 6;
 }
-
-.search_values div {
+.search_values .vs {
     margin: 0 0px;
-    /* height: 36px; */
-    overflow: hidden;
     z-index: 6;
+    will-change: transform;
+    transition: 0.3s;
+    opacity: 0;
+    z-index: -2;
+    transform: translateY(-30%) rotate3d(1, 0, 0, 90deg);
+    /* height:  0px; */
+    position:  relative;
 }
-
 .search_values .sqrt_inp input, .search_values .prc_inp input {
     width: 88px;
     margin: 7px 0px 0 0;
@@ -130,174 +172,152 @@ button#searchstarter {
     height: 30px;
     text-indent: 15px;
 }
-
-p.srch_labl {
+.srch_labl {
     margin: 0;
     background: #ffffff;
     color: #6ac2e7;
     font-weight: bold;
     padding: 4px;
     height: 35px;
-    padding: 9px 12px;
+    padding: 0;
     border: 1px solid #6ac2e7;
     border-radius: 2px;
     z-index: 2;
     position: relative;
     cursor: pointer;
+    opacity:  .99;
 }
-
 p.srch_labl:first-letter {
     text-transform: uppercase;
 }
-
 button#start {
     background-color: #6ac2e7;
     color: #fff;
     padding: 7px 20px 8px;
     height: 35px;
 }
-
 .search_values .choice {
-    margin: 0 0px;
-    height: 24px;
     z-index: 0;
     position: relative;
+    height: 30px;
+    border-bottom: 1px solid #6ac2e733;
 }
-
 div#sqrt_inp {
 }
-
 .search_values div.inps {
     margin: 0;
     display: flex;
     justify-content: space-between;
 }
-
 .choices {
     padding-top: 7px;
     background: aliceblue;
-    transform: translate(0,0);
-    will-change: transform;
-    transition: 0.3s;
-    opacity: 1;
-    z-index: 10;
-    transform: translate(0,-100%);
-    opacity: .5;
 }
-
 .choices.nxpan {
     transform: translate(0,-100%);
     opacity: .5;
     transform: translate(0,0);
     opacity: 1;
 }
-
 .apps_holder {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-gap: 5px;
     width: calc(100% - 15px);
 }
-
 .haus_holder {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 5px;
     width: calc(100% - 15px);
 }
-
 a#searchstarter .button:hover {
     text-decoration: none;
 }
-
 a#searchstarter:hover {
     text-decoration: none;
 }
-
 .home-c.container {
     background: #f3f3f3;
     padding-bottom: 40px;
     position: relative;
     z-index: 6;
     height:  100%;
-    padding-bottom:  500px;
+    padding-bottom: 900px;
 }
-
 .z-dom2 {
     position: relative;
     z-index: 7;
+    display:  block;
+    padding:  0;
 }
-
 .after_search {
     display: flex;
     grid-template-columns: 105px 170px;
     grid-gap: 10px;
 }
-
 a.flush_search {
     padding: 4px 13px;
 }
-
 div#src_val.touched {
     background: #e7e7e7;
 }
-
 div#src_val.touched {
     background: #d7d7d7;
 }
-
-.rom_values .rom_values .choices {
-    transform: translate(0,0);
-    opacity: 1;
-}
-
-.bld_values .bld_values .choices {
-    transform: translate(0,0);
-    opacity: 1;
-    height: 600px !important;
-}
-
-.block_values .block_values .choices {
-    transform: translate(0,0);
-    opacity: 1;
-}
-
-.floor_values .floor_values .choices {
-    transform: translate(0,0);
-    opacity: 1;
-}
-
-.sqrt_inp .sqrt_inp .choices {
-    transform: translate(0,0);
-    opacity: 1;
-}
-
-.prc_inp .prc_inp .choices {
-    transform: translate(0,0);
-    opacity: 1;
-}
-
 li.tx {
     margin: 9px 0 0;
 }
-
 li.tx p {
     z-index: 3;
     color: #fff;
     margin: 0;
     padding-top: 7px;
 }
-
 li.im img {
-    border: 1px solid #fff;
+    border: 1px solid #f3f3f3;
     padding: 4px;
 }
-
 div#srch_vals {
+    background: #f3f3f3;
+    padding-top: 17px;
+}
+.rom_values .rom_values.vs, .bld_values .bld_values.vs, .block_values .block_values.vs, 
+.floor_values .floor_values.vs, .prc_inp .prc_inp.vs, .sqrt_inp .sqrt_inp.vs {
+    transform: translateY(-10px) rotate3d(0, 0, 0,  -7turn);
+    height:  auto;
+    opacity:  1;
+}
+p.f_name {
+    position:  relative;
+    z-index: 4;
+    padding: 9px 12px;
+}
+.search_values .choice label {
+    position:  absolute;
+    left:  10px;
+    top: 9px;
+    z-index:  -1;
+    cursor:  pointer;
+    margin:  0;
+    width:  100%;
+}
+
+div#homebase {
+    overflow:  hidden;
+    /* margin:  12px 0; */
     background: #f3f3f3;
 }
 
+div#homecover {
+    background: #f3f3f3;
+    padding-bottom:  10px;
+    display:  block;
+}
 
-.active .search_values div {
-    /* height:  auto; */
+.board-row button.square {
+    width:  24px;
+    height:  24px;
+    padding:  0;
+    margin:  0;
 }

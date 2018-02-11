@@ -18,7 +18,7 @@
 
 
   </head>
-  <body <?php body_class(); ?>>
+  <body <?php body_class(); ?> >
     <?php // get_sidebar(); ?>
     <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">
     <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/style.css">
@@ -30,3 +30,5 @@
         <div class="clear"></div>
         <?php include('pages/nav.php');?>
       </header>
+
+      <div id="revct"></div>

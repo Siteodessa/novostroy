@@ -5,21 +5,17 @@
  * @package WordPress
  * @subpackage Administration
  */
-
 // don't load directly
 if ( !defined('ABSPATH') )
 	die('-1');
-
 /**
  * @global string $hook_suffix
  */
 global $hook_suffix;
 ?>
-
 <div class="clear"></div></div><!-- wpbody-content -->
 <div class="clear"></div></div><!-- wpbody -->
 <div class="clear"></div></div><!-- wpcontent -->
-
 <div id="wpfooter" role="contentinfo">
 	<?php
 	/**
@@ -70,7 +66,6 @@ global $hook_suffix;
  * @param string $data The data to print.
  */
 do_action( 'admin_footer', '' );
-
 /**
  * Prints scripts and data queued for the footer.
  *
@@ -80,14 +75,12 @@ do_action( 'admin_footer', '' );
  * @since 4.6.0
  */
 do_action( "admin_print_footer_scripts-{$hook_suffix}" );
-
 /**
  * Prints any scripts and data queued for the footer.
  *
  * @since 2.8.0
  */
 do_action( 'admin_print_footer_scripts' );
-
 /**
  * Prints scripts or data after the default footer scripts.
  *
@@ -97,21 +90,15 @@ do_action( 'admin_print_footer_scripts' );
  * @since 2.8.0
  */
 do_action( "admin_footer-{$hook_suffix}" );
-
 // get_site_option() won't exist when auto upgrading from <= 2.7
 if ( function_exists('get_site_option') ) {
 	if ( false === get_site_option('can_compress_scripts') )
 		compression_test();
 }
-
 ?>
-
 <div class="clear"></div></div><!-- wpwrap -->
-
 <script type="text/javascript">if(typeof wpOnload=='function')wpOnload();
-
 jQuery('body.admin-bar.post-type-objects.taxonomy-category tr.form-field.term-description-wrap').detach();
-
 jQuery('body.admin-bar.post-type-objects.taxonomy-category table.form-table tbody').after('<div id="afteradmin"></div>');
 jQuery('body.admin-bar.post-type-objects.taxonomy-category table.form-table tbody').after('<div id="afteradmin2"></div>');
 setTimeout(function(){
@@ -127,7 +114,6 @@ jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_супермар
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_аптека'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_фитнес-клуб'));
 jQuery('#afteradmin').append(jQuery('tr#acf-рядом_есть_сквер_парк_зеленая_зона'));
-
 },1400);
 // setTimeout(function(){
 // jQuery('#afteradmin2').append(jQuery('tr#acf-фото'));
@@ -155,7 +141,6 @@ setTimeout(function(){
 // jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caaf3a6b99').addClass('dno');
 // jQuery('tr.form-field.field.field_type-image.field_key-field_5a6caafca6b9a').addClass('dno');
 // jQuery('tr.form-field.field.field_type-image.field_key-field_5a6cab10a6b9b').addClass('dno');
-
 jQuery('tr#acf-количество_этажей').wrap('<div id="right_block"></div>');
 jQuery('div#afteradmin').appendTo(jQuery('#right_block'));
 // jQuery('tr#acf-описание').wrap('<div id="left_block"></div>');
@@ -176,18 +161,21 @@ jQuery('div#afteradmin').appendTo(jQuery('#right_block'));
 // 	jQuery('body').find('.dno').first().removeClass('dno');
 // });
 },1400);
-
 jQuery(document).ready(function(){
-
 	setTimeout(function(){
     jQuery("h2.hndle.ui-sortable-handle span").text(function(index, text) {
     return text.replace("рубрики", "дома");
-
     });
 console.log('');
 	},1700);
 });
-
+jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar').on('change', 'input#acf-field-house_or_appartment-Дом', function() {
+jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
+});
+setTimeout(function(){
+	if (jQuery('input#acf-field-house_or_appartment-Дом').prop('checked') == true)
+	jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
+},600);
 </script>
 </body>
 </html>
