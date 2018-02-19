@@ -4,16 +4,7 @@
 * * @package WordPress
 * @subpackage Twenty_Fourteen
 * @since Twenty Fourteen 1.0 */?>
-  <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">
-  <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/style.css">
-  <div class="container hd">
-    <header>
-      <div class="header-banner">
-        <button role="buttton" class="btn-success cnct" onclick="alert('binotel')"> Связаться с нами</button>
-      </div>
-      <div class="clear"></div>
-<?php include('nav.php');?>
-    </header>
+
     <div class="row">
       <div class="container hb">
 
@@ -28,6 +19,8 @@
         	<li>с 9:00 до 20:00 Без выходных.</li>
         </ul>
       </div>
+
+      <?php echo do_shortcode( '[contact-form-7 id="4" title="Contact form 1"]' )?>
       <div id="root"></div>
     </div>
 

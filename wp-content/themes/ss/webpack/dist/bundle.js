@@ -11392,9 +11392,33 @@ function calculateWinner(squares) {
 
 console.log(' open => (g + any back key) ');
 console.log(' open => (pageUp to upgrade) ');
+console.log(' __________________________________');
+console.log(' you must init => ');
+
+console.log(' office single template => false');
+console.log(' house single template => false');
+
+console.log(' ___________');
+console.log(' ability to choose in what house the appartment or office is => false');
+console.log(' admin-gallery-lightgallery => false');
+console.log(' images in main loop are scaled incorrectly => false');
+console.log(' hide appartment fields while editing office => false');
+console.log(' objects single design => false');
+console.log(' houses single design => false');
+console.log(' office single design => false');
+console.log(' office loop design => false');
+console.log(' ___________');
+
+console.log(' office object type fields => ok');
+console.log(' office loop => ok');
+console.log(' search_any_req issue => maybe ok');
+console.log(' objects single template => ok');
+
 function showBabelHints() {
   var link = 'https://babeljs.io';
+  var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
   console.log('' + link);
+  console.log('' + link1);
 }
 
 jQuery(document).keyup(function (e) {
@@ -11414,7 +11438,9 @@ var input_tables = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#s
 var slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#floor')];
 var possible_received_args = ['rom', 'bld', 'block', 'floor', 'mnp', 'mxp', 'mns', 'mxs'];
 var link_addon = '';
+
 var get_req_object = new search_any_req(possible_received_args);
+
 jQuery.each(get_req_object, function (name, value) {
   value = value.split(',');
   var value_len = value.length;
@@ -11425,6 +11451,7 @@ jQuery.each(get_req_object, function (name, value) {
       }
     });
   } else {
+
     for (k = 0; k < value_len; k++) {
       jQuery('input.' + name + '').each(function () {
         if (jQuery(this).val() == value[k]) {
@@ -11434,6 +11461,7 @@ jQuery.each(get_req_object, function (name, value) {
     }
   }
 });
+
 function src_val() {
   var c = {};
   jQuery('div#src_val input[type="checkbox"]').each(function () {

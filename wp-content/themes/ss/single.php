@@ -11,13 +11,6 @@ get_header(); ?>
 <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">
 <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/style.css">
 <div class="container hd">
-	  <header>
-      <div class="header-banner">
-        <button role="buttton" class="btn-success cnct" onclick="alert('binotel')"> Связаться с нами</button>
-      </div>
-      <div class="clear"></div>
-<?php include('/wp-content/themes/ss/pages/nav.php');?>
-    </header>
 
 
 <div class="row">
@@ -127,45 +120,10 @@ get_header(); ?>
 	      <div id="root"></div>
 			</div>
 </div>
+<script type="text/javascript" src="<?php echo get_template_directory_uri();?>/kvarts.js">
+</script>
+
   <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
 
-
-
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-var current = 0;
-var slides = $(".slide");
-$("#right").click(function() {
-  slide(1);
-});
-$("#left").click(function() {
-  slide(-1);
-});
-function slide(offset) {
-  var next = (current + offset) % slides.length;
-  if (next < 0) { next = slides.length + next;
-}
-  $(slides[next]).removeClass("fromRight");
-  $(slides[next]).removeClass("fromLeft");
-  $(slides[current]).removeClass("fromLeft");
-  $(slides[current]).removeClass("fromRight");
-  if (offset > 0) {
-   $(slides[current]).addClass("fromLeft");
-   $(slides[next]).addClass("fromRight");
-  } else {
-    $(slides[current]).addClass("fromRight");
-    $(slides[next]).addClass("fromLeft");
-  }
-  $(slides[next]).addClass("active");
-  $(slides[current]).removeClass("active");
-  $(slides[current]).addClass("closing");
-  var oldCur = current;
-  current = next;
-  $("#count").html(current+1);
-}
-setInterval(function(){
-  $("#left").click();
-},5000);
-</script>
 <?php get_footer(); ?>

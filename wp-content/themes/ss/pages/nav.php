@@ -4,7 +4,7 @@
       <li><a href="/">Главная</a></li>
       <li><a href="/stroyashhiesya-doma-v-odesse/">Строящиеся дома</a></li>
       <li><a href="/sdannye-doma-v-odesse/">Сданные дома</a></li>
-      <li><a href="/ofisy/">Офисы</a></li>
+      <li><a href="/ofisy-v-odesse/">Офисы</a></li>
       <li><a href="/tseny/">Цены</a></li>
       <li><a href="/goryashhie-predlozheniya/">Горящие предложения</a></li>
       <li><a href="/kontakty/">Контакты</a></li>

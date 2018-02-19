@@ -1059,7 +1059,7 @@ th {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  transition:  all .4s;
+  /* transition:  all .4s; */
 }
 *:before,
 *:after {
@@ -1105,7 +1105,7 @@ figure {
 img {
   vertical-align: middle;
   width: 100%;
-  max-height:  200px;
+  /* max-height:  200px; */
 }
 .img-responsive,
 .thumbnail > img,
@@ -2282,7 +2282,7 @@ th {
   border-top: 0;
 }
 .table > tbody + tbody {
-  border-top: 2px solid #ddd;
+  /* border-top: 2px solid #ddd; */
 }
 .table .table {
   background-color: #fff;

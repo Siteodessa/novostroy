@@ -199,10 +199,10 @@ div#photos p input {
     padding: 0 2px;
 }
 body.auto-fold.admin-bar.post-type-objects img.acf-image-image {
-    position: absolute;
-    left: 0;
-    top: -10px;
-    min-width: 120px;
+	position: static;
+	top: -40px;
+	min-width: 120px;
+	max-width: 150px;
 }
 div#photos label {
     display:  none;

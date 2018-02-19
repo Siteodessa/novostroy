@@ -169,11 +169,19 @@ jQuery(document).ready(function(){
 console.log('');
 	},1700);
 });
+
 jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar').on('change', 'input#acf-field-house_or_appartment-Дом', function() {
 jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
 });
 setTimeout(function(){
 	if (jQuery('input#acf-field-house_or_appartment-Дом').prop('checked') == true)
+	jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
+},600);
+jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar').on('change', 'input#acf-field-house_or_appartment-Офис', function() {
+jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
+});
+setTimeout(function(){
+	if (jQuery('input#acf-field-house_or_appartment-Офис').prop('checked') == true)
 	jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
 },600);
 </script>

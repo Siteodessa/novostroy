@@ -62,7 +62,7 @@ strong.rom {
     width: auto;
     border: 3px solid #d1d1d1;
     padding: 0;
-    margin: 5px 0 0 35px;
+    margin: 0px 0 0 35px;
     grid-gap: 6px;
     position:  relative;
     overflow:  hidden;
@@ -303,7 +303,7 @@ ul.app_features {
 ul.app_main {
     display:  grid;
     grid-template-columns:  1fr;
-    grid-template-rows: 45px 40px 145px 70px;
+    grid-template-rows: 45px 40px 145px 75px;
     background: #fff;
 }
 
