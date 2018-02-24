@@ -10,7 +10,7 @@
 
   <?php $field = metapolename('фото', $post->ID); if (empty($cena)) {echo '';} else {echo '<p class="">Планировка :<span class="">'; echo $field; echo '</span></p>';}?>
 
-
+<div class="sdannye">
 <div class="subcat"><ul class="subcateg">
 <?php
 if (count(get_categories('child_of='.$cat)))
@@ -134,7 +134,7 @@ wp_list_categories('child_of='.$current_cat.'&title_li=&show_count=1');} ?>
       </div>
       <div id="root"></div>
     </div>
-
+</div>
   <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
 
   <div class="footer">
@@ -212,6 +212,6 @@ setInterval(function(){
     <?php get_footer();?>
 
 
--
+
 
  <?php echo metapolename('CATEGORYRUBRIKA', $post->ID);?>  <?php $field = metapolename('ðàéîí', $post->ID); if (empty($cena)) {echo '';} else {echo '<p class="">Òåêñò :<span class="">'; echo $field; echo '</span></p>';}?>

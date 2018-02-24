@@ -1,33 +1,52 @@
 //import './style.css';
 //import './bootstrap.css';
 //import Icon from './icon.png';
+// import search_any_req from './kvarts.js';
 import _ from 'lodash';
 import Data from './data.xml';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-
 //imports------------------------
 $(window).scroll(function(){
 if ($(window).scrollTop() >= 60) {
      $('nav').addClass('fixed-header');
-
   }
   else {
           $('nav').removeClass('fixed-header');
-
-
   };    if ($(window).scrollTop() >= 1700) {
-
          $('nav').addClass('animated-header');
       }
       else {    $('nav').removeClass('animated-header');
-
-
       };
 });
-
-
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+function search_any_req(possible_received_args){
+ var pral = possible_received_args.length;
+var search_object = {};
+for (var k = 0; k < pral; k++) {
+  if ((getParameterByName(possible_received_args[k])) != null) {
+    var received_arg_name = (possible_received_args[k]);
+    var received_args_value = (getParameterByName(possible_received_args[k]));
+    search_object[received_arg_name] = received_args_value;
+  };
+};
+  return search_object;
+ };
+function log_object(object){
+     console.log('{');
+jQuery.each(object, function(name, value) {
+   console.log('' + name + ':' + value + '');
+}),    console.log('}');
+}
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -35,10 +54,7 @@ function Square(props) {
     </button>
   );
 }
-
 class Board extends React.Component {
-
-
      constructor(props) {
     super(props);
     this.state = {
@@ -53,23 +69,20 @@ class Board extends React.Component {
 squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({squares: squares,  xIsNext: !this.state.xIsNext,});
   }
-
   renderSquare(i) {
     return <Square
       value={this.state.squares[i]}
       onClick={() => this.handleClick(i)}
       />;
   }
-
   render() {
        const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = 'Победитель: ' + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Новый игрок: ' + (this.state.xIsNext ? 'X' : 'O');
     }
-
     return (
       <div>
         <div className="status">{status}</div>
@@ -92,7 +105,6 @@ squares[i] = this.state.xIsNext ? 'X' : 'O';
     );
   }
 }
-
 class Game extends React.Component {
   render() {
     return (
@@ -101,7 +113,7 @@ class Game extends React.Component {
           <Board />
         </div>
         <div className="game-info">
-          <div>{/* status */}</div>
+          <div>{}</div>
           <ol>{/* TODO */}</ol>
         </div>
       </div>
@@ -128,61 +140,39 @@ function calculateWinner(squares) {
   return null;
 }
 // ========================================
-
-
  console.log(' open => (g + any back key) ')
  console.log(' open => (pageUp to upgrade) ')
  console.log(' __________________________________')
  console.log(' you must init => ')
-
-
-
-
   console.log(' office single template => false')
   console.log(' house single template => false')
-
-
   console.log(' ___________')
-  console.log(' ability to choose in what house the appartment or office is => false')
   console.log(' admin-gallery-lightgallery => false')
-  console.log(' images in main loop are scaled incorrectly => false')
   console.log(' hide appartment fields while editing office => false')
   console.log(' objects single design => false')
   console.log(' houses single design => false')
-  console.log(' office single design => false')
+  console.log(' office single ddesign => false')
   console.log(' office loop design => false')
   console.log(' ___________')
-
   console.log(' office object type fields => ok')
   console.log(' office loop => ok')
   console.log(' search_any_req issue => maybe ok')
   console.log(' objects single template => ok')
-
-
-
-
-
-
 function showBabelHints() {
 var link = 'https://babeljs.io';
 var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
   console.log('' + link);
   console.log('' + link1);
 }
-
-
 jQuery(document).keyup(function (e) {
   33 === e.keyCode && ReactDOM.render(
    <Game />,
    document.getElementById('revct')
  )  ;
 });
-
 jQuery(document).keyup(function (e) {
   33 === e.keyCode && showBabelHints()
 });
-
-
 let app_res = jQuery('.sub_search_menu');
 let after_search = jQuery('div.after_search');
 after_search.prependTo(app_res);
@@ -194,8 +184,9 @@ const slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery
 const possible_received_args = ['rom', 'bld', 'block', 'floor', 'mnp', 'mxp', 'mns', 'mxs'];
 var link_addon = '';
 
-var get_req_object =  new search_any_req(possible_received_args);
+if (jQuery('div#homecover')){
 
+var get_req_object =  new search_any_req(possible_received_args);
 jQuery.each(get_req_object, function(name, value) {
   value = value.split(',');
   var value_len = value.length;
@@ -205,17 +196,13 @@ jQuery.each(get_req_object, function(name, value) {
           jQuery(this).attr('checked',true);
         }}); }
         else  {
-
-            for (k = 0 ; k < value_len; k++){
+            for (let k = 0 ; k < value_len; k++){
                jQuery('input.' + name + '').each(function(){
                   if (jQuery(this).val() == value[k]){
                     jQuery(this).attr('checked',true);
                    }});}}
 });
-
-
-
-
+};
 function src_val(){
          var c = {};
   jQuery('div#src_val input[type="checkbox"]').each(function(){
@@ -326,3 +313,53 @@ var current = 0;
   setInterval(function() {
     $("#left").click();
   }, 5000);
+  jQuery('.jumpo button').on('click', function(){
+  function createOneMenu(){
+    if (jQuery('.side-menu').length < 1){
+    jQuery('body').prepend(`<div class="side-menu">
+    <ul>
+    <li><a href="/wp-admin/post.php?post=960&action=edit">Кастомные поля</a></li>
+    <li><a href="/wp-admin/edit.php?post_type=objects">Все объекты</a></li>
+    <li><a href="/wp-admin/edit.php?post_type=objects">
+
+меню ховеры
+
+
+
+
+    </a></li>
+     </ul>
+     </div>`);
+      setTimeout(function(){
+        jQuery(document).find('.side-menu').addClass('opened');
+        jQuery(document).find('body').addClass('s-menu-opened');
+      }, 200);
+  } else {
+    jQuery(document).find('.side-menu').toggleClass('opened');
+    jQuery(document).find('body').toggleClass('s-menu-opened');
+  }
+  };createOneMenu();
+  });
+
+
+
+  function show_more_info(){
+
+    jQuery('ul.appartment').on('mouseenter', function(){
+          jQuery(this).addClass('active');
+    });
+    jQuery('ul.appartment').on('mouseleave', function(){
+          jQuery(this).removeClass('active');
+    });
+  };show_more_info()
+
+  function show_app_more_info(){
+
+    jQuery('.app_info.closed').on('mouseenter', function(){
+          jQuery(this).removeClass('closed');
+
+    });
+    jQuery('.app_info.closed').on('mouseleave', function(){
+          jQuery(this).addClass('closed');
+    });
+  };show_app_more_info()

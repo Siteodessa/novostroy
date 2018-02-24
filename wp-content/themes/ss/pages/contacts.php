@@ -6,21 +6,31 @@
 * @since Twenty Fourteen 1.0 */?>
 
     <div class="row">
-      <div class="container hb">
+      <div class="container hb cont_page">
+<h2>Телефоны Отдела продаж:</h2>
+  <div class="row grid">
+  <div class="c_cover">
+      <div class="col-md-7 info">
+      <div>(048)736-80-94</div>
+      <div>(096)323-29-13</div>
+      <div>(066)787-06-23</div>
+      <div class="data">
 
-        <ul>
-        	<li>Телефоны Отдела продаж:</li>
-        	<li>(048)736-80-94</li>
-        	<li>(096)323-29-13</li>
-        	<li>(066)787-06-23</li>
-        	<li>E-mail Отдела продаж:</li>
-        	<li>info@www.novostroyi.od.ua</li>
-        	<li>Время работы:</li>
-        	<li>с 9:00 до 20:00 Без выходных.</li>
-        </ul>
+        <div>E-mail: info@www.novostroyi.od.ua</div>
+        <div>Время работы: с 9:00 до 20:00 Без выходных.</div>
+      </div>
+          </div>
+      <div class="c_f">
+      <div>  <?php echo do_shortcode( '[contact-form-7 id="4" title="Contact form 1"]' )?></div>
+    </div>
+
+
+</div>
+</div>
+
       </div>
 
-      <?php echo do_shortcode( '[contact-form-7 id="4" title="Contact form 1"]' )?>
+
       <div id="root"></div>
     </div>
 
@@ -61,41 +71,4 @@
     </div>
       </div></div>
 
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-var current = 0;
-var slides = $(".slide");
-$("#right").click(function() {
-  slide(1);
-});
-$("#left").click(function() {
-  slide(-1);
-});
-function slide(offset) {
-  var next = (current + offset) % slides.length;
-  if (next < 0) { next = slides.length + next;
-}
-  $(slides[next]).removeClass("fromRight");
-  $(slides[next]).removeClass("fromLeft");
-  $(slides[current]).removeClass("fromLeft");
-  $(slides[current]).removeClass("fromRight");
-  if (offset > 0) {
-   $(slides[current]).addClass("fromLeft");
-   $(slides[next]).addClass("fromRight");
-  } else {
-    $(slides[current]).addClass("fromRight");
-    $(slides[next]).addClass("fromLeft");
-  }
-  $(slides[next]).addClass("active");
-  $(slides[current]).removeClass("active");
-  $(slides[current]).addClass("closing");
-  var oldCur = current;
-  current = next;
-  $("#count").html(current+1);
-}
-setInterval(function(){
-  $("#left").click();
-},5000);
-</script>
     <?php get_footer();?>

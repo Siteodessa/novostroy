@@ -21,11 +21,7 @@ http://novostroy/wp-content/uploads/2017/12/Marshal-Siti.jpg
 <?php
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/stroy-home.css">');
 $title = get_the_title();
-?>
-
-
-<h1><?php echo strval($title);?></h1>
-<?php
+echo '<h1>'; echo strval($title); echo '</h1>';
 function default_houses_behaviour()
 {
   // function there_is_any_get(){
@@ -102,7 +98,7 @@ $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false;
 // $counter = 0;
-print_r('<div class="home-c container">');
+print_r('<div class="home-c container stroyashhiesya">');
   print_r('<div class="appartment_res">');
   print_r('<div class="sub_search_menu"></div>');
   print_r('<div class="haus_grid">');
@@ -157,191 +153,7 @@ default_houses_behaviour();
 </script>
 <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <script>
-let app_res = jQuery('.sub_search_menu');
-let after_search = jQuery('div.after_search');
-after_search.prependTo(app_res);
-after_search.wrap('<div id="srch_stat"></div>');
-jQuery('#searchstarter').attr('search-direct', '<?php echo $_SERVER['SERVER_NAME']; ?>');
-var url = jQuery('#searchstarter').attr('href');
-const input_tables = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#sqrt_inp'),
- jQuery('#prc_inp')];
-const slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('#floor')];
-const possible_received_args = ['rom', 'bld', 'block', 'floor', 'mnp', 'mxp', 'mns', 'mxs'];
-var link_prefix = '/?';
-var link_addon = '';
-var default_url = '<?php echo $_SERVER['SERVER_NAME']; ?>'+ link_prefix +'';
-var get_req_object =  new search_any_req(possible_received_args);
-jQuery.each(get_req_object, function(name, value) {
-  value = value.split(',');
-  var value_len = value.length;
-  if (value_len == 1)
-    {jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value){ jQuery(this).attr('checked',true);  }}); } else  {  for (k = 0 ; k < value_len; k++){  jQuery('input.' + name + '').each(function(){  if (jQuery(this).val() == value[k]){ jQuery(this).attr('checked',true);  }});}}
-});
-function src_val(){
-         var c = {};
-  jQuery('div#src_val input[type="checkbox"]').each(function(){
-  if (jQuery(this).prop( "checked" ) == true){
-          var a = jQuery(this).attr('srch-type');
-          var b = jQuery(this).val();
-     if (!c[a]){ c[a] = b; }
-    else {
-  var g = c[a];
-   c[a] = ''+ b + ',' + g + '';
-    }
-  };
-  })  ;
-  var o = c;
-    var generated_url = '';
-  for (var key in o) {
-    generated_url += key + '=' + o[key] +'&';
-  };
-    var cut_url = generated_url;
-    var default_url = ''+ link_prefix +'';
-    var done_url = default_url += cut_url;
-    // console.clear();
-         done_url = done_url.slice(0, -1),
-    jQuery('#searchstarter').attr('search-direct', done_url);
-}
-jQuery('div#src_val').on('change', 'input[type="checkbox"]', function() {
-src_val();
-});
-jQuery('#searchstarter').click(function(){
-jQuery('.choices').addClass('nxpan');
-src_val();
-var readysearchdirect = jQuery(this).attr('search-direct');
-var input_link_builder = '';
-var finish_link_builder = '';
-var curloc = readysearchdirect;
-if (curloc.indexOf('rom=') == -1 && curloc.indexOf('bld=') == -1 && curloc.indexOf('block=') == -1 && curloc.indexOf('floor=') == -1 && curloc.indexOf('mnp=') == -1 && curloc.indexOf('mxp=') == -1 && curloc.indexOf('mns=') == -1 && curloc.indexOf('mxs=') == -1 )
-{
-  jQuery('div#sqrt_inp input, div#prc_inp input').each(function(){
-  var srch_type = jQuery(this).attr('data-srch-type');
-  var srch_val = jQuery(this).val();
-      if (jQuery(this).val())
-        {
-          input_link_builder += srch_type + '=' + srch_val + '&';
-  input_link_builder = input_link_builder.slice(0, -1),
-readysearchdirect += '?' + input_link_builder,
- window.location.replace( readysearchdirect );
-}
- else
-{
-  if ( curloc.indexOf('mnp=') != -1 || curloc.indexOf('mxp=') != -1 || curloc.indexOf('mns=') != -1 || curloc.indexOf('mxs=') != -1 )
-   {
-console.log(curloc);
-console.log('hardway');
-   } else {
-     jQuery('div#sqrt_inp input, div#prc_inp input').each(function(){
-     var srch_type = jQuery(this).attr('data-srch-type');
-     var srch_val = jQuery(this).val();
-         if (jQuery(this).val())
-           {
-             input_link_builder += srch_type + '=' + srch_val + '&';
-           };
-       }),
-     input_link_builder = input_link_builder.slice(0, -1),
-   readysearchdirect += input_link_builder,
-    window.location.replace( readysearchdirect );
-   }
- }
-   });
-}
-  window.location.replace( readysearchdirect );
-});
-function any_opened_dropdwns(){
-  var choices = jQuery('div.choices');
-  var gt = 0;
-jQuery(choices).each(function () {
-  if (jQuery(this).hasClass('nxpan') != true)
-  {
-console.log(' !=true')
-  }
-});
-jQuery(choices).each(function () {
-  if (jQuery(this).hasClass('nxpan') == true)
-  {
-console.log(' !=true')
-  }
-});
-setTimeout(function(){
-  if (gt > 0)  {return true} else { return false }
-},100);
-};
-function close_all(){
-      jQuery('div#src_val').removeClass('touched')
-        jQuery('.choices').removeClass('nxpan');
-}
-function open_this(obj){
-        jQuery('div#src_val').addClass('touched')
-  obj.siblings('.choices').addClass('nxpan');
-}
-jQuery('p.srch_labl').click(function () {
-var dis = jQuery(this);
 
-
-  var current_class = jQuery(this).parent('aside').parent('div').attr('class');
-
-if (typeof(current_class) == 'undefined')
-{
-  var current_class = jQuery(this).parent('div').attr('class');
-console.log(typeof(current_class))
-console.log(current_class)
-
-}
-
-
-  // console.log(current_class)
-  if( jQuery('#srch_vals').hasClass(current_class) == false){
-  jQuery('#srch_vals').attr('class', 'search_block z-dom2 active');
-  jQuery('#srch_vals').attr('class', 'search_block z-dom2 active ' + current_class + '');
-  }
-else {
-  setTimeout(function(){
-        jQuery('#srch_vals').attr('class', 'search_block');
-  }, 296)
-    jQuery('#srch_vals').attr('class', 'search_block z-dom2');
-
-
-
-}
-});
-/* ---------------------------------------- */
-var current = 0;
-  var slides = $(".slide");
-  $("#right").click(function() {
-    slide(1);
-  });
-  $("#left").click(function() {
-    slide(-1);
-  });
-  function slide(offset) {
-    var next = (current + offset) % slides.length;
-    if (next < 0) {
-      next = slides.length + next;
-    }
-    $(slides[next]).removeClass("fromRight");
-    $(slides[next]).removeClass("fromLeft");
-    $(slides[current]).removeClass("fromLeft");
-    $(slides[current]).removeClass("fromRight");
-    if (offset > 0) {
-      $(slides[current]).addClass("fromLeft");
-      $(slides[next]).addClass("fromRight");
-    } else {
-      $(slides[current]).addClass("fromRight");
-      $(slides[next]).addClass("fromLeft");
-    }
-    $(slides[next]).addClass("active");
-    $(slides[current]).removeClass("active");
-    $(slides[current]).addClass("closing");
-    var oldCur = current;
-    current = next;
-    $("#count").html(current + 1);
-  }
-  setInterval(function() {
-    $("#left").click();
-  }, 5000);
-</script>
       </div>
       <div class="clearfix"> </div>
     </div>

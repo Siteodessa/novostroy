@@ -1,35 +1,3 @@
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    };
-
-    function search_any_req(possible_received_args){
-     var pral = possible_received_args.length;
-    var search_object = {};
-    for (k = 0; k < pral; k++) {
-      if ((getParameterByName(possible_received_args[k])) != null) {
-        var received_arg_name = (possible_received_args[k]);
-        var received_args_value = (getParameterByName(possible_received_args[k]));
-        search_object[received_arg_name] = received_args_value;
-      };
-    };
-      return search_object;
-     };
-
-
-function log_object(object){
-         console.log('{');
-      
-    jQuery.each(object, function(name, value) { 
-       console.log('' + name + ':' + value + '');
-  }),    console.log('}');
-}
-
 
 
 
@@ -78,4 +46,3 @@ var user = {
 var keys = Object.keys(user);
 
 //alert( keys ); // name, age
-

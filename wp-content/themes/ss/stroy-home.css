@@ -292,7 +292,7 @@ a.cat_img_h:before {
 
 li.name strong.dom_adres {
     text-align:  left;
-    margin: -20px -18px;
+    margin: -20px 40px 0 0px;
 }
 
 ul.app_features {
@@ -303,7 +303,7 @@ ul.app_features {
 ul.app_main {
     display:  grid;
     grid-template-columns:  1fr;
-    grid-template-rows: 45px 40px 145px 75px;
+    grid-template-rows: 45px 40px 140px 75px;
     background: #fff;
 }
 
@@ -354,19 +354,16 @@ li.mini-data div {
     position:  absolute;
 }
 
-.zastr {
-    top: 85px;
-}
+.stroyashhiesya .zastr, .sdannye .zastr {position:  absolute;top: 110px;right: 2px;}
 
-.rayon {
-    top: 37px;
-}
+.stroyashhiesya .rayon, .sdannye .rayon {position: absolute;top: 50px;right: 2px;}
 
 .rayon, .zastr {
     border: 3px solid #6ac2e7;
     padding: 7px 9px;
-    right:  8px;
 }
+
+.offices .rayon:before {display:none}
 
 .rayon:before {
     content:  '';
@@ -375,6 +372,9 @@ li.mini-data div {
     height:  10px;
     position:  absolute;
     top: -7px;
+}
+.offices .zastr:before {
+display:none
 }
 
 .zastr:before {
@@ -413,4 +413,17 @@ button.cta2 {
 button.cta:hover, button.cta2:hover {
     background: #6ac2e7;
     color:  #Fff;
+}
+
+.offices ul.app_main {
+    grid-template-rows: 45px 10px 405px 75px;
+    display:  block;
+    margin: 0;
+    background:  transparent;
+    padding:  0;
+}
+
+.offices .haus_grid_elem {
+    display: block;
+    margin:  20px;
 }

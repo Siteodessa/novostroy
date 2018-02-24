@@ -11233,6 +11233,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //import './style.css';
 //import './bootstrap.css';
 //import Icon from './icon.png';
+// import search_any_req from './kvarts.js';
 
 
 //imports------------------------
@@ -11242,13 +11243,38 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
   } else {
     (0, _jquery2.default)('nav').removeClass('fixed-header');
   };if ((0, _jquery2.default)(window).scrollTop() >= 1700) {
-
     (0, _jquery2.default)('nav').addClass('animated-header');
   } else {
     (0, _jquery2.default)('nav').removeClass('animated-header');
   };
 });
-
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+};
+function search_any_req(possible_received_args) {
+  var pral = possible_received_args.length;
+  var search_object = {};
+  for (var k = 0; k < pral; k++) {
+    if (getParameterByName(possible_received_args[k]) != null) {
+      var received_arg_name = possible_received_args[k];
+      var received_args_value = getParameterByName(possible_received_args[k]);
+      search_object[received_arg_name] = received_args_value;
+    };
+  };
+  return search_object;
+};
+function log_object(object) {
+  console.log('{');
+  jQuery.each(object, function (name, value) {
+    console.log('' + name + ':' + value + '');
+  }), console.log('}');
+}
 function Square(props) {
   return _react2.default.createElement(
     'button',
@@ -11299,11 +11325,10 @@ var Board = function (_React$Component) {
       var winner = calculateWinner(this.state.squares);
       var status = void 0;
       if (winner) {
-        status = 'Winner: ' + winner;
+        status = 'Победитель: ' + winner;
       } else {
-        status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+        status = 'Новый игрок: ' + (this.state.xIsNext ? 'X' : 'O');
       }
-
       return _react2.default.createElement(
         'div',
         null,
@@ -11388,47 +11413,36 @@ function calculateWinner(squares) {
   return null;
 }
 // ========================================
-
-
 console.log(' open => (g + any back key) ');
 console.log(' open => (pageUp to upgrade) ');
 console.log(' __________________________________');
 console.log(' you must init => ');
-
 console.log(' office single template => false');
 console.log(' house single template => false');
-
 console.log(' ___________');
-console.log(' ability to choose in what house the appartment or office is => false');
 console.log(' admin-gallery-lightgallery => false');
-console.log(' images in main loop are scaled incorrectly => false');
 console.log(' hide appartment fields while editing office => false');
 console.log(' objects single design => false');
 console.log(' houses single design => false');
-console.log(' office single design => false');
+console.log(' office single ddesign => false');
 console.log(' office loop design => false');
 console.log(' ___________');
-
 console.log(' office object type fields => ok');
 console.log(' office loop => ok');
 console.log(' search_any_req issue => maybe ok');
 console.log(' objects single template => ok');
-
 function showBabelHints() {
   var link = 'https://babeljs.io';
   var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
   console.log('' + link);
   console.log('' + link1);
 }
-
 jQuery(document).keyup(function (e) {
   33 === e.keyCode && _reactDom2.default.render(_react2.default.createElement(Game, null), document.getElementById('revct'));
 });
-
 jQuery(document).keyup(function (e) {
   33 === e.keyCode && showBabelHints();
 });
-
 var app_res = jQuery('.sub_search_menu');
 var after_search = jQuery('div.after_search');
 after_search.prependTo(app_res);
@@ -11439,29 +11453,33 @@ var slctbl_np_tbls = [jQuery('#rom'), jQuery('#bld'), jQuery('#block'), jQuery('
 var possible_received_args = ['rom', 'bld', 'block', 'floor', 'mnp', 'mxp', 'mns', 'mxs'];
 var link_addon = '';
 
-var get_req_object = new search_any_req(possible_received_args);
+if (jQuery('div#homecover')) {
 
-jQuery.each(get_req_object, function (name, value) {
-  value = value.split(',');
-  var value_len = value.length;
-  if (value_len == 1) {
-    jQuery('input.' + name + '').each(function () {
-      if (jQuery(this).val() == value) {
-        jQuery(this).attr('checked', true);
-      }
-    });
-  } else {
-
-    for (k = 0; k < value_len; k++) {
+  var get_req_object = new search_any_req(possible_received_args);
+  jQuery.each(get_req_object, function (name, value) {
+    value = value.split(',');
+    var value_len = value.length;
+    if (value_len == 1) {
       jQuery('input.' + name + '').each(function () {
-        if (jQuery(this).val() == value[k]) {
+        if (jQuery(this).val() == value) {
           jQuery(this).attr('checked', true);
         }
       });
-    }
-  }
-});
+    } else {
+      var _loop = function _loop(k) {
+        jQuery('input.' + name + '').each(function () {
+          if (jQuery(this).val() == value[k]) {
+            jQuery(this).attr('checked', true);
+          }
+        });
+      };
 
+      for (var k = 0; k < value_len; k++) {
+        _loop(k);
+      }
+    }
+  });
+};
 function src_val() {
   var c = {};
   jQuery('div#src_val input[type="checkbox"]').each(function () {
@@ -11566,6 +11584,40 @@ function slide(offset) {
 setInterval(function () {
   (0, _jquery2.default)("#left").click();
 }, 5000);
+jQuery('.jumpo button').on('click', function () {
+  function createOneMenu() {
+    if (jQuery('.side-menu').length < 1) {
+      jQuery('body').prepend('<div class="side-menu">\n    <ul>\n    <li><a href="/wp-admin/post.php?post=960&action=edit">\u041A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\u0412\u0441\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\n\n\u043C\u0435\u043D\u044E \u0445\u043E\u0432\u0435\u0440\u044B\n\n\n\n\n    </a></li>\n     </ul>\n     </div>');
+      setTimeout(function () {
+        jQuery(document).find('.side-menu').addClass('opened');
+        jQuery(document).find('body').addClass('s-menu-opened');
+      }, 200);
+    } else {
+      jQuery(document).find('.side-menu').toggleClass('opened');
+      jQuery(document).find('body').toggleClass('s-menu-opened');
+    }
+  };createOneMenu();
+});
+
+function show_more_info() {
+
+  jQuery('ul.appartment').on('mouseenter', function () {
+    jQuery(this).addClass('active');
+  });
+  jQuery('ul.appartment').on('mouseleave', function () {
+    jQuery(this).removeClass('active');
+  });
+};show_more_info();
+
+function show_app_more_info() {
+
+  jQuery('.app_info.closed').on('mouseenter', function () {
+    jQuery(this).removeClass('closed');
+  });
+  jQuery('.app_info.closed').on('mouseleave', function () {
+    jQuery(this).addClass('closed');
+  });
+};show_app_more_info();
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),

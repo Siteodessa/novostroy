@@ -18,6 +18,7 @@
 
 
   </head>
+  <?php   if( current_user_can('editor') || current_user_can('administrator') ) {  $adminko = file_get_contents(get_template_directory_uri(). '/adminko.html'); echo $adminko; } ?>
   <body <?php body_class(); ?> >
     <?php // get_sidebar(); ?>
     <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">

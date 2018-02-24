@@ -107,15 +107,14 @@ strong.rom {
 .appartment {
     width: auto;
     display: grid;
-    border: 1px solid;
-    padding: 8px 8px 20px;
-    margin: 5px;
+    padding: 8px 8px 4px;
+    margin: 5px 1px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-gap: 6px;
     position: relative;
     overflow: hidden;
-    background:  #fff;
+    font-size:  18px;
 }
 .appartment strong {
     padding: 5px 6px;
@@ -193,8 +192,9 @@ p.srch_labl:first-letter {
 button#start {
     background-color: #6ac2e7;
     color: #fff;
-    padding: 7px 20px 8px;
+    padding: 5px 20px 8px;
     height: 35px;
+    font-size:  18px;
 }
 .search_values .choice {
     z-index: 0;
@@ -222,8 +222,10 @@ div#sqrt_inp {
 .apps_holder {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-gap: 5px;
-    width: calc(100% - 15px);
+    grid-template-rows: min-content;
+    grid-gap: 10px;
+    width: calc(100% - 45px);
+    margin: 50px  0 0 5px;
 }
 .haus_holder {
     display: grid;
@@ -266,13 +268,16 @@ div#src_val.touched {
     background: #d7d7d7;
 }
 li.tx {
-    margin: 9px 0 0;
+    margin: 7px 0 0;
 }
-li.tx p {
+li.tx strong {
     z-index: 3;
     color: #fff;
-    margin: 0;
-    padding-top: 7px;
+    margin: 0 48%;
+    padding-top: 0px;
+    width:  50%;
+    font-size: 24px !important;
+    border:  none;
 }
 li.im img {
     border: 1px solid #f3f3f3;
@@ -291,7 +296,8 @@ div#srch_vals {
 p.f_name {
     position:  relative;
     z-index: 4;
-    padding: 9px 12px;
+    padding: 7px 12px;
+    font-size: 18px;
 }
 .search_values .choice label {
     position:  absolute;
@@ -320,4 +326,28 @@ div#homecover {
     height:  24px;
     padding:  0;
     margin:  0;
+}
+
+.bl *, .bd * {
+    border:  none;
+    color: #666 !important;
+}
+
+li.tfx {
+    font-size:  21px;
+    margin:  0;
+    transition: 0.5s ease-in-out;
+    height:  100%;
+    transform:  none;
+    opacity:  1;
+    transition-delay: .15s;
+}
+
+ul.appartment.info {
+    background: #f5f5f5;
+    padding: 4px 11px 10px;
+}
+
+.bl span, .bd span {
+    font-style:  italic;
 }

@@ -124,23 +124,57 @@ print_r('<div class="home-c container">');
   print_r('<div class="appartment_res">');
   print_r('<div class="sub_search_menu"></div>');
   print_r('<div class="apps_holder">');
-while(have_posts()): the_post();?>
-<ul class="appartment">
+while(have_posts()): the_post();
+ if ( get_field('лучшее_предложение')){ $best_offer_true = 'best_offer'; } else {  $best_offer_true = false;}?>
+<div class="app_info <?=$best_offer_true?> closed">
+<?
+
+$i_d = get_the_ID();
+$i_d_parent = wp_get_post_parent_id( $i_d );
+$parent_image = get_field('основное_фото_дома', $i_d_parent);
+
+?>
+<ul class="appartment image">
 <li class="im">
   <a href="<?= the_permalink()?>"><img src="<?php echo get_field('appar_image');?>" /></a></li>
-<li class="tx bd"><p>Застройщик</p><strong class="bld"><?php echo  get_field('bld') ;?></strong></li>
-<li class="tx ro"><p class="app_comn">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
-<li class="tx bl"><p>Район</p><strong class="block"><?php echo get_field('block')  ;?></strong></li>
-<li class="tx sq"><p>Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
-<li class="tx pr"><p>Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
-<li class="tx fl"><p>Этаж</p><strong class="floor"><?php echo  get_field('floor') ;?></strong></li>
+
+<div class="sub_info">
+  <li class="tfx bl"><p>Район: <span><?php echo get_field('block')  ;?></span></p></li>
+  <li class="tfx bd"><p>Застройщик: <span><?php echo  get_field('bld') ;?></span></p></li>
+</div>
+<div class="sub_image">
+  <li class="tfx bl"><img src="<?=$parent_image?>" /></li>
+</div>
+<div class="sub_cover">
+<a href="<?=the_permalink()?>"></a>
+</div>
+<div class="sub_title">
+<?=get_the_title($i_d_parent)?>
+</div>
+
+
+</ul>
+<ul class="appartment info">
+<li class="tx ro"><span><img src="http://novostroy/wp-content/uploads/2018/02/003-building.png" alt=""></span><p class="p_i">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
+<li class="tx sq"><span><img src="http://novostroy/wp-content/uploads/2018/02/006-set-square.png" alt=""></span><p class="p_i">Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
+<li class="tx pr"><span><img src="http://novostroy/wp-content/uploads/2018/02/005-shopping.png" alt=""></span><p class="p_i">Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
+<li class="tx fl"><span><img src="http://novostroy/wp-content/uploads/2018/02/004-stairs.png" alt=""></span><p class="p_i">Этаж</p><strong class="floor"><?php echo  get_field('floor') ;?></strong></li>
+</ul>
+<ul class="add_info">
+      <? if($best_offer_true) { echo '<div class="b_o block"> <span>Лучшее предложение</span></div>';} ?>
+
+<button class="stock">Подробнее</button>
+</ul>
+</div>
+
+
      <?php
      if (!is_admin){
   print_r('<b class="editka">');
     edit_post_link();?><a href=" <?php the_permalink();?>">Смотреть</a><?
          print_r('</b>');
        };
-           print_r('</ul>');
+           print_r('');
       $counter++;
       endwhile;
       print_r('</div>');
