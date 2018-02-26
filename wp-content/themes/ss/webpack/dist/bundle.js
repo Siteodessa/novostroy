@@ -11232,7 +11232,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //import './style.css';
 //import './bootstrap.css';
-//import Icon from './icon.png';
+//import Icon from './icon.png's;
 // import search_any_req from './kvarts.js';
 
 
@@ -11242,11 +11242,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
     (0, _jquery2.default)('nav').addClass('fixed-header');
   } else {
     (0, _jquery2.default)('nav').removeClass('fixed-header');
-  };if ((0, _jquery2.default)(window).scrollTop() >= 1700) {
+  }if ((0, _jquery2.default)(window).scrollTop() >= 1700) {
     (0, _jquery2.default)('nav').addClass('animated-header');
   } else {
     (0, _jquery2.default)('nav').removeClass('animated-header');
-  };
+  }
 });
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -11256,7 +11256,7 @@ function getParameterByName(name, url) {
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
-};
+}
 function search_any_req(possible_received_args) {
   var pral = possible_received_args.length;
   var search_object = {};
@@ -11265,10 +11265,10 @@ function search_any_req(possible_received_args) {
       var received_arg_name = possible_received_args[k];
       var received_args_value = getParameterByName(possible_received_args[k]);
       search_object[received_arg_name] = received_args_value;
-    };
-  };
+    }
+  }
   return search_object;
-};
+}
 function log_object(object) {
   console.log('{');
   jQuery.each(object, function (name, value) {
@@ -11415,22 +11415,7 @@ function calculateWinner(squares) {
 // ========================================
 console.log(' open => (g + any back key) ');
 console.log(' open => (pageUp to upgrade) ');
-console.log(' __________________________________');
-console.log(' you must init => ');
-console.log(' office single template => false');
-console.log(' house single template => false');
-console.log(' ___________');
-console.log(' admin-gallery-lightgallery => false');
-console.log(' hide appartment fields while editing office => false');
-console.log(' objects single design => false');
-console.log(' houses single design => false');
-console.log(' office single ddesign => false');
-console.log(' office loop design => false');
-console.log(' ___________');
-console.log(' office object type fields => ok');
-console.log(' office loop => ok');
-console.log(' search_any_req issue => maybe ok');
-console.log(' objects single template => ok');
+
 function showBabelHints() {
   var link = 'https://babeljs.io';
   var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
@@ -11587,7 +11572,7 @@ setInterval(function () {
 jQuery('.jumpo button').on('click', function () {
   function createOneMenu() {
     if (jQuery('.side-menu').length < 1) {
-      jQuery('body').prepend('<div class="side-menu">\n    <ul>\n    <li><a href="/wp-admin/post.php?post=960&action=edit">\u041A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\u0412\u0441\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\n\n\u043C\u0435\u043D\u044E \u0445\u043E\u0432\u0435\u0440\u044B\n\n\n\n\n    </a></li>\n     </ul>\n     </div>');
+      jQuery('body').prepend('<div class="side-menu">\n    <ul>\n    <li><a href="/wp-admin/post.php?post=960&action=edit">\u041A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\u0412\u0441\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n\u043C\u0435\u043D\u044E \u0445\u043E\u0432\u0435\u0440\u044B<hr>\n\u0444\u0438\u043A\u0441\u0430\u0446\u0438\u044F \u0432\u044B\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u043F\u043E\u0438\u0441\u043A\u0430 \u0432 \u0435\u0433\u043E \u043E\u043A\u043E\u0448\u043A\u0435  \u0438\u043B\u0438 \u043F\u043E\u0434 \u043D\u0438\u043C<hr>\n\u041B\u0430\u0439\u0442\u0433\u0430\u043B\u043B\u0435\u0440\u0438<hr>\n\u0438\u043A\u043E\u043D\u043A\u0438 \u0432 \u0444\u0443\u0442\u0435\u0440\u0435<hr>\n\u041E\u0431\u044A\u0435\u043A\u0442\u044B \u0437\u0430\u043B\u0438\u0442\u044C<hr>\n\u0421\u043B\u0430\u0439\u0434\u0435\u0440<hr>\n<hr><hr><hr><hr>\n\n\u0424\u043E\u0440\u043C\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u0437\u0430\u044F\u0432\u043A\u0438 \u0432 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430\u0445<hr>\n\n\n    </a></li>\n     </ul>\n     </div>');
       setTimeout(function () {
         jQuery(document).find('.side-menu').addClass('opened');
         jQuery(document).find('body').addClass('s-menu-opened');
@@ -11599,25 +11584,25 @@ jQuery('.jumpo button').on('click', function () {
   };createOneMenu();
 });
 
-function show_more_info() {
+function hover_toggle_class(jqobject, classtitle, reversability) {
+  if (reversability) {
+    jqobject.on('mouseenter', function () {
+      jQuery(this).addClass(classtitle);
+    });jqobject.on('mouseleave', function () {
+      jQuery(this).removeClass(classtitle);
+    });
+  } else {
+    jqobject.on('mouseenter', function () {
+      jQuery(this).removeClass(classtitle);
+    });jqobject.on('mouseleave', function () {
+      jQuery(this).addClass(classtitle);
+    });
+  }
+};
 
-  jQuery('ul.appartment').on('mouseenter', function () {
-    jQuery(this).addClass('active');
-  });
-  jQuery('ul.appartment').on('mouseleave', function () {
-    jQuery(this).removeClass('active');
-  });
-};show_more_info();
-
-function show_app_more_info() {
-
-  jQuery('.app_info.closed').on('mouseenter', function () {
-    jQuery(this).removeClass('closed');
-  });
-  jQuery('.app_info.closed').on('mouseleave', function () {
-    jQuery(this).addClass('closed');
-  });
-};show_app_more_info();
+hover_toggle_class(jQuery('.office_n_l'), 'closed', true);
+hover_toggle_class(jQuery('ul.appartment'), 'active', true);
+hover_toggle_class(jQuery('.app_info.closed'), 'closed', false);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),

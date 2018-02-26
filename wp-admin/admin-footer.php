@@ -169,21 +169,25 @@ jQuery(document).ready(function(){
 console.log('');
 	},1700);
 });
-
-jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar').on('change', 'input#acf-field-house_or_appartment-Дом', function() {
-jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
-});
-setTimeout(function(){
-	if (jQuery('input#acf-field-house_or_appartment-Дом').prop('checked') == true)
-	jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
-},600);
-jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar').on('change', 'input#acf-field-house_or_appartment-Офис', function() {
-jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
-});
-setTimeout(function(){
-	if (jQuery('input#acf-field-house_or_appartment-Офис').prop('checked') == true)
-	jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block').css('display', 'none')
-},600);
+// const appartments_fields = jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block');
+// const objects_edit_page_body = jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar');
+// 	if (jQuery('input#acf-field-house_or_appartment-Квартира').prop('checked') == true)
+// 	setTimeout(function(){appartments_fields.css('display', 'block')},600);
+// objects_edit_page_body.on('change', 'input#acf-field-house_or_appartment-Квартира', function() {
+// 	setTimeout(function(){
+// appartments_fields.css('display', 'block')
+// },600);
+// });
+// objects_edit_page_body.on('change', 'input#acf-field-house_or_appartment-Офис, input#acf-field-house_or_appartment-Дом, input#acf-field-house_or_appartment-Ничего', function() {
+// 	setTimeout(function(){
+// appartments_fields.css('display', 'none')
+// },600);
+// });
 </script>
+<style>
+/* div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block{
+	display: none;
+} */
+</style>
 </body>
 </html>

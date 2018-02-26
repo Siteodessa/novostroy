@@ -102,15 +102,18 @@ if ($house_readiness == 'Строится') {
     </tr> </tbody> <tbody> <tr> <td> <p class="rn_p"><img class="rn_im" src="/wp-content/uploads/2018/02/three-room-icon-blue.png" /></p> 3 комн</td> </tr> <tr> <td>от <?php if ($house_sqrt_3) { ?><?= $house_sqrt_3 ?><?php }?> м2</td> </tr>
        <tr> <td>от <?php if ($house_prc_3) { ?> <?= $house_prc_3 ?> <?php }?> у.е.</td> </tr> </tbody> </table> </div>
        <?
+
+       $dom_u_dorogi = get_field('дом_на_карте');
+       if ($dom_u_dorogi){
        echo '<section class="sing2">';
        echo '<div class="map">';
        echo '<div>';
        echo '<h3>Дом на карте</h3> ';
        echo '</div>';
-
-       echo get_field('дом_на_карте');
+       echo $dom_u_dorogi;
        echo '</div>';
        echo '</section>';
+     }
        ?>
  <?php
 
@@ -320,9 +323,13 @@ print_r('<div class="house_features">');
  echo '<p>Район: <span>'. get_field('block') .'</span></p>';
  echo '<p>Адрес дома: <span>'. get_field('адрес_дома', $i_d_parent) .'</span></p>';
  echo '</div>';
- echo '<ul class="thin sm">';
 
 
+
+  $icon_grid = array($section, $sqrt, $floor, $bld, $rom, $prc);
+   $empty_icons = 0; foreach ($icon_grid as $key => $value) { if (empty($value)) $empty_icons++; };
+
+if ($empty_icons >2){  echo   '<ul class="thin sm xsm">'; } else { echo '<ul class="thin sm">'; };
 
 if ($sqrt) { ?> <li><img src="/wp-content/uploads/2018/02/006-set-square.png" alt="">
    <div class="side_data"><span>Площадь&nbsp;:</span><strong><?= $sqrt ?> м<sup>2</sup></strong></div>
@@ -365,17 +372,21 @@ $rom  = get_field('кабинетов_офиса');
 
   ?>
   </div> </div> <?php
+  if ($dom_u_dorogi){
+  $dom_u_dorogi = get_field('дом_на_карте', $i_d_parent);
   echo '<section class="sing2">';
   echo '<div class="map">';
   echo '<div>';
   echo '<h3>Офис на карте</h3> ';
   echo '</div>';
 
-  echo get_field('дом_на_карте', $i_d_parent);
+echo $dom_u_dorogi;
 echo '</div>';
 echo '</section>';
-
+}
 ///OFFICE ENDS
+
+
 
 
 
@@ -451,7 +462,8 @@ print_r('<div class="house_features">');
  echo '<p>Район: <span>'. get_field('block') .'</span></p>';
  echo '<p>Адрес дома: <span>'. get_field('адрес_дома', $i_d_parent) .'</span></p>';
  echo '</div>';
- echo '<ul class="thin sm">';
+if ($empty_icons > 2){  echo   '<ul class="thin sm xsm">'; } else { echo '<ul class="thin sm">'; };
+
 
  if ($sqrt) { ?> <li><img src="/wp-content/uploads/2018/02/006-set-square.png" alt="">
  <div class="side_data"><span>Площадь&nbsp;:</span><strong><?= $sqrt ?> м<sup>2</sup></strong></div>
@@ -485,16 +497,17 @@ print_r('<div class="house_features">');
 
 
   </div> </div> <?php
+$dom_u_dorogi = get_field('дом_на_карте', $i_d_parent);
+  if ($dom_u_dorogi){
   echo '<section class="sing2">';
   echo '<div class="map">';
   echo '<div>';
   echo '<h3>Квартира на карте</h3> ';
   echo '</div>';
-
-  echo get_field('дом_на_карте', $i_d_parent);
+  echo $dom_u_dorogi;
 echo '</div>';
 echo '</section>';
-
+}
 }else{  }  } } ;
 
 

@@ -30,7 +30,7 @@ header {
 
 button.cnct {
     float: right;
-    margin: 0px 34px;
+    margin: 0px 27px;
     border-radius: 0px 0px 3px 3px;
     border-width: initial;
     border-style: none;
@@ -49,7 +49,7 @@ nav {
 }
 
 nav div {
-    max-width: 1170px;
+    max-width: 100%;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 185px;
@@ -84,6 +84,7 @@ ul.menu li a {
     letter-spacing: -1px;
     cursor: pointer;
     font-weight: bold;
+    transition: 0.8s;
 }
 
 nav ul li a {
@@ -110,8 +111,9 @@ nav ul.phones li {
 nav ul li {
     display: inline-block;
     line-height: 90px;
-    margin-left: 40px;
+    margin-left: 50px;
     transition: 1s ease-in-out;
+    position:  relative;
 }
 
 li {
@@ -643,6 +645,7 @@ li.bd {
 
 li.im {
     height: auto;
+    max-height: 220px;
 }
 
 .app_features p {
@@ -798,7 +801,7 @@ div#main_image:hover :before {
     padding: 20px 10px;
     margin: 0px 0 30px;
     background: #54add2;
-    height: 169px;
+    height:  100%;
 }
 
 .single .container.hd {
@@ -990,9 +993,13 @@ p.office_img img {
     border: 1px solid;
     width: calc(100% - 10px);
     margin: 8px 0 0 8px;
-    background: #f4f3f3;
+    /* background: #6ac2e7; */
     display:  grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 320px 280px 1fr;
+    grid-gap: 10px;
+    position:  relative;
+    margin: 17px 0 17px;
+    overflow:  hidden;
 }
 
 .office_n_l p {
@@ -1005,6 +1012,7 @@ p.office_img {
     margin: 10px 15px;
     position: relative;
     max-height:  200px;
+    box-shadow:  10px 10px 10px #666;
 }
 
 a.office_link {
@@ -1033,7 +1041,7 @@ section .price_t h2:first-child {
 }
 
 a.sc {
-    background: #47aad4 !important;
+    background: #4099bf !important;
     color: #fff !important;
     margin: 2px 0;
 }
@@ -1079,10 +1087,7 @@ a.sc:hover {
 }
 
 /*PRICE COLOR CODE START*/
-.generic_price_table .generic_content {
-    background-color: #fff;
-    background: url(http://novostroy/wp-content/uploads/2017/12/c_022.RGB_color.jpg) #fff 100% -10%;
-}
+
 
 .generic_price_table .generic_content .generic_head_price {
     background-color: #f6f6f6;
@@ -1121,8 +1126,9 @@ a.sc:hover {
 }
 
 .generic_price_table .generic_content .generic_feature_list ul li:hover {
-    background-color: #e4e4e4;
+    background-color: #ffffff;
     border-left: 5px solid #6ac2e7;
+    cursor:  pointer;
 }
 
 .generic_price_table .generic_content .generic_price_btn a {
@@ -1274,6 +1280,8 @@ a.sc:hover {
     padding: 12px 30px;
     text-decoration: none;
     text-transform: uppercase;
+    background:  #fff;
+    cursor:  pointer;
 }
 
 .generic_price_table .generic_content, .generic_price_table .generic_content:hover, .generic_price_table .generic_content .generic_head_price .generic_head_content .head_bg, .generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head_bg, .generic_price_table .generic_content .generic_head_price .generic_head_content .head h2, .generic_price_table .generic_content:hover .generic_head_price .generic_head_content .head h2, .generic_price_table .generic_content .price, .generic_price_table .generic_content:hover .price, .generic_price_table .generic_content .generic_price_btn a, .generic_price_table .generic_content:hover .generic_price_btn a {
@@ -1847,8 +1855,10 @@ li.tx img {
     border:  none;
 }
 
-.office_n_l div {
+.office_n_l .off_data {
     padding:  40px 10px;
+    position:  relative;
+    /* box-shadow: inset 7px 0 9px 0px #7b7b7b80; */
 }
 
 .stroyashhiesya li {
@@ -1972,18 +1982,19 @@ li.tfx.bd {
 
 .closed .sub_image {
     transform: translatey(100%);
+
 }
 
 .sub_cover {
     z-index:  2;
     background: #6ac2e794;
-    width: 170%;
-    height: 170%;
+    width: 200%;
+    height: 200%;
     transition-delay: 0.4s;
-    transform: translatey(-17%) translatex(-11%) rotate(45deg);
+    transform: translatey(-17%) translatex(-30%) rotate(20deg);
     opacity: 1;
     will-change: transform, opacity;
-    border-radius:  100%;
+    /* border-radius:  100%; */
 }
 
 .sub_title {
@@ -2000,9 +2011,9 @@ li.tfx.bd {
 }
 
 .closed .sub_cover {
-    transform: translatey(100%) translatex(-11%) rotate(45deg);
+    transform: translatey(100%) translatex(-30%) rotate(20deg);
     opacity: 0;
-    border-radius:  100%;
+    /* border-radius:  100%; */
 }
 
 .sub_cover a {
@@ -2010,3 +2021,195 @@ li.tfx.bd {
     width:  100%;
     height:  100%;
 }
+
+
+.office_n_l .stock {
+    position: absolute;
+    width: 120px;
+    height: 38px;
+    font-size: 10px;
+    display: flex;
+    align-items:  center;
+    padding: 5px;
+    text-align: right;
+    justify-content:  center;
+    z-index:  3;
+    background: transparent;
+    color: #fff;
+    font-weight:  bold;
+    box-shadow: 1px 1px 1px #666;
+    transform: translate(270px,-270px);
+    transition: 0.3s 0.15s;
+    border:  1px solid;
+}
+
+.ofs .beaf, .ofs .beaf2 {
+    height:  100%;
+    width:  100%;
+    margin:  0;
+    padding:  0;
+    position:  absolute;
+    top: 0;
+    /* box-shadow:  none; */
+}
+
+button.stock.prosmotr {
+    bottom: 16px;
+    right: 10px;
+    transform: translate(-270px,270px);
+}
+
+button.stock.credit {
+    top: 0px;
+    right:  125px;
+}
+
+button.stock p {
+    margin:  0;
+    font-size: 20px;
+    padding:  0;
+}
+
+ .beaf:before {
+    content:  '';
+    width: 170px;
+    height: 280px;
+    display: block;
+    background: linear-gradient(to top, #50a8cc 0%, #50a8cc 36%, #cbe7f3 100%);
+    transform: rotate(45deg);
+    top: -130px;
+    position:  absolute;
+    left: 40px;
+    box-shadow: inset 8px 9px 13px #6c6c6c;
+}
+
+
+.beaf:after {
+    content: '';
+    width: 170px;
+    height: 400px;
+    display: block;
+    background: linear-gradient(to top, #50a8cc 0%, #50a8cc 16%, #cbe7f3 100%);
+    transform: rotate(45deg);
+    bottom: -140px;
+    position: absolute;
+    left: 140px;
+    box-shadow: inset 7px 9px 13px #6c6c6c;
+}
+
+button.stock.installments {
+    top: 42px;
+    right: 125px;
+}
+
+.beaf:before {
+    transform: rotate(45deg) translate(0,-100%);
+    transition: 0.3s ease-out;
+}
+.beaf:after {
+    transform: rotate(45deg) translate(0,100%);
+    transition: 0.4s ease-out;
+}
+.closed .beaf:before {
+    transform: rotate(45deg) translate(0,0%);
+}
+.closed .beaf:after {
+    transform: rotate(45deg) translate(0,0%);
+
+} 
+
+.closed.office_n_l .stock {
+    transform: translate(0,0px);
+}
+
+
+
+
+
+
+.beaf2:after {
+        content: '';
+        width: 170px;
+        height: 400px;
+        display: block;
+        transform: rotate(45deg);
+        bottom: -140px;
+        position: absolute;
+        left: 140px;
+        box-shadow: inset 1px 1px 13px #6c6c6c;
+}
+ .beaf2:before {
+    content:  '';
+    width: 170px;
+    height: 280px;
+    display: block;
+    transform: rotate(45deg);
+    top: -130px;
+    position:  absolute;
+    left: 40px;
+    box-shadow: inset 0px -4px 13px #6c6c6c;
+ }
+
+
+.office_n_l .stock:hover {
+    background:  #fff;
+    color:  #0eae05;
+}
+
+.office_n_l .installments.stock:hover {
+    background:  #fff;
+    color:  #ae1007;
+}
+.office_n_l .prosmotr.stock:hover {
+    background:  #fff;
+    color:  #6ac2e7;
+}
+
+.r_block ul.thin.sm {
+    height: 170px;
+}
+
+.r_block ul.thin.xsm {
+    height:  100px;
+}
+
+.overlay_white {
+    background-color: #ffffffdb;
+    height:  100%;
+}
+
+nav ul.menu li:first-child {
+    margin-left:  25px;
+}
+
+
+nav ul li:hover {
+    color: #fff;
+}
+
+nav ul li:hover :before {
+    opacity:  1;
+}
+
+.m_h {
+    display: block;
+    width: 104%;
+    height: 27px;
+    position: absolute;
+    background: #6ac2e7;
+    top: 31px;
+    left: -1%;
+    transform: rotate(0deg) scale(.01);
+    z-index: -1;
+    opacity: 0;
+    transition: 0.4s;
+    border-radius:  100%;
+}
+
+nav ul li:hover .m_h {opacity:  1;transform: rotate(363deg) scale(1) skew(3deg);border-radius:  0;}
+
+nav ul li:hover a {
+    color: #fff;
+}
+
+ul.appartment.image {}

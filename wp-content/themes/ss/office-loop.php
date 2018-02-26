@@ -69,21 +69,26 @@ $params = array(
 );
  $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1; query_posts($params); $wp_query->is_archive = true; $wp_query->is_home = false; while(have_posts()): the_post();
 
-
-
-
 echo '<div class="office_n_l">'; $cur_post = $post->ID;
 echo '<p class="office_img"><img src="'. get_field('основное_фото_офиса', $cur_post) .'"></p>';
-
-echo '<div>';
+echo '<div class="off_data">';
 echo '<p>Площадь: '. get_field('office_sqrt', $cur_post) .'</p>';
 echo '<p>Секция дома: '. get_field('секция__офиса_в_доме', $cur_post) .'</p>';
 echo '<p>Состояние: '. get_field('состояние_офиса', $cur_post) .'</p>';
 if (get_field('описание_офиса', $cur_post)) echo ''. get_field('описание_офиса', $cur_post) .'';
 $link = get_permalink($cur_post);?><a class="office_link" href="<? echo $link; ?>"><button class="btn btn-details">Перейти</button></a><?
 echo '</div>';
-echo '</div>';
 
+echo '<div class="off_side_menu ofs">';
+
+echo '<div class="beaf"></div>';
+echo '<div class="beaf2"></div>';
+echo '<button class="stock prosmotr"> Записаться на просмотр</button>';
+echo '<button class="stock credit"> Кредит <p>%</p></button>';
+echo '<button class="stock installments "> Рассрочка <p style="text-decoration:line-through">%</p></button>';
+
+echo '</div>';
+echo '</div>';
 
 
 endwhile;

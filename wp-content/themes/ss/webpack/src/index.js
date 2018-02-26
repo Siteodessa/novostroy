@@ -1,6 +1,6 @@
 //import './style.css';
 //import './bootstrap.css';
-//import Icon from './icon.png';
+//import Icon from './icon.png's;
 // import search_any_req from './kvarts.js';
 import _ from 'lodash';
 import Data from './data.xml';
@@ -14,11 +14,11 @@ if ($(window).scrollTop() >= 60) {
   }
   else {
           $('nav').removeClass('fixed-header');
-  };    if ($(window).scrollTop() >= 1700) {
+  }    if ($(window).scrollTop() >= 1700) {
          $('nav').addClass('animated-header');
       }
       else {    $('nav').removeClass('animated-header');
-      };
+      }
 });
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -28,7 +28,7 @@ function getParameterByName(name, url) {
   if (!results) return null;
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
-};
+}
 function search_any_req(possible_received_args){
  var pral = possible_received_args.length;
 var search_object = {};
@@ -37,10 +37,10 @@ for (var k = 0; k < pral; k++) {
     var received_arg_name = (possible_received_args[k]);
     var received_args_value = (getParameterByName(possible_received_args[k]));
     search_object[received_arg_name] = received_args_value;
-  };
-};
+  }
+}
   return search_object;
- };
+ }
 function log_object(object){
      console.log('{');
 jQuery.each(object, function(name, value) {
@@ -142,22 +142,7 @@ function calculateWinner(squares) {
 // ========================================
  console.log(' open => (g + any back key) ')
  console.log(' open => (pageUp to upgrade) ')
- console.log(' __________________________________')
- console.log(' you must init => ')
-  console.log(' office single template => false')
-  console.log(' house single template => false')
-  console.log(' ___________')
-  console.log(' admin-gallery-lightgallery => false')
-  console.log(' hide appartment fields while editing office => false')
-  console.log(' objects single design => false')
-  console.log(' houses single design => false')
-  console.log(' office single ddesign => false')
-  console.log(' office loop design => false')
-  console.log(' ___________')
-  console.log(' office object type fields => ok')
-  console.log(' office loop => ok')
-  console.log(' search_any_req issue => maybe ok')
-  console.log(' objects single template => ok')
+
 function showBabelHints() {
 var link = 'https://babeljs.io';
 var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
@@ -321,10 +306,23 @@ var current = 0;
     <li><a href="/wp-admin/post.php?post=960&action=edit">Кастомные поля</a></li>
     <li><a href="/wp-admin/edit.php?post_type=objects">Все объекты</a></li>
     <li><a href="/wp-admin/edit.php?post_type=objects">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+меню ховеры<hr>
+фиксация выбраного поиска в его окошке  или под ним<hr>
+Лайтгаллери<hr>
+иконки в футере<hr>
+Объекты залить<hr>
+Слайдер<hr>
+<hr><hr><hr><hr>
 
-меню ховеры
-
-
+Форма приема заявки в контактах<hr>
 
 
     </a></li>
@@ -342,24 +340,8 @@ var current = 0;
   });
 
 
+function hover_toggle_class( jqobject , classtitle , reversability){ if (reversability){ jqobject.on('mouseenter', function(){ jQuery(this).addClass(classtitle); }); jqobject.on('mouseleave', function(){ jQuery(this).removeClass(classtitle); }); } else { jqobject.on('mouseenter', function(){ jQuery(this).removeClass(classtitle); }); jqobject.on('mouseleave', function(){ jQuery(this).addClass(classtitle); }); } };
 
-  function show_more_info(){
-
-    jQuery('ul.appartment').on('mouseenter', function(){
-          jQuery(this).addClass('active');
-    });
-    jQuery('ul.appartment').on('mouseleave', function(){
-          jQuery(this).removeClass('active');
-    });
-  };show_more_info()
-
-  function show_app_more_info(){
-
-    jQuery('.app_info.closed').on('mouseenter', function(){
-          jQuery(this).removeClass('closed');
-
-    });
-    jQuery('.app_info.closed').on('mouseleave', function(){
-          jQuery(this).addClass('closed');
-    });
-  };show_app_more_info()
+  hover_toggle_class(jQuery('.office_n_l') , 'closed', true);
+  hover_toggle_class(jQuery('ul.appartment') , 'active', true);
+  hover_toggle_class(jQuery('.app_info.closed') , 'closed', false);
