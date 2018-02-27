@@ -169,25 +169,51 @@ jQuery(document).ready(function(){
 console.log('');
 	},1700);
 });
-// const appartments_fields = jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block');
-// const objects_edit_page_body = jQuery('.wp-core-ui.post-type-objects.post-php.wp-admin.admin-bar');
-// 	if (jQuery('input#acf-field-house_or_appartment-Квартира').prop('checked') == true)
-// 	setTimeout(function(){appartments_fields.css('display', 'block')},600);
-// objects_edit_page_body.on('change', 'input#acf-field-house_or_appartment-Квартира', function() {
-// 	setTimeout(function(){
-// appartments_fields.css('display', 'block')
-// },600);
-// });
-// objects_edit_page_body.on('change', 'input#acf-field-house_or_appartment-Офис, input#acf-field-house_or_appartment-Дом, input#acf-field-house_or_appartment-Ничего', function() {
-// 	setTimeout(function(){
-// appartments_fields.css('display', 'none')
-// },600);
-// });
+const appartments_fields = jQuery('div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block');
+const house_fields = jQuery('div#acf-детские_площадки, div#acf-квартиры_с_отделкой, div#acf-коммерческие_помещения, div#acf-парковка, div#acf-охраняемая_территория, div#acf-паркинг_подземный, div#acf-рядом_есть_детский_сад_, div#acf-аптека, div#acf-сквер_парк_зеленая_зона');
+const objects_edit_page_body = jQuery('.wp-core-ui.post-type-objects.wp-admin.admin-bar');
+function field_justice(){
+	setTimeout(function(){
+
+		if (jQuery('input#acf-field-house_or_appartment-Ничего').prop('checked') == true){
+			jQuery('div#acf-prc').css('display', 'none')
+			house_fields.css('display', 'none')
+			appartments_fields.css('display', 'none')
+		} else {
+			if (jQuery('input#acf-field-house_or_appartment-Квартира').prop('checked') == true){
+				appartments_fields.css('display', 'block')
+				house_fields.css('display', 'none')
+			} else {
+				appartments_fields.css('display', 'none')
+			}
+			if (jQuery('input#acf-field-house_or_appartment-Дом').prop('checked') == true){
+				jQuery('div#acf-prc').css('display', 'none')
+				house_fields.css('display', 'block')
+
+			} else {
+				jQuery('div#acf-prc').css('display', 'block')
+			}
+		}
+},600);
+}
+objects_edit_page_body.on('change', 'input', function() {
+field_justice()
+});
+objects_edit_page_body.ready(function(){field_justice()})
+
+
 </script>
 <style>
-/* div#acf-rom , div#acf-floor , div#acf-bld , div#acf-block{
-	display: none;
-} */
+div#acf-детские_площадки, div#acf-квартиры_с_отделкой, div#acf-коммерческие_помещения, div#acf-парковка, div#acf-охраняемая_территория, div#acf-паркинг_подземный, div#acf-рядом_есть_детский_сад_, div#acf-аптека, div#acf-сквер_парк_зеленая_зона {
+    display:  flex;
+    flex-direction: row-reverse;
+    justify-content:  flex-end;
+    margin: 0;
+    padding: 0px;
+    background: #e6e6e6;
+}
+
 </style>
+
 </body>
 </html>

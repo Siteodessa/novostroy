@@ -80,11 +80,7 @@ function  get_childrens($i_d, $childrens, $title, $image_field_name, $object_typ
 <div class="row">
 	<div class="container hb">
 		<?php while ( have_posts() ) : the_post();
-// echo $post_definition;
-// if (function_exists('simple_breadcrumbs')) simple_breadcrumbs(); // можно дописать js, который красиво будет заменять фразу objects на
 if ($post_definition == 'Дом') {
-// У домов сначала их поля, затем дополнительно цикл с квартирами. Преврати его в функцию по дороге
-//
 if ($house_readiness == 'Строится') {
 ?>
 <h1><?php echo  the_title() ;?></h1>
@@ -136,7 +132,7 @@ if ($house_readiness == 'Строится') {
         'compare' 	=> 'IN', ),
         )
       ) );
-  get_childrens($i_d, $childrens, $title, $image_field_name);
+  // get_childrens($i_d, $childrens, $title, $image_field_name);
 
 
   $image_field_name = 'основное_фото_офиса';
@@ -152,7 +148,7 @@ if ($house_readiness == 'Строится') {
     'compare' 	=> 'IN', ),
     )
   ) );
-  get_childrens($i_d, $childrens, $title, $image_field_name, $object_type);
+  // get_childrens($i_d, $childrens, $title, $image_field_name, $object_type);
 
 
 

