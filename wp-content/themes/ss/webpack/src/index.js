@@ -150,13 +150,14 @@ var link1 = 'https://nodeguide.ru/doc/dailyjs-nodepad/';
   console.log('' + link1);
 }
 jQuery(document).keyup(function (e) {
-  33 === e.keyCode && ReactDOM.render(
-   <Game />,
-   document.getElementById('revct')
- )  ;
+ //  33 === e.keyCode && ReactDOM.render(
+ //   <Game />,
+ //   document.getElementById('revct')
+ // )  ;
+
 });
 jQuery(document).keyup(function (e) {
-  33 === e.keyCode && showBabelHints()
+  33 === jQuery('.jumpo button').click()
 });
 let app_res = jQuery('.sub_search_menu');
 let after_search = jQuery('div.after_search');
@@ -263,41 +264,74 @@ else {
 $(".apps_holder").click(function() {
 closeDrops()
 });
-/* ---------------------------------------- */
-var current = 0;
-  var slides = $(".slide");
-  $("#right").click(function() {
-    slide(1);
-  });
-  $("#left").click(function() {
-    slide(-1);
-  });
-  function slide(offset) {
-    var next = (current + offset) % slides.length;
-    if (next < 0) {
-      next = slides.length + next;
-    }
-    $(slides[next]).removeClass("fromRight");
-    $(slides[next]).removeClass("fromLeft");
-    $(slides[current]).removeClass("fromLeft");
-    $(slides[current]).removeClass("fromRight");
-    if (offset > 0) {
-      $(slides[current]).addClass("fromLeft");
-      $(slides[next]).addClass("fromRight");
-    } else {
-      $(slides[current]).addClass("fromRight");
-      $(slides[next]).addClass("fromLeft");
-    }
-    $(slides[next]).addClass("active");
-    $(slides[current]).removeClass("active");
-    $(slides[current]).addClass("closing");
-    var oldCur = current;
-    current = next;
-    $("#count").html(current + 1);
-  }
-  setInterval(function() {
-    $("#left").click();
-  }, 5000);
+/* ------------------slider s---------------------- */
+let $slides, interval, $selectors, $btns, currentIndex, nextIndex;
+
+let cycle = index => {
+	let $currentSlide, $nextSlide, $currentSelector, $nextSelector;
+
+	nextIndex = index !== undefined ? index : nextIndex;
+
+	$currentSlide = $($slides.get(currentIndex));
+	$currentSelector = $($selectors.get(currentIndex));
+
+	$nextSlide = $($slides.get(nextIndex));
+	$nextSelector = $($selectors.get(nextIndex));
+
+	$currentSlide.removeClass("active").css("z-index", "0");
+
+	$nextSlide.addClass("active").css("z-index", "1");
+
+	$currentSelector.removeClass("current");
+	$nextSelector.addClass("current");
+
+	currentIndex = index !== undefined
+		? nextIndex
+		: currentIndex < $slides.length - 1
+		? currentIndex + 1
+		: 0;
+
+	nextIndex = currentIndex + 1 < $slides.length ? currentIndex + 1 : 0;
+};
+
+$(() => {
+	currentIndex = 0;
+	nextIndex = 1;
+
+	$slides = $(".slide");
+	$selectors = $(".selector");
+	$btns = $(".btn");
+
+	$slides.first().addClass("active");
+	$selectors.first().addClass("current");
+
+	interval = window.setInterval(cycle, 6000);
+
+	$selectors.on("click", e => {
+		let target = $selectors.index(e.target);
+		if (target !== currentIndex) {
+			window.clearInterval(interval);
+			cycle(target);
+			interval = window.setInterval(cycle, 6000);
+		}
+	});
+
+	$btns.on("click", e => {
+		window.clearInterval(interval);
+		if ($(e.target).hasClass("prev")) {
+			let target = currentIndex > 0 ? currentIndex - 1 : $slides.length - 1;
+			cycle(target);
+		} else if ($(e.target).hasClass("next")) {
+			cycle();
+		}
+		interval = window.setInterval(cycle, 6000);
+	});
+});
+
+/* -------------slider e--------------------------- */
+
+
+
   jQuery('.jumpo button').on('click', function(){
   function createOneMenu(){
     if (jQuery('.side-menu').length < 1){
@@ -307,25 +341,13 @@ var current = 0;
     <li><a href="/wp-admin/edit.php?post_type=objects">Все объекты</a></li>
     <li><a href="/wp-admin/edit.php?post_type=objects">
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-меню ховеры<hr>
-фиксация выбраного поиска в его окошке  или под ним<hr>
-Лайтгаллери<hr>
-иконки в футере<hr>
-Объекты залить<hr>
-Слайдер<hr>
-трудно попасть по ссылке на главной по фотке в сетке, ну и выравнивание самой сетки<hr>
-<hr><hr><hr><hr>
-
+Публикация
+<hr>
+Программа next<br>
+Слайдер подключить к админке<hr>
+фиксация выбраного поиска<hr>
+добавить пробел в цене<hr>
 Форма приема заявки в контактах<hr>
-
-
     </a></li>
      </ul>
      </div>`);
@@ -346,3 +368,25 @@ function hover_toggle_class( jqobject , classtitle , reversability){ if (reversa
   hover_toggle_class(jQuery('.office_n_l') , 'closed', true);
   hover_toggle_class(jQuery('ul.appartment') , 'active', true);
   hover_toggle_class(jQuery('.app_info.closed') , 'closed', false);
+
+function active_page( elems ){
+
+   var values = [].map.call(elems, function(obj) {
+     alert(obj.value);
+   });
+
+}
+ var elems = document.querySelectorAll("main_navigation a");
+ var vagos = new active_page(elems);
+
+
+jQuery('#main_navigation ul.menu a ').each(function(){
+  if (jQuery(this).attr('href') == jQuery('#uri').attr('href'))  {
+jQuery(this).parent('li').addClass('active');
+
+  }
+
+});
+
+
+  jQuery("div#main_image").wrap('<a class="item"></a>');

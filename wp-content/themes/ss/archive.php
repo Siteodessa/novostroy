@@ -17,6 +17,11 @@
  */
 // управление перекрытием меню делается через релатив и з индекс  home-c container и srch_vals, управляй классом который перебрасывает индекс доминацию между этими двумя, короче два тогла вряд вполне хватит
 get_header();
+
+?>
+
+<?
+include('/wp-content/themes/ss/home_slider.php');
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/home.css">');
 function default_kvartiri_behaviour()
 {
@@ -53,7 +58,7 @@ if (isset($_GET[mxs])){ $received_value_mxs = $_GET[mxs]; } else { $received_val
 if (isset($_GET[mnp])){ $received_value_mnp = $_GET[mnp]; } else { $received_value_mnp = '';}
 if (isset($_GET[mxp])){ $received_value_mxp = $_GET[mxp]; } else { $received_value_mxp = '';}
 print_r('<div class="srch_labl"><p class="f_name">Площадь</p><div id="sqrt_inp" class="sqrt_inp vs"><div class="inps choices "><label><input type="text" data-srch-type="mns" value="'. $received_value_mns .'" placeholder="От" /> </label><label><input value="'. $received_value_mxs .'"  type="text" data-srch-type="mxs" placeholder="До" /></label></div></div></div>');
-print_r('<div class="srch_labl"><p class="f_name">Цена</p><div id="prc_inp" class="prc_inp vs"><div class="inps choices"><label><input type="text" value="'. $received_value_mnp .'" data-srch-type="mnp" placeholder="От" /> </label><label><input type="text" value="'. $received_value_mxp .'" data-srch-type="mxp" placeholder="До" /></label></div></div></div><a id="searchstarter"><button id="start" class="btn">Поиск</button></a>');
+print_r('<div class="srch_labl"><p class="f_name">Цена</p><div id="prc_inp" class="prc_inp vs"><div class="inps choices"><label><input type="text" value="'. $received_value_mnp .'" data-srch-type="mnp" placeholder="От" /> </label><label><input type="text" value="'. $received_value_mxp .'" data-srch-type="mxp" placeholder="До" /></label></div></div></div><a id="searchstarter"><button id="start" class="btn">Поиск квартир</button></a>');
   print_r('</div>');
     print_r('<div id="mini_block_b" class="srch-bot">');
     // print_r('a');
@@ -86,10 +91,15 @@ if (isset( $_GET['rom'] )) {  $rom_value = $_GET['rom'];}
      if (isset( $_GET['mxp'] )) {$max_possible_price_value = $_GET['mxp'];}
      if (isset( $_GET['mns'] )) {$min_possible_sqrt_value = $_GET['mns'];}
      if (isset( $_GET['mxs'] )) {$max_possible_sqrt_value = $_GET['mxs'];}
+$current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+if ( get_query_var( 'paged' ) ) { $paged = get_query_var( 'paged' ); }
+elseif ( get_query_var( 'page' ) ) { $paged = get_query_var( 'page' ); }
+else { $paged = 1; }
 $params = array(
   'post_type' =>  'objects',
-  'posts_per_page' => 500,
+  'posts_per_page' => 20,
   'order'  => 'DESC',
+  'paged'          => $paged,
  	'meta_query'	=> array(
 		  'relation'		=> 'AND',
       array( 'key'	  	=> 'house_or_appartment',
@@ -101,10 +111,10 @@ $params = array(
       array( 'key'	  	=> 'bld',
       'value'	  	=> $bld_value,
       'compare' 	=> 'IN', ),
-    array( 'key'	 	=> 'block',
+      array( 'key'	 	=> 'block',
       'value'	  	=> $block_value,
       'compare' 	=> 'IN', ),
-    array( 'key'	 	=> 'floor',
+      array( 'key'	 	=> 'floor',
       'value'	  	=> $floor_value,
       'compare' 	=> 'IN', ),
       array( 'key'	  	=> 'sqrt',
@@ -116,7 +126,6 @@ $params = array(
       'type'    => 'numeric', 'compare' => 'BETWEEN', )
       )
      );
-$current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false;
 $counter = 0;
@@ -125,7 +134,10 @@ print_r('<div class="home-c container">');
   print_r('<div class="sub_search_menu"></div>');
   print_r('<div class="apps_holder">');
 while(have_posts()): the_post();
- if ( get_field('лучшее_предложение')){ $best_offer_true = 'best_offer'; } else {  $best_offer_true = false;}?>
+$best_off = get_field('лучшее_предложение');
+
+
+ if ( $best_off == "Да"){ $best_offer_true = 'best_offer'; } else {  $best_offer_true = false;}?>
 <div class="app_info <?=$best_offer_true?> closed">
 <?
 
@@ -143,7 +155,7 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
   <li class="tfx bd"><p>Застройщик: <span><?php echo  get_field('bld') ;?></span></p></li>
 </div>
 <div class="sub_image">
-  <li class="tfx bl"><img src="<?=$parent_image?>" /></li>
+  <li class="tfx bl"><a href="<?= the_permalink()?>"><img src="<?=$parent_image?>" /></a></li>
 </div>
 <div class="sub_cover">
 <a href="<?=the_permalink()?>"></a>
@@ -163,7 +175,7 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
 <ul class="add_info">
       <? if($best_offer_true) { echo '<div class="b_o block"> <span>Лучшее предложение</span></div>';} ?>
 
-<button class="stock">Подробнее</button>
+<a href="<?=the_permalink()?>"><button class="stock">Подробнее</button></a>
 </ul>
 </div>
 
@@ -177,8 +189,13 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
            print_r('');
       $counter++;
       endwhile;
+
       print_r('</div>');
       print_r('</div>');
+      print_r('</div>');
+      the_posts_pagination( array( 'mid_size'  => 2 ) );
+      print_r('<div id="seotext" class="seo_text container">');
+      print_r('Купить, продать квартиру в Одессе Жизнь стремительно бежит, одно событие сменяется другим, но вопрос продажи квартиры или дома всегда стоит остро. А на украинском рынке недвижимости особой сферой является продажа квартир в Одессе. И, несмотря на то, что город Одесса с мягким южным климатом, город легендарной красоты, находящийся на живописном побережье Черного моря, так называемая «Южная Пальмира» очень привлекателен своей культурной и исторической ценностью для постоянного проживания или людей прибывающих для отдыха, продать недвижимость быстро и выгодно – не так уж и просто. Продажа квартир в Одессе – вопрос не менее серьезный, чем проблема купить квартиру в Одессе. Вариантов решения этого вопроса много. Можно заключить договор с агентством недвижимости и, в случае нарушения вами какого-либо из пунктов договора, разорвать этот договор, при этом выплатить кругленькую сумму неустойки. Можно заплатить специалисту, составить грамотное рекламное объявление, разослать в газеты, журналы, расклеить на доски объявлений, рекламные столбы, обзвонить агентства недвижимости и т.д. и т.п. Но объявление такого рода не сможет вместить описание всех преимуществ вашей квартиры и не составит полного о ней представления. Но если нет времени, а главное – большого желания преодолевать все проблемы, связанные с таким вопросом, как продажа квартир в Одессе, то правильнее и проще всего будет зарегистрироваться на нашем сайте "Мегамаклер" и разместить свое объявление о продаже, приложив фотографии и описание квартиры. Размещение объявления на сайте ускорит и упростит поиск потенциальных покупателей. Являясь одним из самых популярных сайтов по продаже недвижимости, наш сайт также поможет вам купить квартиру в Одессе. Воспользовавшись услугами нашего сайта, вы сэкономите массу времени и финансов.');
       print_r('</div>');
           print_r('<div class="after_search">');
         if (there_is_any_get()){print_r('<a class="flush_search" href="/">Сбросить поиск</a>');}
@@ -186,7 +203,7 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
     print_r('</div>');
   };
 default_kvartiri_behaviour();
-      get_footer();
+
    ?>
 <script type="text/javascript" src="<?php echo get_template_directory_uri();?>/kvarts.js">
 </script>
@@ -202,42 +219,13 @@ default_kvartiri_behaviour();
       </div>
       <div class="clearfix"> </div>
     </div>
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <h3>О нас</h3>
-            <p>Новостройки во всех районах города. Надежная строительная компания Одессы. Рассрочка. Поэтапная оплата. Акции. Горящие предложения. Официальная цена.</p>
-          </div>
-          <div class="col-md-3">
-            <h3>Наши контакты</h3>
-            <ul>
-              <li>Одесса</li>
-              <li> (048)736-80-94</li>
-              <li>(096)323-29-13</li>
-              <li>(066)787-06-23</li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3>Последние предложения</h3>
-            <div class="lstupd">
-              <div class="col-md-4">
-                <img src="http://novostroy/wp-content/uploads/2017/12/2-825x510.jpg" />
-              </div>
-              <div class="col-md-8">
-                <a href="">ЖК «42 Жемчужина</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h3>Мы в соц.сетях</h3>
-          </div>
-        </div>
-        <div class="sf">
-          <p>novostroyi.od.ua&nbsp;©&nbsp;2017</p>
-          <p>Создание сайта: <a href="http://siteodessa.com">Siteodessa.com</a></div>
-      </div>
-    </div>
+
+
+
+    <? include('/wp-content/themes/ss/footer_novostroy.php');?>
+
+
+
     <div id="root"></div>
   </div>
   </div>

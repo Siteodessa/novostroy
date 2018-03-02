@@ -245,7 +245,7 @@ a#searchstarter:hover {
     position: relative;
     z-index: 6;
     height:  100%;
-    padding-bottom: 900px;
+    padding-bottom: 90px;
 }
 .z-dom2 {
     position: relative;
@@ -285,7 +285,7 @@ li.im img {
 }
 div#srch_vals {
     background: #f3f3f3;
-    padding-top: 17px;
+    padding-top: 60px;
 }
 .rom_values .rom_values.vs, .bld_values .bld_values.vs, .block_values .block_values.vs, 
 .floor_values .floor_values.vs, .prc_inp .prc_inp.vs, .sqrt_inp .sqrt_inp.vs {
@@ -317,7 +317,7 @@ div#homebase {
 
 div#homecover {
     background: #f3f3f3;
-    padding-bottom:  10px;
+    /* padding-bottom:  10px; */
     display:  block;
 }
 

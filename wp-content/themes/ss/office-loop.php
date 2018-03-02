@@ -29,7 +29,32 @@ $title = get_the_title();
 <?php
 function default_houses_behaviour()
 {
-$params = array( 'post_type' =>  'objects', 'order'  => 'DESC', 'meta_query'	=> array( 'relation'		=> 'AND', array( 'key'	 	=> 'house_or_appartment', 'value'	  	=> 'Офис', 'compare' 	=> 'IN', ), ) ); $house_post_pool = array(); $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1; query_posts($params); $wp_query->is_archive = true; $wp_query->is_home = false; while(have_posts()): the_post(); $cur_post_id = get_the_ID(); array_push($house_post_pool, $cur_post_id); endwhile; $office_pool = array(); $params = array( 'post_type' =>  'objects', 'posts_per_page' => 500, 'post__in' => $house_post_pool, 'order'  => 'DESC', ); $house_post_pool = array(); $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1; query_posts($params); $wp_query->is_archive = true; $wp_query->is_home = false; while(have_posts()): the_post(); $cur_post_id = get_the_ID(); array_push($office_pool, $cur_post_id); endwhile; $houses_with_office_pool = array(); foreach ($office_pool as $office) { $post_parent = wp_get_post_parent_id( $office ); array_push($houses_with_office_pool, $post_parent); };$houses_with_office_pool = array_unique($houses_with_office_pool);
+  if ( get_query_var( 'paged' ) ) { $paged = get_query_var( 'paged' ); }
+    elseif ( get_query_var( 'page' ) ) { $paged = get_query_var( 'page' ); }
+    else { $paged = 1; }
+
+$params = array( 'post_type' =>  'objects',         'paged'          => $paged, 'order'  => 'DESC', 'meta_query'	=> array( 'relation'		=> 'AND', array( 'key'	 	=> 'house_or_appartment',
+'value'	  	=> 'Офис', 'compare' 	=> 'IN', ), ) );
+ $house_post_pool = array();
+  $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+  query_posts($params); $wp_query->is_archive = true; $wp_query->is_home = false; while(have_posts()): the_post();
+  $cur_post_id = get_the_ID(); array_push($house_post_pool, $cur_post_id);
+endwhile;
+ $office_pool = array();
+  $params = array( 'post_type' =>  'objects', 'posts_per_page' => 500, 'post__in' => $house_post_pool, 'order'  => 'DESC', ); $house_post_pool = array();
+   $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+   query_posts($params); $wp_query->is_archive = true;
+   $wp_query->is_home = false;
+   while(have_posts()): the_post();
+   $cur_post_id = get_the_ID();
+    array_push($office_pool, $cur_post_id);
+   endwhile;
+    $houses_with_office_pool = array();
+     foreach ($office_pool as $office)
+{
+   $post_parent = wp_get_post_parent_id( $office );
+   array_push($houses_with_office_pool, $post_parent); };
+   $houses_with_office_pool = array_unique($houses_with_office_pool);
 
 print_r('<div class="home-c container">');
   print_r('<div class="appartment_res">');
@@ -68,15 +93,18 @@ $params = array(
 
 );
  $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1; query_posts($params); $wp_query->is_archive = true; $wp_query->is_home = false; while(have_posts()): the_post();
-
+$link = get_permalink($cur_post);
 echo '<div class="office_n_l">'; $cur_post = $post->ID;
-echo '<p class="office_img"><img src="'. get_field('основное_фото_офиса', $cur_post) .'"></p>';
+echo '<a href="'. $link .'"><p class="office_img"><img src="'. get_field('основное_фото_офиса', $cur_post) .'"></p></a>';
 echo '<div class="off_data">';
-echo '<p>Площадь: '. get_field('office_sqrt', $cur_post) .'</p>';
-echo '<p>Секция дома: '. get_field('секция__офиса_в_доме', $cur_post) .'</p>';
-echo '<p>Состояние: '. get_field('состояние_офиса', $cur_post) .'</p>';
-if (get_field('описание_офиса', $cur_post)) echo ''. get_field('описание_офиса', $cur_post) .'';
-$link = get_permalink($cur_post);?><a class="office_link" href="<? echo $link; ?>"><button class="btn btn-details">Перейти</button></a><?
+$off_sqrt = get_field('office_sqrt', $cur_post);
+if ($off_sqrt) {echo '<p class="sq">Площадь: '. get_field('office_sqrt', $cur_post) .'</p>';};
+$off_sctn = get_field('секция__офиса_в_доме', $cur_post);
+if ($off_sctn) {echo '<p class="sc">Секция дома: '. get_field('секция__офиса_в_доме', $cur_post) .'</p>';};
+$off_stt = get_field('состояние_офиса', $cur_post);
+if ($off_stt) { echo '<p class="st">Состояние: '. get_field('состояние_офиса', $cur_post) .'</p>';};
+if (get_field('описание_офиса', $cur_post)) echo '<div class="off_loop_des">'. get_field('описание_офиса', $cur_post) .'</div>';
+?><a class="office_link" href="<? echo $link; ?>"><button class="btn btn-details">Перейти</button></a><?
 echo '</div>';
 
 echo '<div class="off_side_menu ofs">';
@@ -109,6 +137,21 @@ print_r('</div>');
 print_r('</div>');
 
 
+// THIS can solve the pagination issue due to inability to construct wp query with posts that only can have children. But you can also rebuild wp query just showing content if it does have some children in it's own loop. t's posssible GL
+// $paged = (get_query_var('paged')) ? get_query_var('paged') : 0;
+//
+// $postsPerPage = 5;
+// $postOffset = $paged * $postsPerPage;
+//
+// $args = array(
+//     'posts_per_page'  => $postsPerPage,
+//     'category_name'   => $btmetanm,
+//     'offset'          => $postOffset,
+//     'post_type'       => 'post'
+// );
+//
+// $myposts = get_posts($args);
+
 
 
   };default_houses_behaviour();
@@ -122,42 +165,9 @@ print_r('</div>');
       </div>
       <div class="clearfix"> </div>
     </div>
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <h3>О нас</h3>
-            <p>Новостройки во всех районах города. Надежная строительная компания Одессы. Рассрочка. Поэтапная оплата. Акции. Горящие предложения. Официальная цена.</p>
-          </div>
-          <div class="col-md-3">
-            <h3>Наши контакты</h3>
-            <ul>
-              <li>Одесса</li>
-              <li> (048)736-80-94</li>
-              <li>(096)323-29-13</li>
-              <li>(066)787-06-23</li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3>Последние предложения</h3>
-            <div class="lstupd">
-              <div class="col-md-4">
-                <img src="http://novostroy/wp-content/uploads/2017/12/2-825x510.jpg" />
-              </div>
-              <div class="col-md-8">
-                <a href="">ЖК «42 Жемчужина</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h3>Мы в соц.сетях</h3>
-          </div>
-        </div>
-        <div class="sf">
-          <p>novostroyi.od.ua&nbsp;©&nbsp;2017</p>
-          <p>Создание сайта: <a href="http://siteodessa.com">Siteodessa.com</a></div>
-      </div>
-    </div>
+
+        <? include('/wp-content/themes/ss/footer_novostroy.php');?>
+
     <div id="root"></div>
   </div>
   </div>

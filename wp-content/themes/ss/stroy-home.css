@@ -279,7 +279,7 @@ li.description {
     overflow: hidden;
 }
 
-a.cat_img_h:before {
+/* a.cat_img_h:before {
     border: 11px solid #6ac2e7;
     content: '';
     width: 300px;
@@ -288,7 +288,7 @@ a.cat_img_h:before {
     top: 10px;
     left: 22px;
     z-index:  0;
-}
+} */
 
 li.name strong.dom_adres {
     text-align:  left;
@@ -424,6 +424,6 @@ button.cta:hover, button.cta2:hover {
 }
 
 .offices .haus_grid_elem {
-    display: block;
     margin:  20px;
+    grid-template-rows:  auto;
 }

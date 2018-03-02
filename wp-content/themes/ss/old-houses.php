@@ -20,6 +20,8 @@ http://novostroy/wp-content/uploads/2017/12/Marshal-Siti.jpg
 
 <?php
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/stroy-home.css">');
+$title = get_the_title();
+echo '<h1>'; echo strval($title); echo '</h1>';
 function default_houses_behaviour()
 {
   // function there_is_any_get(){
@@ -78,21 +80,28 @@ function default_houses_behaviour()
 //      if (isset( $_GET['mxp'] )) {$max_possible_price_value = $_GET['mxp'];}
 //      if (isset( $_GET['mns'] )) {$min_possible_sqrt_value = $_GET['mns'];}
 //      if (isset( $_GET['mxs'] )) {$max_possible_sqrt_value = $_GET['mxs'];}
-$params = array(
-  'post_type' =>  'objects',
-  'posts_per_page' => 500,
-  'order'  => 'DESC',
- 	'meta_query'	=> array(
-		  'relation'		=> 'AND',
-          array( 'key'	 	=> 'house_or_appartment',
-            'value'	  	=> 'Дом',
-            'compare' 	=> 'IN', ),
-             array( 'key'	  	=> 'дом_строится_или_сдан',
-              'value'	  	=> 'Сдан',
-               'compare' 	=> 'IN', ),
-      )
-     );
+
 $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+if ( get_query_var( 'paged' ) ) { $paged = get_query_var( 'paged' ); }
+    elseif ( get_query_var( 'page' ) ) { $paged = get_query_var( 'page' ); }
+    else { $paged = 1; }
+    $params = array(
+      'post_type' =>  'objects',
+      'posts_per_page' => 10,
+      'order'  => 'DESC',
+              'paged'          => $paged,
+     	'meta_query'	=> array(
+    		  'relation'		=> 'AND',
+              array( 'key'	 	=> 'house_or_appartment',
+                'value'	  	=> 'Дом',
+                'compare' 	=> 'IN', ),
+                 array( 'key'	  	=> 'дом_строится_или_сдан',
+                  'value'	  	=> 'Сдан',
+                   'compare' 	=> 'IN', ),
+          )
+         );
+
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false;
 // $counter = 0;
@@ -139,11 +148,14 @@ while(have_posts()): the_post();?>
       endwhile;
       print_r('</div>');
       print_r('</div>');
+                    the_posts_pagination( array( 'mid_size'  => 2 ) );
       print_r('</div>');
           print_r('<div class="after_search">');
         // if (there_is_any_get()){print_r('<a class="flush_search" href="/">Сбросить поиск</a>');}
     // print_r('<div class="special_counter">Показывается квартир: '. $counter .'</div>');
     print_r('</div>');
+
+
   };
 default_houses_behaviour();
       get_footer();
@@ -156,44 +168,8 @@ default_houses_behaviour();
       </div>
       <div class="clearfix"> </div>
     </div>
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-3">
-            <h3>О нас</h3>
-            <p>Новостройки во всех районах города. Надежная строительная компания Одессы. Рассрочка. Поэтапная оплата. Акции. Горящие предложения. Официальная цена.</p>
-          </div>
-          <div class="col-md-3">
-            <h3>Наши контакты</h3>
-            <ul>
-              <li>Одесса</li>
-              <li> (048)736-80-94</li>
-              <li>(096)323-29-13</li>
-              <li>(066)787-06-23</li>
-            </ul>
-          </div>
-          <div class="col-md-3">
-            <h3>Последние предложения</h3>
-            <div class="lstupd">
-              <div class="col-md-4">
-                <img src="http://novostroy/wp-content/uploads/2017/12/2-825x510.jpg" />
-              </div>
-              <div class="col-md-8">
-                <a href="">ЖК «42 Жемчужина</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <h3>Мы в соц.сетях</h3>
-          </div>
-        </div>
-        <div class="sf">
-          <p>novostroyi.od.ua&nbsp;©&nbsp;2017</p>
-          <p>Создание сайта: <a href="http://siteodessa.com">Siteodessa.com</a></div>
-      </div>
-    </div>
-    <div id="root"></div>
-  </div>
-  </div>
+
+        <? include('/wp-content/themes/ss/footer_novostroy.php');?>
+
 
     <?php get_footer();?>

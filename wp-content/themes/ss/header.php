@@ -12,7 +12,7 @@
   <!DOCTYPE html>
   <html <?php language_attributes(); ?> class="no-js">
   <head>
-    <?php //include('header-top.php');?>
+    <?php include('header-top.php');?>
     <?php //header mid ?>
     <?php //include('header-bot.php');?>
 
@@ -21,7 +21,7 @@
   <?php   if( current_user_can('editor') || current_user_can('administrator') ) {  $adminko = file_get_contents(get_template_directory_uri(). '/adminko.html'); echo $adminko; } ?>
   <body <?php body_class(); ?> >
     <?php // get_sidebar(); ?>
-    <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">
+  <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/bootstrap.css">
     <link rel="stylesheet" href="/wp-content/themes/ss/webpack/src/css/style.css">
     <div class="container hd">
       <header>

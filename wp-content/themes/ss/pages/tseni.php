@@ -18,12 +18,16 @@ $params = array(
    array( 'key'	  	=> 'район',
   'value'	  	=> $rayon,
    'compare' 	=> 'IN', ),
+   array( 'key'	 	=> 'дом_строится_или_сдан',
+   'value'	  	=> 'Строится',
+   'compare' 	=> 'IN', ),
   )
    );
 $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
 query_posts($params); $wp_query->is_archive = true;
 $wp_query->is_home = false; $a = -1;
 while(have_posts()): the_post();
+   if ( get_field('дом_строится_или_сдан') == "Строится"){
 $a++; $active = ''; if (bcmod($a, '2') == 0) { $active = 'active'; } else { $active = '';};
 $link = get_permalink();
 $title = get_the_title();
@@ -73,6 +77,7 @@ print_r('<div class="col-md-4 h_price">');
   print_r('  </div>');
   print_r('  </div>');
   print_r('  </div>');
+};
  endwhile;
 };?>
 <div class="generic_price_table">
@@ -84,55 +89,24 @@ print_r('<div class="col-md-4 h_price">');
   </div> </div> </div>
 <div class="container price_t">
    <div class="price_blocks">
-  <h2>Приморский</h2> <div class="row">
+  <h2>Приморский район</h2> <div class="row">
 <? get_block_prices('Приморский');  ?>
   </div>
-  <h2>Малиновский</h2> <div class="row">
-<? get_block_prices('Малиновский');  ?>
-  </div> <h2>Суворовский</h2> <div class="row">
-<? get_block_prices('Суворовский');  ?>
-  </div> <h2>Киевский</h2> <div class="row">
+  <h2>Киевский район</h2> <div class="row">
 <? get_block_prices('Киевский');  ?>
-   </div>   </div> </div> </section>
+   </div>
+  <h2>Малиновский район</h2>
+  <div class="row">
+<? get_block_prices('Малиновский');  ?>
+</div> <h2>Суворовский район</h2> <div class="row">
+<? get_block_prices('Суворовский');  ?>
+  </div>   </div> </div> </section>
  </div>
   <div class="clearfix"> </div>
   </div>
-  <div class="footer">
-  <div class="container">
-  <div class="row">
-  <div class="col-md-3">
-  <h3>О нас</h3>
-  <p>Новостройки во всех районах города. Надежная строительная компания Одессы. Рассрочка. Поэтапная оплата. Акции. Горящие предложения. Официальная цена.</p>
-  </div>
-  <div class="col-md-3">
-  <h3>Наши контакты</h3>
-  <ul>
-  <li>Одесса</li>
-  <li> (048)736-80-94</li>
-  <li>(096)323-29-13</li>
-  <li>(066)787-06-23</li>
-  </ul>
-  </div>
-  <div class="col-md-3">
-  <h3>Последние предложения</h3>
-  <div class="lstupd">
-  <div class="col-md-4">
-  <img src="http://novostroy/wp-content/uploads/2017/12/2-825x510.jpg" />
-  </div>
-  <div class="col-md-8">
-  <a href="">ЖК «42 Жемчужина</a>
-  </div>
-  </div>
-  </div>
-  <div class="col-md-3">
-  <h3>Мы в соц.сетях</h3>
-  </div>
-  </div>
-  <div class="sf">
-  <p>novostroyi.od.ua&nbsp;©&nbsp;2017</p>
-  <p>Создание сайта: <a href="http://siteodessa.com">Siteodessa.com</a></div>
-  </div>
-  </div>
+
+    <? include('/wp-content/themes/ss/footer_novostroy.php');?>
+
     <script src="/wp-content/themes/ss/webpack/dist/bundle.js"></script>
   <div id="root"></div>
   </div>

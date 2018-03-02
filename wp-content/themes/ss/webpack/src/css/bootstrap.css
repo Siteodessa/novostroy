@@ -4701,6 +4701,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 0;
   margin: 20px 0 -20px;
   border-radius: 4px;
+  height: 55px;
+  padding-top:  12px;
 }
 .pagination > li {
   display: inline;

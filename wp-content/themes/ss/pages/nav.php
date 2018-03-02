@@ -1,4 +1,4 @@
-<nav>
+<nav id="main_navigation">
   <div>
     <ul class="menu">
       <li><span class="m_h"></span><a href="/">Главная</a></li>

@@ -245,7 +245,7 @@ a#searchstarter:hover {
     position: relative;
     z-index: 6;
     height:  100%;
-    padding-bottom: 900px;
+    padding-bottom: 90px;
 }
 .z-dom2 {
     position: relative;
@@ -270,15 +270,14 @@ div#src_val.touched {
 li.tx {
     margin: 7px 0 0;
 }
-.homecover li.tx strong {
+li.tx strong {
     z-index: 3;
     color: #fff;
     margin: 0 48%;
-    padding-top: 5px;
+    padding-top: 0px;
     width:  50%;
     font-size: 24px !important;
     border:  none;
-    font-size: 20px !important;
 }
 li.im img {
     border: 1px solid #f3f3f3;

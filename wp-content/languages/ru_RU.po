@@ -5960,7 +5960,7 @@ msgstr "URL: %s"
 #: wp-includes/link-template.php:2484 wp-includes/link-template.php:2538
 #: wp-includes/link-template.php:2582
 msgid "Posts navigation"
-msgstr "Навигация по записям"
+msgstr " "
 
 #: wp-includes/l10n.php:1229
 msgctxt "translations"
@@ -8728,7 +8728,7 @@ msgstr "Уведомление:"
 
 #: wp-includes/link-template.php:2416
 msgid "Post navigation"
-msgstr "Навигация по записям"
+msgstr " "
 
 #: wp-includes/link-template.php:2825 wp-includes/link-template.php:2873
 msgid "Comments navigation"

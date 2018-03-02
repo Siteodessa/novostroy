@@ -11423,10 +11423,14 @@ function showBabelHints() {
   console.log('' + link1);
 }
 jQuery(document).keyup(function (e) {
-  33 === e.keyCode && _reactDom2.default.render(_react2.default.createElement(Game, null), document.getElementById('revct'));
+  //  33 === e.keyCode && ReactDOM.render(
+  //   <Game />,
+  //   document.getElementById('revct')
+  // )  ;
+
 });
 jQuery(document).keyup(function (e) {
-  33 === e.keyCode && showBabelHints();
+  33 === jQuery('.jumpo button').click();
 });
 var app_res = jQuery('.sub_search_menu');
 var after_search = jQuery('div.after_search');
@@ -11534,45 +11538,80 @@ jQuery('.f_name').click(function () {
 (0, _jquery2.default)(".apps_holder").click(function () {
   closeDrops();
 });
-/* ---------------------------------------- */
-var current = 0;
-var slides = (0, _jquery2.default)(".slide");
-(0, _jquery2.default)("#right").click(function () {
-  slide(1);
+/* ------------------slider s---------------------- */
+var $slides = void 0,
+    interval = void 0,
+    $selectors = void 0,
+    $btns = void 0,
+    currentIndex = void 0,
+    nextIndex = void 0;
+
+var cycle = function cycle(index) {
+  var $currentSlide = void 0,
+      $nextSlide = void 0,
+      $currentSelector = void 0,
+      $nextSelector = void 0;
+
+  nextIndex = index !== undefined ? index : nextIndex;
+
+  $currentSlide = (0, _jquery2.default)($slides.get(currentIndex));
+  $currentSelector = (0, _jquery2.default)($selectors.get(currentIndex));
+
+  $nextSlide = (0, _jquery2.default)($slides.get(nextIndex));
+  $nextSelector = (0, _jquery2.default)($selectors.get(nextIndex));
+
+  $currentSlide.removeClass("active").css("z-index", "0");
+
+  $nextSlide.addClass("active").css("z-index", "1");
+
+  $currentSelector.removeClass("current");
+  $nextSelector.addClass("current");
+
+  currentIndex = index !== undefined ? nextIndex : currentIndex < $slides.length - 1 ? currentIndex + 1 : 0;
+
+  nextIndex = currentIndex + 1 < $slides.length ? currentIndex + 1 : 0;
+};
+
+(0, _jquery2.default)(function () {
+  currentIndex = 0;
+  nextIndex = 1;
+
+  $slides = (0, _jquery2.default)(".slide");
+  $selectors = (0, _jquery2.default)(".selector");
+  $btns = (0, _jquery2.default)(".btn");
+
+  $slides.first().addClass("active");
+  $selectors.first().addClass("current");
+
+  interval = window.setInterval(cycle, 6000);
+
+  $selectors.on("click", function (e) {
+    var target = $selectors.index(e.target);
+    if (target !== currentIndex) {
+      window.clearInterval(interval);
+      cycle(target);
+      interval = window.setInterval(cycle, 6000);
+    }
+  });
+
+  $btns.on("click", function (e) {
+    window.clearInterval(interval);
+    if ((0, _jquery2.default)(e.target).hasClass("prev")) {
+      var target = currentIndex > 0 ? currentIndex - 1 : $slides.length - 1;
+      cycle(target);
+    } else if ((0, _jquery2.default)(e.target).hasClass("next")) {
+      cycle();
+    }
+    interval = window.setInterval(cycle, 6000);
+  });
 });
-(0, _jquery2.default)("#left").click(function () {
-  slide(-1);
-});
-function slide(offset) {
-  var next = (current + offset) % slides.length;
-  if (next < 0) {
-    next = slides.length + next;
-  }
-  (0, _jquery2.default)(slides[next]).removeClass("fromRight");
-  (0, _jquery2.default)(slides[next]).removeClass("fromLeft");
-  (0, _jquery2.default)(slides[current]).removeClass("fromLeft");
-  (0, _jquery2.default)(slides[current]).removeClass("fromRight");
-  if (offset > 0) {
-    (0, _jquery2.default)(slides[current]).addClass("fromLeft");
-    (0, _jquery2.default)(slides[next]).addClass("fromRight");
-  } else {
-    (0, _jquery2.default)(slides[current]).addClass("fromRight");
-    (0, _jquery2.default)(slides[next]).addClass("fromLeft");
-  }
-  (0, _jquery2.default)(slides[next]).addClass("active");
-  (0, _jquery2.default)(slides[current]).removeClass("active");
-  (0, _jquery2.default)(slides[current]).addClass("closing");
-  var oldCur = current;
-  current = next;
-  (0, _jquery2.default)("#count").html(current + 1);
-}
-setInterval(function () {
-  (0, _jquery2.default)("#left").click();
-}, 5000);
+
+/* -------------slider e--------------------------- */
+
 jQuery('.jumpo button').on('click', function () {
   function createOneMenu() {
     if (jQuery('.side-menu').length < 1) {
-      jQuery('body').prepend('<div class="side-menu">\n    <ul>\n    <li><a href="/wp-admin/post.php?post=960&action=edit">\u041A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\u0412\u0441\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n<br>\n\u043C\u0435\u043D\u044E \u0445\u043E\u0432\u0435\u0440\u044B<hr>\n\u0444\u0438\u043A\u0441\u0430\u0446\u0438\u044F \u0432\u044B\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u043F\u043E\u0438\u0441\u043A\u0430 \u0432 \u0435\u0433\u043E \u043E\u043A\u043E\u0448\u043A\u0435  \u0438\u043B\u0438 \u043F\u043E\u0434 \u043D\u0438\u043C<hr>\n\u041B\u0430\u0439\u0442\u0433\u0430\u043B\u043B\u0435\u0440\u0438<hr>\n\u0438\u043A\u043E\u043D\u043A\u0438 \u0432 \u0444\u0443\u0442\u0435\u0440\u0435<hr>\n\u041E\u0431\u044A\u0435\u043A\u0442\u044B \u0437\u0430\u043B\u0438\u0442\u044C<hr>\n\u0421\u043B\u0430\u0439\u0434\u0435\u0440<hr>\n<hr><hr><hr><hr>\n\n\u0424\u043E\u0440\u043C\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u0437\u0430\u044F\u0432\u043A\u0438 \u0432 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430\u0445<hr>\n\n\n    </a></li>\n     </ul>\n     </div>');
+      jQuery('body').prepend('<div class="side-menu">\n    <ul>\n    <li><a href="/wp-admin/post.php?post=960&action=edit">\u041A\u0430\u0441\u0442\u043E\u043C\u043D\u044B\u0435 \u043F\u043E\u043B\u044F</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\u0412\u0441\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u044B</a></li>\n    <li><a href="/wp-admin/edit.php?post_type=objects">\n<br>\n\u041F\u0443\u0431\u043B\u0438\u043A\u0430\u0446\u0438\u044F\n<hr>\n\u041F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0430 next<br>\n\u0421\u043B\u0430\u0439\u0434\u0435\u0440 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A \u0430\u0434\u043C\u0438\u043D\u043A\u0435<hr>\n\u0444\u0438\u043A\u0441\u0430\u0446\u0438\u044F \u0432\u044B\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u043F\u043E\u0438\u0441\u043A\u0430<hr>\n\u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0440\u043E\u0431\u0435\u043B \u0432 \u0446\u0435\u043D\u0435<hr>\n\u0424\u043E\u0440\u043C\u0430 \u043F\u0440\u0438\u0435\u043C\u0430 \u0437\u0430\u044F\u0432\u043A\u0438 \u0432 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430\u0445<hr>\n    </a></li>\n     </ul>\n     </div>');
       setTimeout(function () {
         jQuery(document).find('.side-menu').addClass('opened');
         jQuery(document).find('body').addClass('s-menu-opened');
@@ -11603,6 +11642,23 @@ function hover_toggle_class(jqobject, classtitle, reversability) {
 hover_toggle_class(jQuery('.office_n_l'), 'closed', true);
 hover_toggle_class(jQuery('ul.appartment'), 'active', true);
 hover_toggle_class(jQuery('.app_info.closed'), 'closed', false);
+
+function active_page(elems) {
+
+  var values = [].map.call(elems, function (obj) {
+    alert(obj.value);
+  });
+}
+var elems = document.querySelectorAll("main_navigation a");
+var vagos = new active_page(elems);
+
+jQuery('#main_navigation ul.menu a ').each(function () {
+  if (jQuery(this).attr('href') == jQuery('#uri').attr('href')) {
+    jQuery(this).parent('li').addClass('active');
+  }
+});
+
+jQuery("div#main_image").wrap('<a class="item"></a>');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
