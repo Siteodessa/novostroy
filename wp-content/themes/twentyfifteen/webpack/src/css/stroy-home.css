@@ -1,0 +1,450 @@
+div#srch_stat {
+    width: calc(100% - 7px);
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom:  20px;
+}
+
+.fixie {
+    position: fixed;
+    top: 20px;
+    background: green;
+    color: #fff;
+    padding: 12px;
+    font-size: 17.5px;
+    left: 0;
+}
+
+.fixie {
+    position: fixed;
+    top: 20px;
+    background: green;
+    color: #fff;
+    padding: 12px;
+    font-size: 17.5px;
+    z-index: 999999;
+    left: 0;
+}
+
+#src_val input[type="checkbox"] {
+    transform: scale(1.4);
+    margin: 5px 12px;
+    outline: 1px solid #cadbe1;
+}
+
+div.special_counter {
+    text-align: right;
+    font-size: 14px;
+    font-family: sans-serif;
+    text-transform: lowercase;
+    background: #e4e4e4;
+    color: #444;
+    padding: 4px;
+    margin: 50px 0 -10px;
+}
+
+strong.rom {
+    border: 1px solid;
+    padding: 5px 11px !important;
+    margin: 0 0px;
+}
+
+.appartment b {
+    padding: 5px 7px 0 12px;
+}
+
+.appartment b.app_comn {
+    border: none;
+    padding: 5px 7px 0 3px !important;
+}
+
+.appartment {
+    width: auto;
+    border: 3px solid #d1d1d1;
+    padding: 0;
+    margin: 0px 0 0 35px;
+    grid-gap: 6px;
+    position:  relative;
+    overflow:  hidden;
+    background: #efefef;
+}
+
+.appartment strong {
+    padding: 5px 6px;
+    /* border: 1px solid #cacaca; */
+    display: table;
+    width:  100%;
+    text-align:  right;
+    position:  absolute;
+    left:  0;
+    z-index: 1;
+    transform: translate(-6px,3px);
+    font-size:  13px;
+    height: auto;
+}
+
+b {
+    padding: 5px 4px 0 0;
+    border-left: 1px solid;
+    margin: 0 7px 0 0px;
+}
+
+.editka a.post-edit-link {
+    padding: 5px;
+    display: inline;
+}
+
+button#searchstarter {
+    height: 40px;
+    width: 80px;
+}
+
+.search_values {
+    display: grid;
+    grid-template-columns: 100px 275px 145px 90px 180px 1fr 1fr;
+    grid-gap: 4px;
+    margin: 0px 0;
+    padding: 12px 7px;
+    background: #f3f3f3d4;
+    grid-auto-rows: min-content;
+    height: 60px;
+    z-index: 6;
+}
+
+.search_values div {
+    margin: 0 0px;
+    height: auto;
+    overflow:  hidden;
+    z-index: 6;
+}
+
+.search_values .sqrt_inp input, .search_values .prc_inp input {
+    width: 88px;
+    margin: 7px 0px 0 0;
+    border: 1px solid #6ac2e7;
+    height: 30px;
+    text-indent:  15px;
+}
+
+p.srch_labl {
+    margin: 0;
+    background: #ffffff;
+    color: #6ac2e7;
+    font-weight: bold;
+    padding: 4px;
+    height: 35px;
+    padding: 9px 12px;
+    border: 1px solid #6ac2e7;
+    border-radius: 2px;
+    z-index:  2;
+    position:  relative;
+    cursor:  pointer;
+}
+
+p.srch_labl:first-letter {
+    text-transform: uppercase;
+}
+
+button#start {
+    background-color: #6ac2e7;
+    color: #fff;
+    padding: 7px 20px 8px;
+    height: 35px;
+}
+
+.search_values .choice {
+    margin: 0 0px;
+    height: 24px;
+    z-index: 0;
+    position:  relative;
+}
+
+div#sqrt_inp {
+}
+
+.search_values div.inps {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;transform: translate(0,-100%);opacity: .5;}
+
+
+.choices.nxpan {
+    transform: translate(0,-100%);
+    opacity:  .5;
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+.apps_holder {
+    display:  grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-gap:  5px;
+    width: calc(100% - 15px);
+}
+.haus_grid {
+    display:  grid;
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
+    width: calc(100% - 15px);
+    margin-left:  7px;
+}
+
+a#searchstarter .button:hover {
+    text-decoration:  none;
+}
+
+a#searchstarter:hover {
+    text-decoration:  none;
+}
+
+.home-c.container {
+    background: #f3f3f3;
+    padding-bottom:  40px;
+    position: relative;
+    z-index: 6;
+}
+.z-dom2 {
+     position:  relative;
+     z-index: 7; 
+}
+
+.after_search {
+    display: flex;
+    grid-template-columns: 105px 170px;
+    grid-gap: 10px;
+}
+
+a.flush_search {
+    padding: 4px 13px;
+}
+
+div#src_val.touched {
+    background: #e7e7e7;
+}
+
+div#src_val.touched {
+    background: #d7d7d7;
+}
+
+.rom_values .rom_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.bld_values .bld_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.block_values .block_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.floor_values .floor_values .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+.sqrt_inp .sqrt_inp .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}.prc_inp .prc_inp .choices {
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+
+.rom_values .search_values, .bld_values .search_values, .block_values .search_values, .floor_values .search_values, .sqrt_inp .search_values, .prc_inp .search_values {
+    height:  100%;
+    margin-bottom: calc( -100% + 30px);
+}
+
+div#srch_vals.active + .home-c.container {
+    margin-top: 60px;
+}
+
+.haus_grid_elem {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 310px;
+    position:  relative;
+}
+
+.im img {max-height:  300px;width: 300px;z-index:  2;position:  absolute;}
+
+li.description {
+    height: auto;
+    margin-top: 0px;
+    display:  block;
+    overflow: hidden;
+}
+
+/* a.cat_img_h:before {
+    border: 11px solid #6ac2e7;
+    content: '';
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 10px;
+    left: 22px;
+    z-index:  0;
+} */
+
+li.name strong.dom_adres {
+    text-align:  left;
+    margin: -20px 40px 0 0px;
+}
+
+ul.app_features {
+    display:  grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+ul.app_main {
+    display:  grid;
+    grid-template-columns:  1fr;
+    grid-template-rows: 45px 40px 140px 75px;
+    background: #fff;
+}
+
+.app_features {
+    display:  grid;
+    height: 60px;
+    grid-template-columns:  1fr 1fr 1fr;
+    width: 100%;
+}
+
+.commerce {
+    background: url(http://novostroy/wp-content/uploads/2018/02/003-business-center.png) no-repeat;
+    background-size: 33px;
+}
+
+.parking {
+    background: url('http://novostroy/wp-content/uploads/2018/02/001-parking.png') no-repeat;
+    background-size: 33px;
+}
+
+.security {
+    background: url(http://novostroy/wp-content/uploads/2018/02/002-secure.png) no-repeat;
+    background-size: 33px;
+}
+
+li.rayon, li.zastr {
+    justify-content: flex-start;
+}
+
+.info-banner strong {
+    position:  static;
+    width:  auto;
+    transform:  none;
+    padding:  0;
+}
+
+li.mini-data {
+    justify-content: flex-end;
+    position:  relative;
+}
+
+li.description {
+    border-bottom: 16px solid #ffffff;
+}
+
+li.mini-data div {
+    display:  inline-flex;
+    position:  absolute;
+}
+
+.stroyashhiesya .zastr, .sdannye .zastr {position:  absolute;top: 110px;right: 2px;}
+
+.stroyashhiesya .rayon, .sdannye .rayon {position: absolute;top: 50px;right: 2px;}
+
+.rayon, .zastr {
+    border: 3px solid #6ac2e7;
+    padding: 7px 9px;
+}
+
+.offices .rayon:before {display:none}
+
+.rayon:before {
+    content:  '';
+    background: #Fff;
+    width: 40px;
+    height:  10px;
+    position:  absolute;
+    top: -7px;
+}
+.offices .zastr:before {
+display:none
+}
+
+.zastr:before {
+    content: '';
+    background: #fff;
+    width: 40px;
+    height: 10px;
+    position: absolute;
+    top: 28px;
+    left:  100px;
+}
+
+.mini-data p {
+    margin:  0;
+}
+
+button.cta, button.cta2 {
+    position:  absolute;
+    z-index:  1;
+    background:  transparent;
+    top: 6px;
+    border: 1px solid #6ac2e7;
+    color: #6ac2e7;
+    padding: 7px 20px 8px;
+    border-top: none;
+}
+
+button.cta {
+    right: 10px;
+}
+
+button.cta2 {
+    right: 188px;
+}
+
+button.cta:hover, button.cta2:hover {
+    background: #6ac2e7;
+    color:  #Fff;
+}
+
+.offices ul.app_main {
+    grid-template-rows: 45px 10px 405px 75px;
+    display:  block;
+    margin: 0;
+    background:  transparent;
+    padding:  0;
+}
+
+.offices .haus_grid_elem {
+    margin:  20px;
+    grid-template-rows:  auto;
+}
+
+
+
+@media only screen and (min-width:100px) and (max-width:576px){
+    .haus_grid_elem{
+
+grid-template-columns: 1fr;
+}
+}
+
+@media only screen and (min-width:576px) and (max-width:768px){     .haus_grid_elem{
+
+grid-template-columns: 1fr;
+}}
+
+@media only screen and (min-width:768px) and (max-width:992px){ }
+
+@media only screen and (min-width:992px) and (max-width:1200px){ }
+
+@media only screen and (min-width:1200px) and (max-width:5120){ }
+

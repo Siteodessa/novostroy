@@ -1,0 +1,90 @@
+<style>
+
+.run {
+    border: 2px solid #337ab7;
+    width: 50px;
+    height: 50px;
+    margin: 40px auto;
+    border-radius: 100%;
+    border-top: none;
+    position: absolute;
+    left: calc(50% - 25px);
+    bottom: -36px;
+}
+.side-menu {
+    position: fixed;
+    left: 0;
+    background: #337ab7f5;
+    color: #fff;
+    padding: 10px 20px;
+    transform: translate(-160px);
+    transition: .4s ease-in-out;
+    height: 100%;    padding-top: 80px;
+    width: 160px;
+}
+.preload {
+    overflow: hidden;
+    height: 55px;
+    width: 100%;
+    position: relative;
+}
+@-webkit-keyframes rotating{
+  from{
+    -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+to
+  {
+     -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+}
+@keyframes rotating{
+  from{
+    -webkit-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+to
+  {
+     -webkit-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+
+}
+
+}
+.rotating {
+  -webkit-animation: rotating 1s ease-in-out infinite;
+  -moz-animation: rotating 1s ease-in-out infinite;
+  -o-animation: rotating 1s ease-in-out infinite;
+  -ms-animation: rotating 1s ease-in-out infinite;
+  animation: rotating 1s ease-in-out infinite;
+}
+.jumpo {
+    position:  fixed;
+left: -20px;
+top: 200px;
+    transform: translateX(0px);
+    will-change:  transform;
+    transition: .4s ease-in-out;
+}
+.side-menu.opened {
+    transform: translate(0px);
+}
+.side-menu a {
+    color:  #fff;
+}
+.s-menu-opened .jumpo {
+    transform: translateX(160px);
+}.side-menu ul {
+    margin:  0;
+    padding:  0;
+}
+.jumpo button.btn {background: #3a7eb9;transform: rotate(-45deg);color:  #fff;outline: none;width:  40px;height:  40px;}
+</style>
+<div class="jumpo">
+  <button class="btn"></button>
+  </div>
