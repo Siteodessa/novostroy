@@ -78,7 +78,8 @@ sup {
   vertical-align: baseline;
 }
 sup {
-  top: -0.5em;
+  top: -0.7em;
+  font-size: 12px !important;
 }
 sub {
   bottom: -0.25em;
@@ -1921,6 +1922,9 @@ pre code {
   }
   .col-sm-offset-2 {
     margin-left: 16.66666667%;
+  }  .col-md-3 {
+    width: 50%;
+    float: left;
   }
   .col-sm-offset-1 {
     margin-left: 8.33333333%;
@@ -4318,6 +4322,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
 }
 @media (max-width: 767px) {
+  .col-md-3 {
+    width: 50%;
+    float: left;
+}
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;

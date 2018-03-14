@@ -499,6 +499,22 @@ if (o.text() == 'Самые дешевые') {setCookie('srty', 'prcASC');window
 if (o.text() == 'Самые новые') {setCookie('srty', 'dateDESC');window.location.reload();}
 });
 
+jQuery('.bld_arr').prependTo('.explanation');
 jQuery('p.sort').click(function(){
 jQuery('.s_ch').toggle()
 });
+
+
+jQuery('select.bld_arr').on('change', function(){
+
+
+  window.location = this.value;
+
+
+});
+
+
+jQuery('.footer').ready(function(){
+  let c_width = jQuery('.container.hd').width();
+  jQuery(this).width(c_width);
+})

@@ -4,7 +4,6 @@ div#srch_stat {
     justify-content: flex-end;
     margin-bottom:  20px;
 }
-
 .fixie {
     position: fixed;
     top: 20px;
@@ -14,7 +13,6 @@ div#srch_stat {
     font-size: 17.5px;
     left: 0;
 }
-
 .fixie {
     position: fixed;
     top: 20px;
@@ -25,13 +23,11 @@ div#srch_stat {
     z-index: 999999;
     left: 0;
 }
-
 #src_val input[type="checkbox"] {
     transform: scale(1.4);
     margin: 5px 12px;
     outline: 1px solid #cadbe1;
 }
-
 div.special_counter {
     text-align: right;
     font-size: 14px;
@@ -42,22 +38,18 @@ div.special_counter {
     padding: 4px;
     margin: 50px 0 -10px;
 }
-
 strong.rom {
     border: 1px solid;
     padding: 5px 11px !important;
     margin: 0 0px;
 }
-
 .appartment b {
     padding: 5px 7px 0 12px;
 }
-
 .appartment b.app_comn {
     border: none;
     padding: 5px 7px 0 3px !important;
 }
-
 .appartment {
     width: auto;
     border: 3px solid #d1d1d1;
@@ -68,7 +60,6 @@ strong.rom {
     overflow:  hidden;
     background: #efefef;
 }
-
 .appartment strong {
     padding: 5px 6px;
     /* border: 1px solid #cacaca; */
@@ -82,23 +73,19 @@ strong.rom {
     font-size:  13px;
     height: auto;
 }
-
 b {
     padding: 5px 4px 0 0;
     border-left: 1px solid;
     margin: 0 7px 0 0px;
 }
-
 .editka a.post-edit-link {
     padding: 5px;
     display: inline;
 }
-
 button#searchstarter {
     height: 40px;
     width: 80px;
 }
-
 .search_values {
     display: grid;
     grid-template-columns: 100px 275px 145px 90px 180px 1fr 1fr;
@@ -110,14 +97,12 @@ button#searchstarter {
     height: 60px;
     z-index: 6;
 }
-
 .search_values div {
     margin: 0 0px;
     height: auto;
     overflow:  hidden;
     z-index: 6;
 }
-
 .search_values .sqrt_inp input, .search_values .prc_inp input {
     width: 88px;
     margin: 7px 0px 0 0;
@@ -125,7 +110,6 @@ button#searchstarter {
     height: 30px;
     text-indent:  15px;
 }
-
 p.srch_labl {
     margin: 0;
     background: #ffffff;
@@ -140,44 +124,35 @@ p.srch_labl {
     position:  relative;
     cursor:  pointer;
 }
-
 p.srch_labl:first-letter {
     text-transform: uppercase;
 }
-
 button#start {
     background-color: #6ac2e7;
     color: #fff;
     padding: 7px 20px 8px;
     height: 35px;
 }
-
 .search_values .choice {
     margin: 0 0px;
     height: 24px;
     z-index: 0;
     position:  relative;
 }
-
 div#sqrt_inp {
 }
-
 .search_values div.inps {
     margin: 0;
     display: flex;
     justify-content: space-between;
 }
-
 .choices {padding-top: 7px;background:  aliceblue;transform: translate(0,0);will-change: transform;transition: 0.3s;opacity: 1;z-index:  10;transform: translate(0,-100%);opacity: .5;}
-
-
 .choices.nxpan {
     transform: translate(0,-100%);
     opacity:  .5;
     transform: translate(0,0);
     opacity: 1;
 }
-
 .apps_holder {
     display:  grid;
     grid-template-columns: 25% 25% 25% 25%;
@@ -191,15 +166,12 @@ div#sqrt_inp {
     width: calc(100% - 15px);
     margin-left:  7px;
 }
-
 a#searchstarter .button:hover {
     text-decoration:  none;
 }
-
 a#searchstarter:hover {
     text-decoration:  none;
 }
-
 .home-c.container {
     background: #f3f3f3;
     padding-bottom:  40px;
@@ -210,25 +182,20 @@ a#searchstarter:hover {
      position:  relative;
      z-index: 7; 
 }
-
 .after_search {
     display: flex;
     grid-template-columns: 105px 170px;
     grid-gap: 10px;
 }
-
 a.flush_search {
     padding: 4px 13px;
 }
-
 div#src_val.touched {
     background: #e7e7e7;
 }
-
 div#src_val.touched {
     background: #d7d7d7;
 }
-
 .rom_values .rom_values .choices {
     transform: translate(0,0);
     opacity: 1;
@@ -252,33 +219,26 @@ div#src_val.touched {
     transform: translate(0,0);
     opacity: 1;
 }
-
-
 .rom_values .search_values, .bld_values .search_values, .block_values .search_values, .floor_values .search_values, .sqrt_inp .search_values, .prc_inp .search_values {
     height:  100%;
     margin-bottom: calc( -100% + 30px);
 }
-
 div#srch_vals.active + .home-c.container {
     margin-top: 60px;
 }
-
 .haus_grid_elem {
     display: grid;
     grid-template-columns: 300px 1fr;
     grid-template-rows: 310px;
     position:  relative;
 }
-
 .im img {max-height:  300px;width: 300px;z-index:  2;position:  absolute;}
-
 li.description {
     height: auto;
     margin-top: 0px;
     display:  block;
     overflow: hidden;
 }
-
 /* a.cat_img_h:before {
     border: 11px solid #6ac2e7;
     content: '';
@@ -289,82 +249,65 @@ li.description {
     left: 22px;
     z-index:  0;
 } */
-
 li.name strong.dom_adres {
     text-align:  left;
     margin: -20px 40px 0 0px;
 }
-
 ul.app_features {
     display:  grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
-
 ul.app_main {
     display:  grid;
     grid-template-columns:  1fr;
     grid-template-rows: 45px 40px 140px 75px;
     background: #fff;
 }
-
 .app_features {
     display:  grid;
     height: 60px;
     grid-template-columns:  1fr 1fr 1fr;
     width: 100%;
 }
-
 .commerce {
     background: url(http://novostroy/wp-content/uploads/2018/02/003-business-center.png) no-repeat;
     background-size: 33px;
 }
-
 .parking {
     background: url('http://novostroy/wp-content/uploads/2018/02/001-parking.png') no-repeat;
     background-size: 33px;
 }
-
 .security {
     background: url(http://novostroy/wp-content/uploads/2018/02/002-secure.png) no-repeat;
     background-size: 33px;
 }
-
 li.rayon, li.zastr {
     justify-content: flex-start;
 }
-
 .info-banner strong {
     position:  static;
     width:  auto;
     transform:  none;
     padding:  0;
 }
-
 li.mini-data {
     justify-content: flex-end;
     position:  relative;
 }
-
 li.description {
     border-bottom: 16px solid #ffffff;
 }
-
 li.mini-data div {
     display:  inline-flex;
     position:  absolute;
 }
-
 .stroyashhiesya .zastr, .sdannye .zastr {position:  absolute;top: 110px;right: 2px;}
-
 .stroyashhiesya .rayon, .sdannye .rayon {position: absolute;top: 50px;right: 2px;}
-
 .rayon, .zastr {
     border: 3px solid #6ac2e7;
     padding: 7px 9px;
 }
-
 .offices .rayon:before {display:none}
-
 .rayon:before {
     content:  '';
     background: #Fff;
@@ -376,7 +319,6 @@ li.mini-data div {
 .offices .zastr:before {
 display:none
 }
-
 .zastr:before {
     content: '';
     background: #fff;
@@ -386,11 +328,9 @@ display:none
     top: 28px;
     left:  100px;
 }
-
 .mini-data p {
     margin:  0;
 }
-
 button.cta, button.cta2 {
     position:  absolute;
     z-index:  1;
@@ -401,20 +341,16 @@ button.cta, button.cta2 {
     padding: 7px 20px 8px;
     border-top: none;
 }
-
 button.cta {
     right: 10px;
 }
-
 button.cta2 {
     right: 188px;
 }
-
 button.cta:hover, button.cta2:hover {
     background: #6ac2e7;
     color:  #Fff;
 }
-
 .offices ul.app_main {
     grid-template-rows: 45px 10px 405px 75px;
     display:  block;
@@ -422,42 +358,29 @@ button.cta:hover, button.cta2:hover {
     background:  transparent;
     padding:  0;
 }
-
 .offices .haus_grid_elem {
     margin:  20px;
     grid-template-rows:  auto;
 }
-
-
-
 @media only screen and (min-width:100px) and (max-width:576px){
-    .home-c.container.sdannye{
-        
-padding-left: 5px;
+    .home-c.container{
+        padding-left: 5px;
     }
     .rayon:before{
-        
 left:  2px;
     }
     .zastr:before{
-        
 top: 27px;
-        
 left: 140px;
-        
 width:  69px;
     }
     li.name strong.dom_adres
     {
-        
 margin: -20px auto 0px 0px;
     }
     li.description p{
-        
 width:  100%;
-        
 line-height:  1.5;
-        
 margin-bottom:  0;
     }
     li.name strong.dom_adres h2{
@@ -467,73 +390,49 @@ margin-bottom:  0;
     padding:  0 25px;
     }
     li.mini-data{
-        
 justify-content: flex-start;
-        
 /* flex-direction:  column; */
-        
 flex-wrap: nowrap;
-        
 margin:  -5px 0 15px;
+flex-direction: column;
     }
     ul.app_main{
-        
 padding: 12px 12px 14px;
-        
 max-width:  100%;
-        
 display:  block;
-        
 margin-bottom:  0;
     }
-
     .appartment.info-banner{
-        position: relative;
-        z-index: 9;
-        background: #ffffffcf;
+position: relative;
+z-index: 9;
+background: #ffffffcf;
     }
     .appartment{
-        margin: 0;
+margin: 0;
     }
     .rayon, .zastr{
     border: 2px solid #6ac2e7;
 }
     .haus_grid_elem{
-
 grid-template-columns: 1fr;
-
 margin: 0 !important;
 }
 .stroyashhiesya .rayon, .sdannye .rayon, .stroyashhiesya .zastr, .sdannye .zastr{
-    
 position:  static;
-    
 margin-bottom:  10px;
-    
 padding: 5px 9px;
-    
 font-size: 10px;
-    
-margin: 0  5px 0 0;
+margin: 0 5px 10px   0;
 }
 .app_features{
-    
 grid-template-columns:  1fr;
-    
 grid-gap: 0px;
-    
 height: 120px;
 }
 }
-
 @media only screen and (min-width:576px) and (max-width:768px){   .haus_grid_elem{
-
 grid-template-columns: 1fr;
 }}
-
 @media only screen and (min-width:768px) and (max-width:992px){ }
-
 @media only screen and (min-width:992px) and (max-width:1200px){ }
-
 @media only screen and (min-width:1200px) and (max-width:5120){ }
-

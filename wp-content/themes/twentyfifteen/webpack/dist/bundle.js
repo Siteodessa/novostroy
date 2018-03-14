@@ -11775,8 +11775,19 @@ jQuery('.sort_type').click(function () {
   }
 });
 
+jQuery('.bld_arr').prependTo('.explanation');
 jQuery('p.sort').click(function () {
   jQuery('.s_ch').toggle();
+});
+
+jQuery('select.bld_arr').on('change', function () {
+
+  window.location = this.value;
+});
+
+jQuery('.footer').ready(function () {
+  var c_width = jQuery('.container.hd').width();
+  jQuery(this).width(c_width);
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 

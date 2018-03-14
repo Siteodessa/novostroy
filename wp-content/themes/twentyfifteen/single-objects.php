@@ -36,30 +36,8 @@ $house_pharma =  get_field('аптека') ;
 $house_green_area =  get_field('сквер_парк_зеленая_зона') ;
 $house_full_des = get_field('второе_описание') ;
 $dom_u_dorogi = get_field('дом_на_карте');
-function  get_childrens($i_d, $childrens, $title, $image_field_name, $object_type){
-if( $childrens ){
-if ($object_type == 'Офис') {$pretext = 'Офисы в';} else { $pretext = 'Квартиры в';};
-print_r(' <h3 class="related_appartments"> '. $pretext .' '. $title .' </h3>');
-print_r(' <div class="tha this_house_appartments">');
-foreach( $childrens as $children ){
-$chi_id = $children->ID;
-if (get_field($image_field_name, $chi_id)) {
-print_r(' <div class="one_appartment">');
-print_r('  <div class="rel_img"><a href="'. get_permalink($chi_id) .'"><img src="'. get_field($image_field_name, $chi_id) .'" ></a></div> ');
-print_r(' <div class="office_data">');
-if (get_field('sqrt', $chi_id)) {     print_r('  <div class="">Площадь:  <strong>'. get_field('sqrt', $chi_id) .' </strong></div>');}
-if (get_field('prc', $chi_id)) {     print_r('  <div class="">Цена:  <strong>'. get_field('prc', $chi_id) .' </strong></div>');}
-if (get_field('floor', $chi_id)) {     print_r('  <div class="">Этаж:  <strong>'. get_field('floor', $chi_id) .' </strong></div>');}
-if (get_field('rom', $chi_id)) {     print_r('  <div class="">Комнат:  <strong>'. get_field('rom', $chi_id) .' </strong></div>');}
-print_r(' <a class="btn-details" href="'. get_permalink($chi_id) .'">Перейти</a>');
-print_r(' </div>');
-print_r(' </div>');
-}
-}
-print_r(' </div>');
-}
-};
-print_r('<div class=""><div class="row"><div class="container hb">');
+
+print_r('<div class="core_hld"><div class="row"><div class="container hb">');
 while ( have_posts() ) : the_post();
 if ($post_definition == 'Дом') {
 if ($house_readiness == 'Строится') {
@@ -100,6 +78,65 @@ echo '</div>';
 echo '</section>';
 };
 /* end map */
+
+          $image_field_name = 'основное_фото_дома';
+          $object_type = 'Дом';
+          $childrens2 = get_posts( array(
+          'numberposts' => 6,
+          'post_type' => 'objects',
+          'exclude' => array('1287', '1283'),
+          'post_status' => 'any',
+          'meta_query'	=> array(
+          'relation'		=> 'AND',
+          array(
+          'key'	 	=> 'house_or_appartment',
+          'value'	 	=> $object_type,
+          'compare' 	=> 'IN', ),
+          array(
+          'key'	 	=> 'дом_строится_или_сдан',
+          'value'	 	=> 'Строится',
+          'compare' 	=> 'IN', ),
+          )
+          ) );
+
+
+  $top_line = array(
+                'nodetype'	 	=> 'div',
+                'clsname'	 	=> 'office_data house_data',
+                'parent_node'	 	=> 'div',
+                'parental_clsname'	 	=> 'tha this_house_appartments appr',
+  );
+
+          $mid_lines = array(
+            'Район'	=>
+            array(
+            'nodetype'	 	=> 'div',
+            'clsname'	 	=> 'min_dat',
+            'secondary_node'	 	=> 'strong',
+            'text' 	=> 'Район:  ',
+            'meta_key_name' 	=> 'район',
+          ),
+            'Адрес'	=>
+            array(
+            'nodetype'	 	=> 'div',
+            'clsname'	 	=> 'min_dat',
+            'secondary_node'	 	=> 'strong',
+            'text' 	=> 'Адрес:  ',
+            'meta_key_name' 	=> 'адрес_дома',
+          ),
+            'Срок_сдачи'	=>
+            array(
+            'nodetype'	 	=> 'div',
+            'clsname'	 	=> 'min_dat',
+            'secondary_node'	 	=> 'strong',
+            'text' 	=> 'Срок сдачи:  ',
+            'meta_key_name' 	=> 'срок_сдачи',
+          ),
+        );
+          $pretext = 'Пользователи также интересовались';
+          print_query($childrens2, $title, $image_field_name, $object_type, $pretext, $top_line, $mid_lines);
+
+
 print_r(' </div>');
 print_r(' <div class="house_widgets">');
 print_r(' <div class="house_widgets_container">');
@@ -151,6 +188,10 @@ array( 'key'	 	=> 'house_or_appartment',
 )
 ) );
 get_childrens($i_d, $childrens2, $title, $image_field_name, $object_type);
+
+
+
+
 print_r(' </div>');
 /* end house_content */
 } else {
@@ -246,6 +287,71 @@ array( 'key'	 	=> 'house_or_appartment',
 get_childrens($i_d, $childrens2, $title, $image_field_name, $object_type);
 print_r(' </div>');
 print_r(' </div>');
+
+
+
+
+
+
+
+
+
+
+    $pretext = 'Пользователи также интересовались';
+    $object_type = 'Дом';
+    $image_field_name = 'основное_фото_дома';
+    $da_query = get_posts( array(
+    'numberposts' => 6,
+    'post_type' => 'objects',
+    'exclude' => array('1287', '1283'),
+    'post_status' => 'any',
+    'meta_query'	=> array(
+    'relation'		=> 'AND',
+    array(
+    'key'	 	=> 'house_or_appartment',
+    'value'	 	=> $object_type,
+    'compare' 	=> 'IN', ),
+    array(
+    'key'	 	=> 'дом_строится_или_сдан',
+    'value'	 	=> 'Сдан',
+    'compare' 	=> 'IN', ),
+    )
+    ) );
+    $top_line = array(
+    'nodetype'	 	=> 'div',
+    'clsname'	 	=> 'office_data house_data',
+    'parent_node'	 	=> 'div',
+    'parental_clsname'	 	=> 'tha this_house_appartments grid-3',
+    );
+    $mid_lines = array(
+'Район'	=>
+    array(
+    'nodetype'	 	=> 'div',
+    'clsname'	 	=> 'min_dat',
+    'secondary_node'	 	=> 'strong',
+    'text' 	=> 'Район:  ',
+    'meta_key_name' 	=> 'район',
+    ),
+'Адрес'	=>
+    array(
+    'nodetype'	 	=> 'div',
+    'clsname'	 	=> 'min_dat',
+    'secondary_node'	 	=> 'strong',
+    'text' 	=> 'Адрес:  ',
+    'meta_key_name' 	=> 'адрес_дома',
+    ),
+'Срок_сдачи'	=>
+    array(
+    'nodetype'	 	=> 'div',
+    'clsname'	 	=> 'min_dat',
+    'secondary_node'	 	=> 'strong',
+    'text' 	=> 'Срок сдачи:  ',
+    'meta_key_name' 	=> 'срок_сдачи',
+    ),
+    );
+
+        print_query($da_query, $title, $image_field_name, $object_type, $pretext, $top_line, $mid_lines);
+
 };
 }
 else {
@@ -284,7 +390,7 @@ print_r(' </div>');
 print_r(' </div>');
 print_r(' </div>');
 print_r(' <div class="overlay">'); print_r(' </div>');
-print_r('<img src="'. $parent_image .'" />');
+print_r('<img class="par_img" src="'. $parent_image .'" />');
 print_r(' </div>');
 print_r(' <div class="s office_single"> <div id="main_image">');
 $main_image = get_field('основное_фото_офиса');
@@ -366,7 +472,8 @@ print_r(' <div class="parent_image">');
 print_r(' <div class="info_box">');
 print_r(' <div class="skew_box">');
 print_r(' <div class="content_box">');
-print_r(' <div class="thin"><h1>Квартира в '. get_the_title($i_d_parent) .'</h1>');
+$title_parent = get_the_title($i_d_parent);
+print_r(' <div class="thin"><h1>Квартира в '. $title_parent .'</h1>');
 $parent_house_otdelka = get_field('квартиры_с_отделкой', $i_d_parent) ;
 $parent_house_commercial = get_field('коммерческие_помещения', $i_d_parent) ;
 $parent_house_security = get_field('охраняемая_территория', $i_d_parent) ;
@@ -393,7 +500,7 @@ print_r(' </div>');
 print_r(' </div>');
 print_r(' </div>');
 print_r(' <div class="overlay">'); print_r(' </div>');
-print_r('<img src="'. $parent_image .'" />');
+print_r('<img class="par_img" src="'. $parent_image .'" />');
 print_r(' </div>');
 ?>
 <div class="s">
@@ -415,29 +522,30 @@ print_r(' </div>');
 <div itemscope itemtype="description" class="description">
 <?php
 echo '<div class="mini_info">';
-echo '<p>Район: <span>'. get_field('block') .'</span></p>';
+$current_block = get_field('block');
+echo '<p>Район: <a href="http://novostroy/?block='. $current_block .'"><span>'. $current_block .'</span></a></p>';
 echo '<p>Адрес дома: <span>'. get_field('адрес_дома', $i_d_parent) .'</span></p>';
 echo '</div>';
 $filled_icons = 6 - $empty_icons;
 if ($empty_icons > 2){ echo '<ul class="thin sm xsm grid-'. $filled_icons .'">'; } else { echo '<ul class="thin sm grid-'. $filled_icons .'">'; };
 if ($sqrt) { ?> <li><img src="/wp-content/uploads/2018/02/006-set-square.png" alt="">
-<div class="side_data"><span>Площадь&nbsp;:</span><strong><?php echo $sqrt ?> м<sup>2</sup></strong></div>
+<div class="side_data"><span>Площадь&nbsp;:</span><strong><?php print_r('<a class="dyn_bld" href="/?mns='. (round($sqrt, -1) - 10) .'&mxs='. round($sqrt, -1) .'">')?><?php echo $sqrt ?> м<sup>2</sup></a></strong></div>
 </li> <?php }?> <?php if ($prc) { ?>
 <li><img src="/wp-content/uploads/2018/02/005-shopping.png" alt="">
-<div class="side_data"><span>Цена&nbsp;:</span><strong><?php echo $prc ?></strong></div>
+<div class="side_data"><span>Цена&nbsp;:</span><strong><?php print_r('<a class="dyn_bld" href="/?mnp='. (round($prc, -4) - 5000) .'&mxp='. (round($prc, -4) + 5000) .'">')?><?php echo $prc; ?></a></strong></div>
 </li> <?php }?> <?php if ($floor) { ?>
 <li><img src="/wp-content/uploads/2018/02/004-stairs.png" alt="">
-<div class="side_data"> <span>Этаж&nbsp;:</span><strong><?php echo $sqrt ?> м<sup>2</sup></strong></div>
+<div class="side_data"> <span>Этаж&nbsp;:</span><strong><?php print_r('<a class="dyn_bld" href="/?floor='. get_field('floor') .'">')?><?php echo $floor ?></a></strong></div>
 </li> <?php }?>
 <?php if ($rom) { ?>
 <li><img src="/wp-content/uploads/2018/02/003-building.png" alt="">
-<div class="side_data"> <span>Комнат&nbsp;:</span><strong><?php echo $rom ?> </strong></div>
+<div class="side_data"> <span>Комнат&nbsp;:</span><strong><?php print_r('<a class="dyn_bld" href="/?rom='. get_field('rom') .'">')?><?php echo $rom ?> </a></strong></div>
 </li> <?php }?> <?php if ($section) { ?> <li>
 <img src="/wp-content/uploads/2018/02/002-buildings.png" alt="">
 <div class="side_data"> <span>Секция&nbsp;:</span><strong><?php echo $section ?></strong></div>
 </span><?php }?>
 <?php if ($bld) { ?> <li><img src="/wp-content/uploads/2018/02/001-worker.png" alt="" width="64" height="64">
-<div class="side_data"> <span>Застройщик&nbsp;:</span><strong><?php echo $bld ?></strong></div>
+<div class="side_data"><span>Застройщик&nbsp;:</span><strong> <?php print_r('<a class="dyn_bld" href="/?bld='. get_field('bld') .'">')?><?php echo $bld ?></a></strong></div>
 <?php }
 echo '</ul>';
 echo $des;
@@ -458,7 +566,135 @@ echo '<h3>Квартира на карте</h3> ';
 echo '</div>';
 echo $dom_u_dorogi;
 echo '</div>';
-echo '</section>';
+echo '</section>';/*endmap*/
+
+$pretext = 'Другие квартиры в '. $title_parent .'';
+$object_type = 'Квартира';
+$image_field_name = 'appar_image';
+$da_query = get_posts( array(
+'numberposts' => 6,
+'post_type' => 'objects',
+'exclude' => array('1287', '1283'),
+'post_status' => 'any',
+'meta_query'	=> array(
+'relation'		=> 'AND',
+array(
+'key'	 	=> 'house_or_appartment',
+'value'	 	=> $object_type,
+'compare' 	=> 'IN', ),
+)
+) );
+$top_line = array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'office_data house_data',
+'parent_node'	 	=> 'div',
+'parental_clsname'	 	=> 'tha this_house_appartments grid-3 appr',
+);
+$mid_lines = array(
+  'Количество комнат'	=>
+  array(
+  'nodetype'	 	=> 'div',
+  'clsname'	 	=> 'min_dat',
+  'secondary_node'	 	=> 'strong',
+  'text' 	=> 'Количество комнат:  ',
+  'meta_key_name' 	=> 'rom',
+  ),
+'Адрес'	=>
+array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'min_dat',
+'secondary_node'	 	=> 'strong',
+'text' 	=> 'Площадь:  ',
+'meta_key_name' 	=> 'sqrt',
+),
+'Этаж'	=>
+array(
+  'nodetype'	 	=> 'div',
+  'clsname'	 	=> 'min_dat',
+  'secondary_node'	 	=> 'strong',
+  'text' 	=> 'Этаж:  ',
+  'meta_key_name' 	=> 'floor',
+),
+'Цена'	=>
+array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'min_dat',
+'secondary_node'	 	=> 'strong',
+'text' 	=> 'Цена:  ',
+'meta_key_name' 	=> 'prc',
+),
+);
+
+    print_query($da_query, $title, $image_field_name, $object_type, $pretext, $top_line, $mid_lines);
+
+
+    $fromwhat = array("Приморский", "Суворовский", "Малиновский", "Киевский");
+    $towhat   = array("Приморском", "Суворовском", "Малиновском", "Киевском");
+
+    $current_block_replaced = str_replace($fromwhat, $towhat, $current_block);
+$pretext = 'Другие квартиры в '. $current_block_replaced .'  районе';
+$object_type = 'Квартира';
+$image_field_name = 'appar_image';
+$da_query = get_posts( array(
+'numberposts' => 6,
+'post_type' => 'objects',
+'exclude' => array('1287', '1283'),
+'post_status' => 'any',
+'meta_query'	=> array(
+'relation'		=> 'AND',
+array(
+'key'	 	=> 'house_or_appartment',
+'value'	 	=> $object_type,
+'compare' 	=> 'IN', ),
+array(
+'key'	 	=> 'block',
+'value'	 	=> $current_block,
+'compare' 	=> 'IN', ),
+)
+) );
+$top_line = array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'office_data house_data',
+'parent_node'	 	=> 'div',
+'parental_clsname'	 	=> 'tha this_house_appartments grid-3 appr',
+);
+$mid_lines = array(
+  'Количество комнат'	=>
+  array(
+  'nodetype'	 	=> 'div',
+  'clsname'	 	=> 'min_dat',
+  'secondary_node'	 	=> 'strong',
+  'text' 	=> 'Количество комнат:  ',
+  'meta_key_name' 	=> 'rom',
+  ),
+'Адрес'	=>
+array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'min_dat',
+'secondary_node'	 	=> 'strong',
+'text' 	=> 'Площадь:  ',
+'meta_key_name' 	=> 'sqrt',
+),
+'Этаж'	=>
+array(
+  'nodetype'	 	=> 'div',
+  'clsname'	 	=> 'min_dat',
+  'secondary_node'	 	=> 'strong',
+  'text' 	=> 'Этаж:  ',
+  'meta_key_name' 	=> 'floor',
+),
+'Цена'	=>
+array(
+'nodetype'	 	=> 'div',
+'clsname'	 	=> 'min_dat',
+'secondary_node'	 	=> 'strong',
+'text' 	=> 'Цена:  ',
+'meta_key_name' 	=> 'prc',
+),
+);
+
+    print_query($da_query, $title, $image_field_name, $object_type, $pretext, $top_line, $mid_lines);
+
 }
 };
 };
@@ -468,4 +704,5 @@ print_r('</div> </div> <div class="clearfix"> </div> </div> </div>');
 print_r('<script src="'. get_template_directory_uri() .'/kvarts.js"></script>');
 print_r('<script src="'. get_template_directory_uri() .'/webpack/dist/bundle.js"></script>');
 get_template_part('footer_novostroy');
+get_template_part('lg');
 get_footer(); ?>

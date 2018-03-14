@@ -25,12 +25,6 @@ get_template_part('home_slider');
 print_r('<link rel="stylesheet" href="'. get_template_directory_uri() .'/home.css">');
 function default_kvartiri_behaviour()
 {
-  function there_is_any_get(){
-  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  $entry1 = strpos($actual_link,"&");
-  $entry2 = strpos($actual_link,"?");
-  if ($entry1 !== false ||  $entry2 !== false ) { return true;} else { return false;};
-  }
   function make_search_values_checkboxes($search_tag){
 $search_tago = $search_tag;
  $field = get_field_object($search_tago);
@@ -66,15 +60,6 @@ print_r('<div class="srch_labl"><p class="f_name">Цена<span class="visual pr
     print_r('</div>');
     print_r('</div>');
  // end search_values block
- function push_all_possible_meta_values($meta_key_slug)
- { $arr =  array();
-    $search_tago = $meta_key_slug;
-    $field = get_field_object($search_tago);
-     if( $field ) {
-       foreach( $field['choices'] as $k => $v )
-        { array_push($arr, $k);
-         } } return $arr;
-       };
  $rom_value = push_all_possible_meta_values("rom");
  $bld_value = push_all_possible_meta_values("bld");
  $block_value = push_all_possible_meta_values("block");
@@ -189,12 +174,13 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
 
 ?>
 <ul class="appartment image">
+      <?php if($best_offer_true) { echo '<div class="b_o block"> <span>Лучшее предложение</span></div>';} ?>
 <li class="im">
   <a href="<?php echo  the_permalink()?>"><img src="<?php echo get_field('appar_image');?>" /></a></li>
 
 <div class="sub_info">
-  <li class="tfx bl"><p>Район: <span><?php echo get_field('block')  ;?></span></p></li>
-  <li class="tfx bd"><p>Застройщик: <span><?php echo  get_field('bld') ;?></span></p></li>
+  <li class="tfx bl"><p>Район: <span><a class="short_search" href="<?php echo '/?block='. get_field('block') .''; ?>"><?php echo get_field('block')  ;?></a></span></p></li>
+  <li class="tfx bd"><p>Застройщик: <span><a class="short_search" href="<?php echo '/?bld='. get_field('bld') .''; ?>"><?php echo  get_field('bld') ;?></a></span></p></li>
 </div>
 <div class="sub_image">
   <li class="tfx bl"><a href="<?php echo  the_permalink()?>"><img src="<?php echo $parent_image?>" /></a></li>
@@ -203,20 +189,20 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
 <a href="<?php echo the_permalink()?>"></a>
 </div>
 <div class="sub_title">
-<?php echo get_the_title($i_d_parent)?>
+<a href="<?php echo the_permalink()?>"><?php echo get_the_title($i_d_parent)?></a>
 </div>
 
 
 </ul>
 <ul class="appartment info">
-<li class="tx ro"><span><img src="http://novostroy/wp-content/uploads/2018/02/003-building.png" alt=""></span><p class="p_i">Комнат</p><strong class="rom"><?php echo get_field('rom');?></strong></li>
-<li class="tx sq"><span><img src="http://novostroy/wp-content/uploads/2018/02/006-set-square.png" alt=""></span><p class="p_i">Площадь</p><strong class="sqrt"><?php echo  get_field('sqrt') ;?></strong></li>
-<li class="tx pr"><span><img src="http://novostroy/wp-content/uploads/2018/02/005-shopping.png" alt=""></span><p class="p_i">Цена</p><strong class="prc"><?php echo  get_field('prc') ;?></strong></li>
-<li class="tx fl"><span><img src="http://novostroy/wp-content/uploads/2018/02/004-stairs.png" alt=""></span><p class="p_i">Этаж</p><strong class="floor"><?php echo  get_field('floor') ;?></strong></li>
+<li class="tx ro"><span><img src="http://novostroy/wp-content/uploads/2018/02/003-building.png" alt=""></span><p class="p_i">Комнат</p><strong class="rom"><a class="s_app_search" href="<?php echo '/?rom='. get_field('rom') .''; ?>"><?php echo get_field('rom');?></a></strong></li>
+<li class="tx fl"><span><img src="http://novostroy/wp-content/uploads/2018/02/004-stairs.png" alt=""></span><p class="p_i">Этаж</p><strong class="floor"><a class="s_app_search" href="<?php echo '/?floor='. get_field('floor') .''; ?>"><?php echo  get_field('floor') ;?></a></strong></li>
+<li class="tx sq"><span><img src="http://novostroy/wp-content/uploads/2018/02/006-set-square.png" alt=""></span><p class="p_i">Площадь</p><strong class="sqrt"><a class="s_app_search" href="<?php echo '/?sqrt='. get_field('sqrt') .''; ?>"><?php echo  get_field('sqrt') ;?> м<sup>2</sup></a></strong></li>
+<li class="tx pr"><span><img src="http://novostroy/wp-content/uploads/2018/02/005-shopping.png" alt=""></span><p class="p_i">Цена</p><strong class="prc">
+  <?php $prc = get_field('prc'); print_r('<a class="dyn_bld" href="/?mnp='. (round($prc, -4) - 5000) .'&mxp='. (round($prc, -4) + 5000) .'">') ; echo $prc ;?> у.е.</a>
+</strong></li>
 </ul>
 <ul class="add_info">
-      <?php if($best_offer_true) { echo '<div class="b_o block"> <span>Лучшее предложение</span></div>';} ?>
-
 <a href="<?php echo the_permalink()?>"><button class="stock">Подробнее</button></a>
 </ul>
 </div>
@@ -244,25 +230,34 @@ $parent_image = get_field('основное_фото_дома', $i_d_parent);
 
        // the following to be dropped in a function and keep this function somewhere else
 
+       $cur_user_id = get_current_user_id();
+       if ($cur_user_id == '1'){
 
-             print_r(' <style> button.edit_starter { opacity: 0; background: transparent; border:  transparent; position:  absolute; bottom:  0; right:  0; height: 75px; transition:  .5s; transform: translate(100%,100%) scale(0); } .super_group { position:  relative; } .super_group:hover .edit_starter { opacity: 1; background: #6ac2e78f; color:  #fff; border-radius:  100%; transform:  none; }button.btnLoadMorePosts { width:  200px; height:  40px; font-size:  24px; color:  #fff; background: #6ac2e7; position:  absolute; right:  0; top: auto; z-index:  99;opacity:0 }.editor_group:hover .btnLoadMorePosts { opacity:  1; }</style>');
+                      print_r(' <style> button.edit_starter { opacity: 0; background: transparent; border:  transparent; position:  absolute; bottom:  0; right:  0; height: 75px; transition:  .5s; transform: translate(100%,100%) scale(0); } .super_group { position:  relative; } .super_group:hover .edit_starter { opacity: 1; background: #6ac2e78f; color:  #fff; border-radius:  100%; transform:  none; }button.btnLoadMorePosts { width:  200px; height:  40px; font-size:  24px; color:  #fff; background: #6ac2e7; position:  absolute; right:  0; top: auto; z-index:  99;opacity:0 }.editor_group:hover .btnLoadMorePosts { opacity:  1; }</style>');
+       } else {
+            print_r(' <style> button.edit_starter { display:none}</style>');
+
+
+       }
+
+
+       ;
+
+
+
 
              $cur_field = get_field_object('текст_на_главной', 1738);
 
       print_r('<div id="seotext" class="seo_text container super_group sg_'. get_the_ID() .'" pd="'. get_the_ID() .'" fn="' . $cur_field["key"] . '" >');
 
 
-      echo get_field('текст_на_главной', 1738);
+      // echo get_field('текст_на_главной', 1738);
+      echo $cur_field["value"];
 
       // echo '<br>';
       // echo '<br>';
       // echo '<br>';
       // echo get_field('текст_на_главной2', 1738);
-
-
-
-
-
 
 
 print_r('</div>');
